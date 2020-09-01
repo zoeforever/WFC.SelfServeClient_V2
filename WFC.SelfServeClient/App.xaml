@@ -1,11 +1,13 @@
 ﻿<Application x:Class="WFC.SelfServeClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WFC.SelfServeClient"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:WFC.SelfServeClient">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:MyBootstrapper x:Key="Bootstrapper" />
+                </ResourceDictionary>
                 <ResourceDictionary Source="Style/CustomWindow.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
