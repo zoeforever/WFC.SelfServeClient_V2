@@ -1,0 +1,29 @@
+﻿<Window x:Class="WFC.SelfServeClient.IdentificationIDCard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WFC.SelfServeClient"
+        mc:Ignorable="d"
+        Title="IdentificationIDCard" Height="450" Width="800" Style="{StaticResource ResourceKey=CustomWindowChrome}"  >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2.5*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+            <Border.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/bg.png"></ImageBrush>
+            </Border.Background>
+        </Border>
+        <Border Grid.Row="2" Grid.Column="0">
+            <Border.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/bottom.png"></ImageBrush>
+            </Border.Background>
+        </Border>
+        <Image Grid.Row="0" Width="423" Height="490" Source="/WFC.SelfServeClient;component/Resources/rlsb-smk-2.png" VerticalAlignment="Bottom"/>
+        <Image Grid.Row="1" Width="431" Height="115" Source="/WFC.SelfServeClient;component/Resources/rlsb-wz-1.png" />
+    </Grid>
+</Window>
