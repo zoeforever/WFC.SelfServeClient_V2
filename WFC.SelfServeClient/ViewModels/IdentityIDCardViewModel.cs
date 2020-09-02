@@ -1,12 +1,8 @@
 ﻿using AForge.Video.DirectShow;
 using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -47,7 +43,7 @@ namespace WFC.SelfServeClient.ViewModels
             snapshotTimer.Start();
 
             gotoTimer = new DispatcherTimer();
-            gotoTimer.Interval = TimeSpan.FromSeconds(2);           
+            gotoTimer.Interval = TimeSpan.FromSeconds(2);
             gotoTimer.Tick += Goto_Tick;
         }
         protected override void OnViewLoaded(object view)
@@ -63,23 +59,32 @@ namespace WFC.SelfServeClient.ViewModels
         {
             Application.Current.Dispatcher.Invoke(() =>
             {
-                Snapshot = snapshot;
-                identityIDCardView.wfh.Visibility = Visibility.Collapsed;
-                identityIDCardView.imgBG.Visibility = Visibility.Visible;
-                identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
-                identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
-                helper.Disconnect();
-                //身份证头像+抓拍头像 调用接口头像对比
-                if (true)
+                try
                 {
-                    identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
-                    gotoTimer.Tag = "success";
-                    gotoTimer.Start();
+                    Snapshot = snapshot;
+                    identityIDCardView.wfh.Visibility = Visibility.Collapsed;
+                    identityIDCardView.imgBG.Visibility = Visibility.Visible;
+                    identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
+                    identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
+
+                    //身份证头像+抓拍头像 调用接口头像对比
+                    if (true)
+                    {
+                        identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
+                        gotoTimer.Tag = "success";
+                        gotoTimer.Start();
+                    }
+                    else
+                    {
+                        identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
+                        gotoTimer.Tag = "fail";
+                        gotoTimer.Start();
+                    }
                 }
-                else {
-                    identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
-                    gotoTimer.Tag = "fail";
-                    gotoTimer.Start();
+                catch { }
+                finally
+                {
+                    helper.Disconnect();
                 }
             });
         }
@@ -87,7 +92,7 @@ namespace WFC.SelfServeClient.ViewModels
         {
             try
             {
-                idCardInfo = IdCardReaderHelper.ReadIdCard("/");
+                idCardInfo = IdCardReaderHelper.ReadIdCard();
             }
             catch (Exception ex)
             {
@@ -98,7 +103,7 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 snapshotTimer.Stop();
                 //身份证头像获取成功，开始摄像头抓拍
-                helper.Snapshot();               
+                helper.Snapshot();
             }
             if (snapshotTimer_count > 6)
             {
@@ -115,15 +120,28 @@ namespace WFC.SelfServeClient.ViewModels
 
         private void Goto_Tick(object sender, EventArgs e)
         {
-            DispatcherTimer dispatcherTimer =(DispatcherTimer) sender;
+            DispatcherTimer dispatcherTimer = (DispatcherTimer)sender;
             if (dispatcherTimer.Tag.Equals("success"))
             {
                 OnGotoInputInfoClick?.Invoke();
             }
-            else {
+            else
+            {
                 OnGotoWelcomeClick?.Invoke();
             }
             gotoTimer.Stop();
+        }
+
+        protected override void OnDeactivate(bool close)
+        {
+            base.OnDeactivate(close);
+            try
+            {
+                helper.Disconnect();
+            }
+            catch
+            {
+            }
         }
     }
 }

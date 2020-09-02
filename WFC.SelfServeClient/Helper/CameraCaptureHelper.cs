@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AForge.Controls;
+﻿using AForge.Controls;
 using AForge.Video;
 using AForge.Video.DirectShow;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+
 namespace WFC.SelfServeClient.Helper
 {
     public delegate void SnapShotEventHandler(object sender, Bitmap snapshot);
@@ -60,7 +58,7 @@ namespace WFC.SelfServeClient.Helper
         public void Connect(int videoResolutionIndex = 0, int snapshotResolutionIndex = 0)
         {
             videoDevice.ProvideSnapshots = true;
-           //videoDevice.SnapshotResolution = snapshotCapabilities[snapshotResolutionIndex];
+            videoDevice.SnapshotResolution = snapshotCapabilities[snapshotResolutionIndex];
             videoDevice.SnapshotFrame += VideoDevice_SnapshotFrame;
 
             if (videoSourcePlayer != null)
