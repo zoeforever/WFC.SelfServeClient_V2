@@ -95,6 +95,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Helper\CameraCaptureHelper.cs" />
+    <Compile Include="Helper\IdCardReaderHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
     <Compile Include="Models\Visitor.cs" />
     <Compile Include="ViewModels\IdentityIDCardViewModel.cs" />

@@ -27,6 +27,18 @@ namespace WFC.SelfServeClient
         private void WelcomeButtonClick()
         {
             identityIDCardModel = new IdentityIDCardViewModel(Visitor);
+            identityIDCardModel.OnGotoWelcomeClick += GotoWelcomeClick;
+            identityIDCardModel.OnGotoInputInfoClick += GotoInputInfoClick;
+            this.ActivateItem(identityIDCardModel);
+        }
+
+        private void GotoWelcomeClick()
+        {
+            this.ActivateItem(welcomeViewModel);
+        }
+
+        private void GotoInputInfoClick()
+        {
             this.ActivateItem(identityIDCardModel);
         }
     }
