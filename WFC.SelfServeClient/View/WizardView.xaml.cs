@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WFC.SelfServeClient
+namespace WFC.SelfServeClient.View
 {
     /// <summary>
-    /// InputVisitor.xaml 的交互逻辑
+    /// WizardView.xaml 的交互逻辑
     /// </summary>
-    public partial class InputVisitor : Window
+    public partial class WizardView : UserControl
     {
-        public InputVisitor()
+        public WizardView()
         {
             InitializeComponent();
         }

@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WFC.SelfServeClient
+namespace WFC.SelfServeClient.View
 {
     /// <summary>
-    /// CommitSuccess.xaml 的交互逻辑
+    /// WelcomeView.xaml 的交互逻辑
     /// </summary>
-    public partial class CommitSuccess : Window
+    public partial class WelcomeView : UserControl
     {
-        public CommitSuccess()
+        public WelcomeView()
         {
             InitializeComponent();
         }

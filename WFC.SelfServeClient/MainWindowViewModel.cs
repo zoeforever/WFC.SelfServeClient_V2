@@ -14,32 +14,20 @@ namespace WFC.SelfServeClient
     public class MainWindowViewModel : Conductor<Screen>
     {
         public Visitor Visitor { get; set; }
-        FirstStepViewModel FirstStep { get; set; }
-        SecondStepViewModel SecondStep { get; set; }
-
+        WelcomeViewModel welcomeViewModel { get; set; }
+        IdentityIDCardViewModel identityIDCardModel { get; set; }
         public MainWindowViewModel()
         {
             Visitor = new Visitor();
-            FirstStep = new FirstStepViewModel(Visitor);
-            FirstStep.OnFirstStepClick += FirstStep_OnFirstStepClick;
-            SecondStep = new SecondStepViewModel(Visitor);
-            SecondStep.OnSecondStepClickPre += SecondStep_OnSecondStepClickPre;
-            SecondStep.OnSecondStepClickNext += SecondStep_OnSecondStepClickNext;
-            this.ActivateItem(FirstStep);
+            welcomeViewModel = new WelcomeViewModel(Visitor);
+            welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
+            this.ActivateItem(welcomeViewModel);
         }
 
-        private void SecondStep_OnSecondStepClickNext()
+        private void WelcomeButtonClick()
         {
-        }
-
-        private void SecondStep_OnSecondStepClickPre()
-        {
-            this.ActivateItem(FirstStep);
-        }
-
-        private void FirstStep_OnFirstStepClick()
-        {
-            this.ActivateItem(SecondStep);
+            identityIDCardModel = new IdentityIDCardViewModel(Visitor);
+            this.ActivateItem(identityIDCardModel);
         }
     }
 }
