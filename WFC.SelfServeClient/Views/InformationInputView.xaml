@@ -7,12 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label HorizontalAlignment="Left" Margin="129,82,0,0" VerticalAlignment="Top">
-            <Label.Background>
-                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_1.png" />
-            </Label.Background>
-        </Label>
-        <TextBox Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="190,69,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+       
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label>
+                <Label.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBox Text="访客姓名" Foreground="White"></TextBox>
+                        <TextBox Text="Visitor Name" Foreground="White"></TextBox>
+                    </StackPanel>
+                </Label.Content>
+            </Label>
+            <TextBox Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
+        </StackPanel>
         <Image Source="{Binding hendersonVisitor.VisitorPhoto}" HorizontalAlignment="Left" Height="178" Margin="511,28,0,0" VerticalAlignment="Top" Width="169"/>
         <Label HorizontalAlignment="Left" Margin="129,137,0,0" VerticalAlignment="Top">
             <Label.Background>
