@@ -9,6 +9,7 @@ using System.Windows.Threading;
 using WFC.SelfServeClient.Helper;
 using WFC.SelfServeClient.Models;
 using WFC.SelfServeClient.Views;
+using WFC.ServerClient.HttpModels;
 
 namespace WFC.SelfServeClient.ViewModels
 {
@@ -24,19 +25,19 @@ namespace WFC.SelfServeClient.ViewModels
         //10秒执行一次
         int snapshotTimer_timespan = 10;
         //执行6次=1分钟
-        int snapshotTimer_count = 0;
+        int snapshotTimer_count = 5;
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
         DispatcherTimer gotoTimer;
-        public Visitor Visitor { get; set; }
+        public HendersonVisitor hendersonVisitor { get; set; }
 
         public event System.Action OnGotoWelcomeClick;
 
         public event System.Action OnGotoInputInfoClick;
 
-        public IdentityIDCardViewModel(Visitor visitor)
+        public IdentityIDCardViewModel(HendersonVisitor hendersonVisitor)
         {
-            this.Visitor = visitor;
+            this.hendersonVisitor = hendersonVisitor;
             snapshotTimer = new DispatcherTimer();
             snapshotTimer.Interval = TimeSpan.FromSeconds(snapshotTimer_timespan);
             snapshotTimer.Tick += Snapshot_Tick;
@@ -66,7 +67,7 @@ namespace WFC.SelfServeClient.ViewModels
                     identityIDCardView.imgBG.Visibility = Visibility.Visible;
                     identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
                     identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
-
+                    hendersonVisitor.VisitorPhoto = "/WFC.SelfServeClient;component/Resources/bg.png"; //idCardInfo.ImagePath;
                     //身份证头像+抓拍头像 调用接口头像对比
                     if (true)
                     {
@@ -113,7 +114,7 @@ namespace WFC.SelfServeClient.ViewModels
                 identityIDCardView.imgBG.Visibility = Visibility.Visible;
                 identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
                 identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
-                gotoTimer.Tag = "fail";
+                gotoTimer.Tag = "success";
                 gotoTimer.Start();
             }
         }
@@ -123,6 +124,7 @@ namespace WFC.SelfServeClient.ViewModels
             DispatcherTimer dispatcherTimer = (DispatcherTimer)sender;
             if (dispatcherTimer.Tag.Equals("success"))
             {
+                hendersonVisitor.VisitorPhoto = "/WFC.SelfServeClient;component/Resources/bg.png"; //idCardInfo.ImagePath;
                 OnGotoInputInfoClick?.Invoke();
             }
             else

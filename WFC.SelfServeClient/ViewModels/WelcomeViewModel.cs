@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using System.ComponentModel.Composition;
 using WFC.SelfServeClient.Models;
+using WFC.ServerClient.HttpModels;
 
 namespace WFC.SelfServeClient.ViewModels
 {
@@ -8,11 +9,11 @@ namespace WFC.SelfServeClient.ViewModels
     [PropertyChanged.ImplementPropertyChanged]
     public class WelcomeViewModel : Screen
     {
-        public Visitor Visitor { get; set; }
+        public HendersonVisitor hendersonVisitor { get; set; }
         public event System.Action OnWelcomeButtonClick;
-        public WelcomeViewModel(Visitor visitor)
+        public WelcomeViewModel(HendersonVisitor hendersonVisitor)
         {
-            this.Visitor = visitor;
+            this.hendersonVisitor = hendersonVisitor;
         }
 
         public void WelcomeButtonClick()

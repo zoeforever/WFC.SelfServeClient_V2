@@ -7,26 +7,29 @@ using System.Text;
 using System.Threading.Tasks;
 using WFC.SelfServeClient.Models;
 using WFC.SelfServeClient.ViewModels;
+using WFC.ServerClient.HttpModels;
 
 namespace WFC.SelfServeClient
 {
     [Export(typeof(MainWindowViewModel))]
     public class MainWindowViewModel : Conductor<Screen>
     {
-        public Visitor Visitor { get; set; }
+        public HendersonVisitor hendersonVisitor { get; set; }
         WelcomeViewModel welcomeViewModel { get; set; }
         IdentityIDCardViewModel identityIDCardModel { get; set; }
+
+        InputUserInfoViewModel inputUserInfoViewModel { get; set; }
         public MainWindowViewModel()
         {
-            Visitor = new Visitor();
-            welcomeViewModel = new WelcomeViewModel(Visitor);
+            hendersonVisitor = new HendersonVisitor();
+            welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
             welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
             this.ActivateItem(welcomeViewModel);
         }
 
         private void WelcomeButtonClick()
         {
-            identityIDCardModel = new IdentityIDCardViewModel(Visitor);
+            identityIDCardModel = new IdentityIDCardViewModel(hendersonVisitor);
             identityIDCardModel.OnGotoWelcomeClick += GotoWelcomeClick;
             identityIDCardModel.OnGotoInputInfoClick += GotoInputInfoClick;
             this.ActivateItem(identityIDCardModel);
@@ -39,7 +42,8 @@ namespace WFC.SelfServeClient
 
         private void GotoInputInfoClick()
         {
-            this.ActivateItem(identityIDCardModel);
+            inputUserInfoViewModel = new InputUserInfoViewModel(hendersonVisitor);
+            this.ActivateItem(inputUserInfoViewModel);
         }
     }
 }

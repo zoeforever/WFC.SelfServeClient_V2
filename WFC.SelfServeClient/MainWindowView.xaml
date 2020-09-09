@@ -7,6 +7,7 @@
         xmlns:cm="http://www.caliburnproject.org"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized"
+        WindowStyle="None"
         mc:Ignorable="d" 
         d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
