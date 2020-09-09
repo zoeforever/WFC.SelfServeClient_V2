@@ -7,19 +7,42 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label HorizontalAlignment="Left" Margin="129,69,0,0" VerticalAlignment="Top">
+        <Label HorizontalAlignment="Left" Margin="129,82,0,0" VerticalAlignment="Top">
             <Label.Background>
                 <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_1.png" />
             </Label.Background>
         </Label>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="190,69,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="238"/>
-        <Image Source="{Binding HendersonVisitor.VisitorPhoto}" HorizontalAlignment="Left" Height="178" Margin="511,28,0,0" VerticalAlignment="Top" Width="169"/>
-        <Label HorizontalAlignment="Left" Margin="129,120,0,0" VerticalAlignment="Top">
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="190,69,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238"/>
+        <Image Source="{Binding hendersonVisitor.VisitorPhoto}" HorizontalAlignment="Left" Height="178" Margin="511,28,0,0" VerticalAlignment="Top" Width="169"/>
+        <Label HorizontalAlignment="Left" Margin="129,137,0,0" VerticalAlignment="Top">
             <Label.Background>
                 <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_2.png" />
             </Label.Background>
         </Label>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="190,124,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="238"/>
-
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="190,124,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238"/>
+        <Label HorizontalAlignment="Left" Margin="129,186,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_3.png" />
+            </Label.Background>
+        </Label>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="190,173,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="238"/>
+        <Label  HorizontalAlignment="Left" Margin="129,226,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_4.png" />
+            </Label.Background>
+        </Label>
+        <ComboBox HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Width="238" x:Name="VisitorTenant" DisplayMemberPath="Display_name"
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding hendersonVisitor.HendersonTenantId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label HorizontalAlignment="Left" Margin="129,273,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_4.png" />
+            </Label.Background>
+        </Label>
+        <DatePicker HorizontalAlignment="Left" Margin="190,273,0,0" VerticalAlignment="Top" Width="238"/>
+        <Label HorizontalAlignment="Left" Margin="129,328,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="190,317,0,0" VerticalAlignment="Top" Width="238" x:Name="HendersonTenantPerson" DisplayMemberPath="Name"
+                  SelectedValuePath="Name"
+                  SelectedValue="{Binding hendersonVisitor.HendersonTenantPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
     </Grid>
 </UserControl>

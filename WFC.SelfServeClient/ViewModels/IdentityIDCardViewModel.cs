@@ -67,7 +67,9 @@ namespace WFC.SelfServeClient.ViewModels
                     identityIDCardView.imgBG.Visibility = Visibility.Visible;
                     identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
                     identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
-                    hendersonVisitor.VisitorPhoto = "/WFC.SelfServeClient;component/Resources/bg.png"; //idCardInfo.ImagePath;
+                    hendersonVisitor.IdCardNo = idCardInfo.Code;
+                    hendersonVisitor.Name = idCardInfo.Name;
+                    hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
                     //身份证头像+抓拍头像 调用接口头像对比
                     if (true)
                     {
@@ -124,6 +126,8 @@ namespace WFC.SelfServeClient.ViewModels
             DispatcherTimer dispatcherTimer = (DispatcherTimer)sender;
             if (dispatcherTimer.Tag.Equals("success"))
             {
+                hendersonVisitor.IdCardNo = "123";
+                hendersonVisitor.Name = "abc";
                 hendersonVisitor.VisitorPhoto = "/WFC.SelfServeClient;component/Resources/bg.png"; //idCardInfo.ImagePath;
                 OnGotoInputInfoClick?.Invoke();
             }

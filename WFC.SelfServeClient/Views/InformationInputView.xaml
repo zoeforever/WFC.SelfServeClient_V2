@@ -7,6 +7,47 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Label HorizontalAlignment="Left" Margin="129,82,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_1.png" />
+            </Label.Background>
+        </Label>
+        <TextBox Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="190,69,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
+        <Image Source="{Binding hendersonVisitor.VisitorPhoto}" HorizontalAlignment="Left" Height="178" Margin="511,28,0,0" VerticalAlignment="Top" Width="169"/>
+        <Label HorizontalAlignment="Left" Margin="129,137,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_2.png" />
+            </Label.Background>
+        </Label>
+        <TextBox Text="{Binding hendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="190,124,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
+        <Label HorizontalAlignment="Left" Margin="129,186,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_3.png" />
+            </Label.Background>
+        </Label>
+        <TextBox Text="{Binding hendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="190,173,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
+        <Label  HorizontalAlignment="Left" Margin="129,237,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_4.png" />
+            </Label.Background>
+        </Label>
+        <ComboBox HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Width="238" x:Name="VisitorTenant" DisplayMemberPath="Display_name"
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding hendersonVisitor.HendersonTenantId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label HorizontalAlignment="Left" Margin="129,287,0,0" VerticalAlignment="Top">
+            <Label.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_4.png" />
+            </Label.Background>
+        </Label>
+        <DatePicker Text="{Binding hendersonVisitor.StartTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="190,273,0,0" VerticalAlignment="Top" Width="238"/>
+        <Label HorizontalAlignment="Left" Margin="129,328,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Margin="190,317,0,0" VerticalAlignment="Top" Width="238" x:Name="HendersonTenantPerson" DisplayMemberPath="Name"
+                  SelectedValuePath="Name"
+                  SelectedValue="{Binding hendersonVisitor.HendersonTenantPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="BtnOK" Margin="268,373,438,50">
+            <Button.Background>
+                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/confirm.png" />
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>

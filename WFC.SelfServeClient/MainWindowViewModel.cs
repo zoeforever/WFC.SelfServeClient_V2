@@ -17,11 +17,11 @@ namespace WFC.SelfServeClient
         public HendersonVisitor hendersonVisitor { get; set; }
         WelcomeViewModel welcomeViewModel { get; set; }
         IdentityIDCardViewModel identityIDCardModel { get; set; }
-
-        InputUserInfoViewModel inputUserInfoViewModel { get; set; }
+        InformationInputViewModel informationInputViewModel { get; set; }
         public MainWindowViewModel()
         {
             hendersonVisitor = new HendersonVisitor();
+            hendersonVisitor.StartTime = DateTime.Now;
             welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
             welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
             this.ActivateItem(welcomeViewModel);
@@ -42,8 +42,8 @@ namespace WFC.SelfServeClient
 
         private void GotoInputInfoClick()
         {
-            inputUserInfoViewModel = new InputUserInfoViewModel(hendersonVisitor);
-            this.ActivateItem(inputUserInfoViewModel);
+            informationInputViewModel = new InformationInputViewModel(hendersonVisitor);
+            this.ActivateItem(informationInputViewModel);
         }
     }
 }
