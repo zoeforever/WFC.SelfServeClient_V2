@@ -8,6 +8,7 @@
                 <ResourceDictionary>
                     <local:MyBootstrapper x:Key="Bootstrapper" />
                 </ResourceDictionary>
+                <ResourceDictionary Source="Themes/VSTDateTimePickerStyle.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,0 +1,1 @@
+http://219.142.250.90:8083/api/v1/Tenant?visitorType=0&name=xxxx&page=1&pageSize=100

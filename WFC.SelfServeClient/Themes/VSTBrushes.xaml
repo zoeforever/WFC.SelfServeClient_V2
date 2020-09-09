@@ -1,0 +1,744 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:System="clr-namespace:System;assembly=mscorlib" 
+    xmlns:controls="clr-namespace:WFC.SelfServeClient.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="V3_Standard_FontFamily">YaHei,微软雅黑,新宋体</FontFamily>
+    <System:Double x:Key="V3_Standard_FontSize">12</System:Double>
+    <DropShadowEffect x:Key="DropShadowEffect1" BlurRadius="2" ShadowDepth="0.75" Opacity="0.3" Color="#FF000000" Direction="270"/>
+    <CornerRadius x:Key="V3_Standard_CornerRadius2">2</CornerRadius>
+    <CornerRadius x:Key="V3_Standard_CornerRadius1">1</CornerRadius>
+    <SolidColorBrush x:Key="V3_Standard_DisabledForeground" Color="#FFC2C2C2"/>
+    <System:Boolean x:Key="V3_Standard_SnapsToDevicePixels">True</System:Boolean>
+
+    <SolidColorBrush x:Key="CommonBackgroundBrush" Color="#FF262822" />
+    <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#FF3C3E40" />
+    <SolidColorBrush x:Key="PanelBorderBrush" Color="#FF545454" />
+    <DrawingBrush x:Key="SubTitleBackgroundBrush" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 0,3.05176e-005L 1481.34,3.05176e-005L 1481.34,43.3921L 0,43.3921L 0,3.05176e-005 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="2.82747,-0.399006" EndPoint="2.82747,0.826927">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FF595959" Offset="0"/>
+                                    <GradientStop Color="#FF282828" Offset="0.985158"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <SolidColorBrush x:Key="ButtonNormalBrush" Color="#FF697E95" />
+    <SolidColorBrush x:Key="ButtonOverBrush" Color="#FF2F9EEB" />
+    <SolidColorBrush x:Key="ButtonPressedBrush" Color="#FF003D68" />
+    <SolidColorBrush x:Key="ButtonDisabledBrush" Color="#FFC6C6C6" />
+    <SolidColorBrush x:Key="ButtonNormalBrushForeground" Color="White" />
+    <SolidColorBrush x:Key="ButtonOverBrushForeground" Color="White" />
+    <SolidColorBrush x:Key="ButtonPressedBrushForeground" Color="White" />
+    <SolidColorBrush x:Key="ButtonDisabledBrushForeground" Color="#FFE4E4E4" />
+    <SolidColorBrush x:Key="ButtonBorderColor" Color="Black" />
+
+
+    <!-- 控件通用字体颜色 -->
+    <SolidColorBrush x:Key="ControlForegoundColor" Color="White" />
+    <SolidColorBrush x:Key="ControlForegoundColorMouseOver" Color="White" />
+    <SolidColorBrush x:Key="ControlForegoundColorSelected" Color="White" />
+    <SolidColorBrush x:Key="ControlForegoundColorDisabled" Color="#FFBBBBBB" />
+
+    <!-- 控件通用背景色 -->
+    <SolidColorBrush x:Key="ControlDarkBackground" Color="#FF2E2E30" />
+    <SolidColorBrush x:Key="ControlBackground" Color="#FF3C3E40" />
+    <SolidColorBrush x:Key="ControlBackgroundMouseOver" Color="#FF405168" />
+    <SolidColorBrush x:Key="ControlBackgroundSelected" Color="#FF41597C" />
+    <SolidColorBrush x:Key="ControlBackgroundDisabled" Color="#FF3C3E40" />
+
+    <!-- 控件通用边框 -->
+    <SolidColorBrush x:Key="ControlDarkBorder" Color="#FF545454" />
+    <SolidColorBrush x:Key="ControlBorder" Color="#FF545454" />
+    <SolidColorBrush x:Key="ControlBorderMouseOver" Color="#FF787878" />
+    <SolidColorBrush x:Key="ControlBorderSelected" Color="#FF676767" />
+    <SolidColorBrush x:Key="ControlBorderDisabled" Color="#FF3F3F3F" />
+
+    <SolidColorBrush x:Key="BlackBrush" Color="Black" />
+    <SolidColorBrush x:Key="WhiteBrush" Color="White" />
+    <SolidColorBrush x:Key="RedBrush" Color="Red" />
+    <SolidColorBrush x:Key="BoxBackgroundBursh" Color="#5A6573" />
+
+    <!--超链接前景色-->
+    <SolidColorBrush x:Key="HyperLinkedForeBrush" Color="Blue" />
+
+    <!--<SolidColorBrush x:Key="SliceComboBoxPopupBackground" Color="#FF2E2E30" />
+    <SolidColorBrush x:Key="SliceComnoBoxTextBoxBorder" Color="#FF526A92" />
+    <SolidColorBrush x:Key="SliceComnoBoxTextBoxBackground" Color="#FF2E2E30" />
+    <SolidColorBrush x:Key="SliceComnoBoxTextBoxForeground" Color="White" />-->
+
+    <!--<SolidColorBrush x:Key="GridRowBackground" Color="Black" />-->
+    
+    <SolidColorBrush x:Key="PopupWindowBackgroundColor" Color="#FF626568" />
+    <!--<SolidColorBrush x:Key="PopupContentBackgroundColor" Color="#FF405168" />
+    <SolidColorBrush x:Key="PopupWindowBackgroundDarkColor" Color="#494B4D" />-->
+
+    <SolidColorBrush x:Key="LoadingBoxBackgroundBrush" Color="#788087"/>
+    <SolidColorBrush x:Key="LoadingBoxBorderBrush" Color="#788087"/>
+
+    <DrawingBrush x:Key="BackgroundColorTabControlNormal" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 0.666626,0.66687L 156.667,0.66687L 156.667,43.413L 0.666626,43.413L 0.666626,0.66687 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1.33333" MiterLimit="2.75" Brush="#FF545454"/>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.479958,-0.142351" EndPoint="0.479958,0.840937">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FF595959" Offset="0"/>
+                                    <GradientStop Color="#FF282828" Offset="0.985158"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="BackgroundColorTabControlMouseOver" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 0.666626,0.666748L 156.667,0.666748L 156.667,43.4131L 0.666626,43.4131L 0.666626,0.666748 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1.33333" MiterLimit="2.75" Brush="#FFFFBA79"/>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.574339,-0.0133475" EndPoint="0.574339,1.22652">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FFFCB776" Offset="0"/>
+                                    <GradientStop Color="#FFDC822C" Offset="0.478448"/>
+                                    <GradientStop Color="#FFD67518" Offset="0.649915"/>
+                                    <GradientStop Color="#FFD16904" Offset="0.814655"/>
+                                    <GradientStop Color="#FFDB6F06" Offset="0.888683"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="BackgroundColorTabControlPressed" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 0.666626,0.666626L 156.667,0.666626L 156.667,43.413L 0.666626,43.413L 0.666626,0.666626 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1.33333" MiterLimit="2.75" Brush="#FFFFBA79"/>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.913447,-0.00258154" EndPoint="0.913447,0.974761">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FFDC8431" Offset="0"/>
+                                    <GradientStop Color="#FFD37C28" Offset="0.478448"/>
+                                    <GradientStop Color="#FFD27216" Offset="0.649915"/>
+                                    <GradientStop Color="#FFD16904" Offset="0.814655"/>
+                                    <GradientStop Color="#FFDB6F06" Offset="0.888683"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="BackgroundColorTabControlSelected" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 0.666626,0.66687L 156.667,0.66687L 156.667,43.413L 0.666626,43.413L 0.666626,0.66687 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen Thickness="1.33333" MiterLimit="2.75">
+                                <Pen.Brush>
+                                    <LinearGradientBrush StartPoint="0.480128,-0.122921" EndPoint="0.480128,0.830625">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="#FF8CD5FD" Offset="0"/>
+                                            <GradientStop Color="#FF67BEF5" Offset="0.495146"/>
+                                            <GradientStop Color="#FF43A8ED" Offset="0.985158"/>
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Pen.Brush>
+                            </Pen>
+                        </GeometryDrawing.Pen>
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.479958,-0.142351" EndPoint="0.479958,0.840937">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FF3AA7E4" Offset="0"/>
+                                    <GradientStop Color="#FF1D90D9" Offset="0.495146"/>
+                                    <GradientStop Color="#FF007ACE" Offset="0.985158"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <!--<SolidColorBrush x:Key="BackgroundColorTabControlNormal" Color="#FF333333" />-->
+    <!--<LinearGradientBrush  x:Key="BackgroundColorTabControlMouseOver" StartPoint="0.661863,-0.0894753" EndPoint="0.661863,0.961805">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFFFBE80" Offset="0.00556586"/>
+            <GradientStop Color="#FFED9643" Offset="0.388335"/>
+            <GradientStop Color="#FFDB6F06" Offset="0.981447"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>-->
+    <!--<LinearGradientBrush x:Key="BackgroundColorTabControlPressed" StartPoint="0.661863,-0.0894715" EndPoint="0.661863,0.961805">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFF08620" Offset="0"/>
+            <GradientStop Color="#FFD57214" Offset="0.384952"/>
+            <GradientStop Color="#FFBA5F08" Offset="0.981447"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>-->
+    <!--<LinearGradientBrush x:Key="BackgroundColorTabControlSelected" StartPoint="0.661863,-0.0894718" EndPoint="0.661863,0.961808">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF3AA7E4" Offset="0"/>
+            <GradientStop Color="#FF1D90D9" Offset="0.495146"/>
+            <GradientStop Color="#FF007ACE" Offset="0.985158"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>-->
+    <SolidColorBrush x:Key="BackgroundColorTabControlDisabled" Color="#FF6D80A1" />
+    <!--<SolidColorBrush x:Key="ForegroundColorTabControlNormal" Color="#FFBBBBBB" />
+    <SolidColorBrush x:Key="ForegroundColorTabControlMouseOver" Color="White" />
+    <SolidColorBrush x:Key="ForegroundColorTabControlPressed" Color="White" />
+    <SolidColorBrush x:Key="ForegroundColorTabControlSelected" Color="White" />-->
+
+    <LinearGradientBrush x:Key="BackgroundColorButtonNormal" StartPoint="1.07146,-0.234159" EndPoint="1.07146,0.691756" >
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FF7DB4E5" Offset="0"/>
+            <GradientStop Color="#FF5A99D1" Offset="0.386408"/>
+            <GradientStop Color="#FF377EBD" Offset="0.985158"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BackgroundColorButtonMouseOver" StartPoint="1.07146,-0.234159" EndPoint="1.07146,0.691754">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFFFBE80" Offset="0.00556586"/>
+            <GradientStop Color="#FFED9643" Offset="0.388335"/>
+            <GradientStop Color="#FFDB6F06" Offset="0.981447"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="BackgroundColorButtonPressed" StartPoint="1.07146,-0.234159" EndPoint="1.07146,0.691754">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Color="#FFF08620" Offset="0"/>
+            <GradientStop Color="#FFD57214" Offset="0.384952"/>
+            <GradientStop Color="#FFBA5F08" Offset="0.981447"/>
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="BackgroundColorButtonSelected" Color="#FF0D7DE9" />
+    <SolidColorBrush x:Key="BackgroundColorButtonDisabled" Color="#FF6D80A1" />
+    <SolidColorBrush x:Key="ForegroundColorButtonNormal" Color="White" />
+    <SolidColorBrush x:Key="ForegroundColorButtonMouseOver" Color="White" />
+    <SolidColorBrush x:Key="ForegroundColorButtonPressed" Color="White" />
+    <SolidColorBrush x:Key="ForegroundColorButtonSelected" Color="White" />
+    <SolidColorBrush x:Key="ForegroundColorDisabled" Color="#FF5E6E8A" />
+    <SolidColorBrush x:Key="BackgroundSplitLine" Color="#FF7E91A3" />
+
+    <DrawingBrush x:Key="HalvingLineBrush" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF697E95" Geometry="F1 M 4.76837e-006,0.00326538L 314.78,0.0027771L 314.78,0.712494L 4.76837e-006,0.712982L 4.76837e-006,0.00326538 Z "/>
+                    <GeometryDrawing Brush="#FFFBFCFD" Geometry="F1 M 4.76837e-006,0.62088L 314.78,0.62088L 314.78,1.33066L 4.76837e-006,1.33066L 4.76837e-006,0.62088 Z "/>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <!-- 消息窗口ICON -->
+    <ControlTemplate x:Key="InfomationICON" TargetType="ContentControl">
+        <Viewbox>
+            <Canvas Width="57" Height="57">
+                <Path Width="57" Height="57" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Data="M 28.5,0C 44.2402,0 57,12.7598 57,28.5C 57,44.2402 44.2402,57 28.5,57C 12.7598,57 0,44.2402 0,28.5C 0,12.7598 12.7598,0 28.5,0 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.491536,-0.00127638" EndPoint="0.491536,0.998724">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFF3F3F3" Offset="0.00497512"/>
+                                <GradientStop Color="#FFC0C0C0" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="54.688" Height="54.6877" Canvas.Left="1.1543" Canvas.Top="1.15698" Stretch="Fill" Data="M 28.4985,1.15698C 43.6001,1.15698 55.8423,13.3994 55.8423,28.501C 55.8423,43.6025 43.6001,55.8447 28.4985,55.8447C 13.397,55.8447 1.1543,43.6025 1.1543,28.501C 1.1543,13.3994 13.3965,1.15698 28.4985,1.15698 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.499683,0.979777" EndPoint="0.499683,0.0239419">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFE2E2E2" Offset="0.00497512"/>
+                                <GradientStop Color="#FFCACACA" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Ellipse Width="52.2104" Height="52.21" Canvas.Left="2.39453" Canvas.Top="2.396" Stretch="Fill">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush StartPoint="0.491541,-0.00127658" EndPoint="0.491541,0.998728">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FF42B61E" Offset="0.00497512"/>
+                                <GradientStop Color="#FF0BA90B" Offset="0.636816"/>
+                                <GradientStop Color="#FF18B813" Offset="0.850746"/>
+                                <GradientStop Color="#FF24F001" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Path Width="41.3223" Height="32.3594" Canvas.Left="7.93359" Canvas.Top="3.4834" Stretch="Fill" Data="M 28.5952,3.4834C 40.0059,3.4834 49.2559,10.7275 49.2559,19.6631C 49.2559,28.5991 40.0059,35.8428 28.5952,35.8428C 17.1841,35.8428 7.93359,28.5991 7.93359,19.6631C 7.93359,10.7275 17.1841,3.4834 28.5952,3.4834 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.490251,-0.0342679" EndPoint="0.490251,1.04136">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#40FFFFFF" Offset="0.00497512"/>
+                                <GradientStop Color="#00FFFFFF" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="11.853" Height="35.4832" Canvas.Left="22.5239" Canvas.Top="11.0964" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 34.377,46.5796L 23.2515,46.5796L 25.3638,44.8638L 26.645,42.7734L 25.3638,26.2383L 24.0718,25.7625C 23.5098,25.6299 22.9937,25.5488 22.5239,25.519L 22.5239,24.0806L 30.6382,23.5635L 30.9604,23.8857L 31.2754,43.8447L 34.377,45.1411L 34.377,46.5796 Z M 31.9194,14.0483C 31.9194,14.9275 31.6147,15.6943 31.0054,16.3486C 30.396,17.0029 29.647,17.3301 28.7578,17.3301C 27.9282,17.3301 27.2095,17.0178 26.6001,16.3936C 25.9907,15.769 25.686,15.0571 25.686,14.2583C 25.686,13.4141 25.9907,12.676 26.6001,12.0442C 27.2095,11.4124 27.9282,11.0964 28.7578,11.0964C 29.6816,11.0964 30.4395,11.3926 31.0317,11.9844C 31.6235,12.5762 31.9194,13.2642 31.9194,14.0483 Z "/>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="WarningICON" TargetType="ContentControl">
+        <Viewbox>
+            <Canvas Width="57" Height="57">
+                <Path Width="57" Height="57" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Data="M 28.5,0C 44.2402,0 57,12.7598 57,28.5C 57,44.2402 44.2402,57 28.5,57C 12.7598,57 0,44.2402 0,28.5C 0,12.7598 12.7598,0 28.5,0 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.491536,-0.00127638" EndPoint="0.491536,0.998724">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFF3F3F3" Offset="0.00497512"/>
+                                <GradientStop Color="#FFC0C0C0" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="54.6875" Height="54.6877" Canvas.Left="1.15479" Canvas.Top="1.15723" Stretch="Fill" Data="M 28.4985,1.15723C 43.6001,1.15723 55.8423,13.3994 55.8423,28.501C 55.8423,43.6025 43.6001,55.845 28.4985,55.845C 13.397,55.845 1.15479,43.6025 1.15479,28.501C 1.15479,13.3994 13.397,1.15723 28.4985,1.15723 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.499679,0.979772" EndPoint="0.499679,0.0239374">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFE2E2E2" Offset="0.00497512"/>
+                                <GradientStop Color="#FFCACACA" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Ellipse Width="52.2104" Height="52.21" Canvas.Left="2.39453" Canvas.Top="2.396" Stretch="Fill">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush StartPoint="0.491541,-0.00127658" EndPoint="0.491541,0.998728">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFFFB528" Offset="0.00497512"/>
+                                <GradientStop Color="#FFE09A2F" Offset="0.636816"/>
+                                <GradientStop Color="#FFEDB332" Offset="0.850746"/>
+                                <GradientStop Color="#FFFFD745" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Path Width="41.3223" Height="32.3594" Canvas.Left="7.93408" Canvas.Top="3.4834" Stretch="Fill" Data="M 28.5957,3.4834C 40.0063,3.4834 49.2563,10.7275 49.2563,19.6631C 49.2563,28.5991 40.0063,35.8428 28.5957,35.8428C 17.1851,35.8428 7.93408,28.5991 7.93408,19.6631C 7.93408,10.7275 17.1851,3.4834 28.5957,3.4834 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.490263,-0.0342679" EndPoint="0.490263,1.04136">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#40FFFFFF" Offset="0.00497512"/>
+                                <GradientStop Color="#00FFFFFF" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="6.23291" Height="34.5242" Canvas.Left="25.3862" Canvas.Top="12.3247" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 31.6191,15.4863C 31.6191,16.2656 31.3521,18.8882 30.8179,23.3535C 30.2832,27.8188 29.811,32.1343 29.4019,36.2998L 27.5059,36.2998C 27.1465,32.1343 26.7031,27.8188 26.1763,23.3535C 25.6489,18.8882 25.3862,16.2656 25.3862,15.4863C 25.3862,14.5974 25.6782,13.8481 26.2622,13.2388C 26.8472,12.6294 27.5938,12.3247 28.5024,12.3247C 29.4116,12.3247 30.1582,12.6257 30.7427,13.2275C 31.3276,13.8296 31.6191,14.5825 31.6191,15.4863 Z M 31.6191,43.7544C 31.6191,44.6089 31.3125,45.3379 30.6978,45.9424C 30.0835,46.5469 29.3516,46.8489 28.5024,46.8489C 27.6538,46.8489 26.9219,46.5469 26.3071,45.9424C 25.6934,45.3379 25.3862,44.6089 25.3862,43.7544C 25.3862,42.9004 25.6934,42.1636 26.3071,41.5444C 26.9219,40.925 27.6538,40.6152 28.5024,40.6152C 29.3516,40.6152 30.0835,40.925 30.6978,41.5444C 31.3125,42.1636 31.6191,42.9004 31.6191,43.7544 Z "/>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="ErrorICON" TargetType="ContentControl">
+        <Viewbox>
+            <Canvas Width="57" Height="57">
+                <Path Width="57" Height="57" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Data="M 28.5,0C 44.2402,0 57,12.7598 57,28.5C 57,44.2402 44.2402,57 28.5,57C 12.7598,57 0,44.2402 0,28.5C 0,12.7598 12.7598,0 28.5,0 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.491536,-0.00127638" EndPoint="0.491536,0.998724">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFF3F3F3" Offset="0.00497512"/>
+                                <GradientStop Color="#FFC0C0C0" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="54.6875" Height="54.6877" Canvas.Left="1.15625" Canvas.Top="1.15625" Stretch="Fill" Data="M 28.5,1.15625C 43.6016,1.15625 55.8438,13.3984 55.8438,28.5C 55.8438,43.6016 43.6016,55.844 28.5,55.844C 13.3984,55.844 1.15625,43.6016 1.15625,28.5C 1.15625,13.3984 13.3984,1.15625 28.5,1.15625 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.499679,0.979772" EndPoint="0.499679,0.0239374">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFE2E2E2" Offset="0.00497512"/>
+                                <GradientStop Color="#FFCACACA" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Ellipse Width="52.2104" Height="52.21" Canvas.Left="2.39453" Canvas.Top="2.39502" Stretch="Fill">
+                    <Ellipse.Fill>
+                        <LinearGradientBrush StartPoint="0.491541,-0.00127191" EndPoint="0.491541,0.998728">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFEF6C6C" Offset="0.00497512"/>
+                                <GradientStop Color="#FFCA3D3D" Offset="0.636816"/>
+                                <GradientStop Color="#FFD03F3F" Offset="0.850746"/>
+                                <GradientStop Color="#FFFF5645" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Path Width="41.3223" Height="32.3594" Canvas.Left="7.93408" Canvas.Top="3.48242" Stretch="Fill" Data="M 28.5957,3.48242C 40.0063,3.48242 49.2563,10.7266 49.2563,19.6621C 49.2563,28.5981 40.0063,35.8418 28.5957,35.8418C 17.1851,35.8418 7.93408,28.5981 7.93408,19.6621C 7.93408,10.7266 17.1851,3.48242 28.5957,3.48242 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.490263,-0.0342679" EndPoint="0.490263,1.04136">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#40FFFFFF" Offset="0.00497512"/>
+                                <GradientStop Color="#00FFFFFF" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="26.2284" Height="26.2296" Canvas.Left="15.385" Canvas.Top="15.3851" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 19.2671,15.8721L 28.4985,25.104L 37.7319,15.8711C 38.3794,15.2231 39.4297,15.2231 40.0776,15.8711L 41.1274,16.9211C 41.7754,17.5688 41.7754,18.6196 41.1274,19.2671L 31.895,28.5L 41.1274,37.7327C 41.7749,38.3804 41.7759,39.4312 41.1274,40.0786L 40.0776,41.1289C 39.4302,41.7769 38.3789,41.7766 37.731,41.1289L 28.4985,31.8965L 19.2671,41.1277C 18.6196,41.7754 17.5688,41.7756 16.9214,41.1279L 15.8711,40.0776C 15.2231,39.4297 15.2241,38.3792 15.8711,37.7314L 25.1021,28.5L 15.8706,19.2686C 15.2231,18.6206 15.2231,17.5703 15.8706,16.9224L 16.9214,15.8721C 17.5688,15.2241 18.6191,15.2246 19.2671,15.8721 Z "/>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="QuestionICON" TargetType="ContentControl">
+        <Viewbox>
+            <Canvas Width="57" Height="57">
+                <Path Width="57" Height="57" Canvas.Left="0" Canvas.Top="0" Stretch="Fill" Data="M 28.5,0C 44.2402,0 57,12.7598 57,28.5C 57,44.2402 44.2402,57 28.5,57C 12.7598,57 0,44.2402 0,28.5C 0,12.7598 12.7598,0 28.5,0 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.491536,-0.00127638" EndPoint="0.491536,0.998724">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFF3F3F3" Offset="0.00497512"/>
+                                <GradientStop Color="#FFC0C0C0" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="54.688" Height="54.688" Canvas.Left="1.1543" Canvas.Top="1.15723" Stretch="Fill" Data="M 28.498,1.15723C 43.6001,1.15723 55.8423,13.3994 55.8423,28.501C 55.8423,43.6028 43.6001,55.8452 28.498,55.8452C 13.3965,55.8452 1.1543,43.6028 1.1543,28.501C 1.1543,13.3994 13.3965,1.15723 28.498,1.15723 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.499674,0.979773" EndPoint="0.499674,0.0239373">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FFE2E2E2" Offset="0.00497512"/>
+                                <GradientStop Color="#FFCACACA" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="52.2104" Height="52.21" Canvas.Left="2.39453" Canvas.Top="2.396" Stretch="Fill" Data="M 28.4995,2.396C 42.9165,2.396 54.605,14.0835 54.605,28.501C 54.605,42.9185 42.9165,54.606 28.4995,54.606C 14.082,54.606 2.39453,42.9185 2.39453,28.501C 2.39453,14.0835 14.082,2.396 28.4995,2.396 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.491522,-0.00127658" EndPoint="0.491522,0.998728">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#FF5DB0DC" Offset="0.00497512"/>
+                                <GradientStop Color="#FF1690D0" Offset="0.636816"/>
+                                <GradientStop Color="#FF359DD4" Offset="0.850746"/>
+                                <GradientStop Color="#FF00CDFB" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="41.3223" Height="32.3594" Canvas.Left="7.93408" Canvas.Top="3.4834" Stretch="Fill" Data="M 28.5952,3.4834C 40.0059,3.4834 49.2563,10.7275 49.2563,19.6631C 49.2563,28.5991 40.0059,35.8428 28.5952,35.8428C 17.1841,35.8428 7.93408,28.5991 7.93408,19.6631C 7.93408,10.7275 17.1841,3.4834 28.5952,3.4834 Z ">
+                    <Path.Fill>
+                        <LinearGradientBrush StartPoint="0.490263,-0.0342679" EndPoint="0.490263,1.04136">
+                            <LinearGradientBrush.GradientStops>
+                                <GradientStop Color="#40FFFFFF" Offset="0.00497512"/>
+                                <GradientStop Color="#00FFFFFF" Offset="0.980099"/>
+                            </LinearGradientBrush.GradientStops>
+                        </LinearGradientBrush>
+                    </Path.Fill>
+                </Path>
+                <Path Width="22.0571" Height="35.0034" Canvas.Left="17.4375" Canvas.Top="11.5303" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 25.5669,37.5356C 25.5669,35.8076 25.8188,34.314 26.3237,33.0554C 26.6934,32.1064 27.2925,31.1523 28.1216,30.1934C 28.7261,29.4893 29.8179,28.4626 31.396,27.1143C 32.9741,25.7656 33.9995,24.7129 34.4712,23.9561C 34.9434,23.1992 35.1792,22.374 35.1792,21.48C 35.1792,19.8564 34.5425,18.4319 33.269,17.2056C 31.9956,15.9795 30.4341,15.3662 28.5859,15.3662C 26.7983,15.3662 25.3062,15.9082 24.1094,16.9922C 22.9136,18.0762 22.1274,19.7717 21.7534,22.0793L 17.4375,21.5999C 17.8276,18.3481 18.981,15.8569 20.8989,14.1265C 22.8169,12.3955 25.355,11.5303 28.5112,11.5303C 31.853,11.5303 34.519,12.4656 36.5093,14.3359C 38.4995,16.2065 39.4946,18.4683 39.4946,21.1204C 39.4946,22.6538 39.1265,24.0674 38.3901,25.3608C 37.6528,26.6545 36.2153,28.248 34.0781,30.1411C 32.6348,31.4146 31.6929,32.3535 31.2534,32.958C 30.814,33.5625 30.4883,34.2568 30.2754,35.041C 30.063,35.8252 29.9399,37.0986 29.9048,38.8618L 25.5894,38.8618 Z M 25.5894,46.5337L 25.5894,42.2183L 29.9048,42.2183L 29.9048,46.5337L 25.5894,46.5337 Z "/>
+            </Canvas>
+        </Viewbox>
+    </ControlTemplate>
+
+    <!--<SolidColorBrush x:Key="FaceEMapBattleHeaderBackground" Color="#FF212A36" />
+    <SolidColorBrush x:Key="FaceEMapBattleHeaderBorderBrush" Color="Black" />-->
+    <SolidColorBrush x:Key="TreeHeaderBrush">#FF324C70</SolidColorBrush>
+    <SolidColorBrush x:Key="ResultHeaderBrush">#FF324C70</SolidColorBrush>
+    <SolidColorBrush x:Key="ResultHeaderBorderBrush">#FF324C70</SolidColorBrush>
+    <SolidColorBrush x:Key="RecHeaderBrush" Color="#FF324C70" />
+    <SolidColorBrush x:Key="ResultBackground" Color="#FF99A9B8" />
+
+
+    <DrawingBrush x:Key="ImageStateNormal" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF2F9EEB" Geometry="F1 M 0,0.904053C 0,0.404785 0.404541,6.10352e-005 0.903687,6.10352e-005L 1.88708,6.10352e-005L 7.03479,6.10352e-005L 8.01819,6.10352e-005C 8.51733,6.10352e-005 9.10168,0.404785 9.32361,0.904053L 9.75671,2.38257L 0.624634,2.38257C 0.382324,2.38257 0.162231,2.47784 0,2.63312L 0,0.904053 Z M 18.972,15.9059C 18.972,16.4051 18.5675,16.8098 18.0684,16.8098L 0.903687,16.8098C 0.404541,16.8098 0,16.4051 0,15.9059L 0,4.44C 0,3.9408 0.404541,3.53613 0.903687,3.53613L 18.0684,3.53613C 18.5675,3.53613 18.972,3.9408 18.972,4.44L 18.972,15.9059 Z M 1.68542,5.81329L 1.68542,14.3481L 17.2635,14.3481L 17.2635,5.81329L 1.68542,5.81329 Z M 3.45959,12.6548L 8.43616,8.73816L 10.2208,11.2382L 15.5504,7.36707L 15.5503,12.6548L 3.45959,12.6548 Z M 4.68933,7.12085C 5.47388,7.12085 6.10974,7.7569 6.10974,8.54138C 6.10974,9.32556 5.47388,9.96179 4.68933,9.96179C 3.90491,9.96179 3.26892,9.32556 3.26892,8.54138C 3.26892,7.7569 3.90491,7.12085 4.68933,7.12085 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="ImageStateWorking" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF68C600" Geometry="F1 M 8.57703,0.00268555L 8.76501,0.00610352L 8.75256,0.0205688C 9.62097,0.152405 10.2865,0.902222 10.2865,1.8075C 10.2865,2.74683 9.57007,3.5188 8.65381,3.60669L 8.44812,3.64734C 5.79651,3.64734 3.64685,5.79694 3.64685,8.44855C 3.64685,11.1001 5.79639,13.2496 8.44812,13.2496C 11.0996,13.2496 13.2491,11.1001 13.2491,8.44855C 13.2491,6.69122 12.3051,5.15454 10.8966,4.31775C 11.609,3.7146 12.0612,2.81354 12.0612,1.80695C 12.0612,1.42834 11.9973,1.06476 11.8795,0.726196C 14.8353,2.04163 16.8962,5.00427 16.8962,8.44836C 16.8962,13.1141 13.1139,16.8965 8.44812,16.8965C 3.78235,16.8965 0.00012207,13.1141 0.00012207,8.44836C 0.00012207,3.78259 3.78235,0.000305176 8.479,6.10352e-005 Z " />
+                    <GeometryDrawing Geometry="F1 M 13.2491,8.44855C 13.2491,6.69122 12.3051,5.15454 10.8966,4.31775C 11.609,3.7146 12.0612,2.81354 12.0612,1.80695C 12.0612,1.42834 11.9973,1.06476 11.8795,0.726196C 14.8353,2.04163 16.8962,5.00427 16.8962,8.44836C 16.8962,13.1141 13.1139,16.8965 13.2491,8.44855 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.159474,0.173969" EndPoint="1.00662,0.173969">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="-38.5511" AngleY="0" CenterX="0.159474" CenterY="0.173969" />
+                                        <RotateTransform Angle="31.6719" CenterX="0.159474" CenterY="0.173969" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#FFBFFF97" />
+                                    <GradientStop Offset="1" Color="#FF68C600" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                    <GeometryDrawing Geometry="F1 M 8.57703,0.00268555L 8.76501,0.00610352L 8.75256,0.0205688C 9.62097,0.152405 10.2865,0.902222 10.2865,1.8075C 10.2865,2.74683 9.57007,3.5188 8.65381,3.60669L 8.44812,3.64734C 5.79651,3.64734 3.64685,5.79694 3.64685,8.44855C 3.64685,8.77228 3.47217,10.7427 5.33044,13.1188C 7.29114,15.626 7.18372,16.6353 5.45227,16.0431C 4.03674,15.5591 2.29944,14.2437 2.1947,14.1287C 0.831177,12.6284 0.00012207,10.6354 0.00012207,8.44836C 0.00012207,3.78259 3.78235,0.000305176 8.479,6.10352e-005 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.839995,0.0726791" EndPoint="1.7194,0.0726791">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <SkewTransform AngleX="24.8236" AngleY="0" CenterX="0.839995" CenterY="0.0726791" />
+                                        <RotateTransform Angle="142.63" CenterX="0.839995" CenterY="0.0726791" />
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Offset="0" Color="#FF179300" />
+                                    <GradientStop Offset="1" Color="#FF68C600" />
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="ImageStateError" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FFFF0000" Geometry="F1 M 10.635,0L 21.27,18.4204L 0,18.4204L 10.635,0 Z M 9.1944,5.71973L 9.1944,11.4835L 12.0756,11.4835L 12.0755,5.71973L 9.1944,5.71973 Z M 9.1944,13.61L 9.1944,16.339L 12.0756,16.339L 12.0756,13.61L 9.1944,13.61 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="ImageStateComplete" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF68C600" Geometry="F1 M 17.1101,7.18903C 20.3931,7.18903 23.0545,9.85052 23.0545,13.1335C 23.0545,16.4165 20.3931,19.0779 17.1101,19.0779C 13.8271,19.0779 11.1657,16.4165 11.1657,13.1335C 11.1657,9.85052 13.8271,7.18903 17.1101,7.18903 Z " />
+                    <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M 14.3499,11.4531L 12.804,12.999L 16.5759,16.7709L 21.5274,11.8196L 19.9815,10.2737L 16.576,13.6791L 14.3499,11.4531 Z " />
+                    <GeometryDrawing Brush="#FF2F9EEB" Geometry="F1 M 0,0.903992C 0,0.404724 0.404541,0 0.903748,0L 1.88702,0L 7.03485,0L 8.01813,0C 8.51733,0 9.10175,0.404724 9.32355,0.903992L 9.75665,2.38251L 0.624695,2.38251C 0.382324,2.38251 0.162292,2.47778 0,2.63306L 0,0.903992 Z M 0.903748,16.8098C 0.404541,16.8098 0,16.4051 0,15.9059L 0,4.44C 0,3.94086 0.404541,3.53613 0.903748,3.53613L 18.0683,3.53613C 18.5674,3.53613 18.972,3.94086 18.972,4.44L 18.972,6.06744C 18.425,5.92365 17.8528,5.84174 17.2636,5.82959L 17.2636,5.81329L 1.68536,5.81329L 1.68536,14.3481L 9.90503,14.3481C 10.053,15.2327 10.3599,16.0634 10.7955,16.8098L 0.903748,16.8098 Z M 3.45947,12.6548L 8.4361,8.73822L 10.1002,11.0693C 9.95093,11.577 9.85529,12.1077 9.81989,12.6548L 3.45947,12.6548 Z M 4.68939,7.12085C 5.47388,7.12085 6.1098,7.7569 6.1098,8.54144C 6.1098,9.32562 5.47388,9.96185 4.68939,9.96185C 3.90497,9.96185 3.26898,9.32562 3.26898,8.54144C 3.26898,7.7569 3.90485,7.12085 4.68939,7.12085 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="VideoStateNormal" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF2F9EEB" Geometry="F1 M 0,0L 1.84222,0L 1.84222,1.39844L 3.99701,1.39844L 3.99701,0L 14.9639,0L 14.9639,1.39844L 17.1187,1.39844L 17.1187,0L 18.9451,0L 18.9451,13.7501L 17.1187,13.7501L 17.1187,12.4432L 14.9639,12.4432L 14.9639,13.7501L 3.99701,13.7501L 3.99701,12.4432L 1.84222,12.4432L 1.84222,13.7501L 0,13.7501L 0,0 Z M 1.84222,3.5531L 1.84222,5.8446L 3.99704,5.8446L 3.99704,3.5531L 1.84222,3.5531 Z M 14.9639,3.5528L 14.9639,5.8443L 17.1187,5.8443L 17.1187,3.5528L 14.9639,3.5528 Z M 5.8685,3.55249L 5.8685,10.3057L 13.0133,10.3057L 13.0133,3.55249L 5.8685,3.55249 Z M 1.84216,7.99786L 1.84216,10.2894L 3.99701,10.2894L 3.99701,7.99786L 1.84216,7.99786 Z M 14.9639,7.9978L 14.9639,10.2894L 17.1187,10.2894L 17.1187,7.9978L 14.9639,7.9978 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="VideoStateComplete" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF68C600" Geometry="F1 M 16.1971,4.86853C 19.4802,4.86853 22.1416,7.52997 22.1416,10.8129C 22.1416,14.0959 19.4801,16.7573 16.1971,16.7573C 12.9141,16.7573 10.2527,14.0959 10.2527,10.8129C 10.2527,7.52997 12.9141,4.86853 16.1971,4.86853 Z " />
+                    <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M 13.4369,9.13257L 11.891,10.6785L 15.6629,14.4504L 20.6144,9.49902L 19.0685,7.95313L 15.663,11.3586L 13.4369,9.13257 Z " />
+                    <GeometryDrawing Brush="#FF2F9EEB" Geometry="F1 M 0,0L 1.84219,0L 1.84219,1.39844L 3.99698,1.39844L 3.99698,0L 14.9639,0L 14.9639,1.39844L 17.1187,1.39844L 17.1187,0L 18.9451,0L 18.9451,3.95203C 18.0957,3.61145 17.1682,3.42407 16.1971,3.42407C 15.0571,3.42407 13.9774,3.68231 13.0133,4.14331L 13.0133,3.55249L 5.8685,3.55249L 5.8685,10.3058L 8.82535,10.3058C 8.814,10.4733 8.80823,10.6425 8.80823,10.813C 8.80823,11.8567 9.02463,12.85 9.41504,13.7502L 3.99698,13.7502L 3.99698,12.4432L 1.84219,12.4432L 1.84219,13.7502L 0,13.7502L 0,0 Z M 1.84219,3.55322L 1.84219,5.84473L 3.99701,5.84473L 3.99701,3.55322L 1.84219,3.55322 Z M 1.84216,7.99792L 1.84216,10.2894L 3.99698,10.2894L 3.99698,7.99792L 1.84216,7.99792 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="CameraStateNormal" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF409EBB" Geometry="F1 M 0,10.9494L 0,1.01537C 0,0.455002 0.426079,0.000656128 0.951874,0.000656128L 11.6401,0.000656128C 12.1658,0.000656128 12.5919,0.455002 12.5919,1.01537L 12.5919,10.9494C 12.5919,11.5099 12.1658,11.964 11.6401,11.964L 0.951874,11.964C 0.426079,11.964 0,11.5099 0,10.9494 Z M 18.9501,11.9638L 13.9946,7.48094L 13.9945,4.41136L 18.9501,-1.52588e-005L 18.9501,11.9638 Z "/>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="CameraUnlineStateNormal" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="Gray" Geometry="F1 M 0,10.9494L 0,1.01538C 0,0.455017 0.426086,0.000671387 0.951843,0.000671387L 11.6401,0.000671387C 12.1658,0.000671387 12.5919,0.455017 12.5919,1.01538L 12.5919,10.9494C 12.5919,11.5099 12.1658,11.9641 11.6401,11.9641L 0.951843,11.9641C 0.426086,11.9641 0,11.5099 0,10.9494 Z M 18.9501,11.9638L 13.9946,7.48096L 13.9944,4.41138L 18.9501,0L 18.9501,11.9638 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="CameraStateComplete" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FF68C600" Geometry="F1 M 12.4932,4.46173C 15.7763,4.46173 18.4377,7.12311 18.4377,10.4061C 18.4377,13.6892 15.7763,16.3506 12.4932,16.3506C 9.21027,16.3506 6.54883,13.6892 6.54883,10.4061C 6.54883,7.12311 9.21027,4.46173 12.4932,4.46173 Z " />
+                    <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M 9.73297,8.72583L 8.18707,10.2717L 11.9591,14.0436L 16.9106,9.09216L 15.3647,7.54626L 11.9592,10.9518L 9.73297,8.72583 Z " />
+                    <GeometryDrawing Brush="#FF2F9EEB" Geometry="F1 M 0,10.9493L 0,1.01526C 0,0.454895 0.426086,0.000549316 0.951843,0.000549316L 11.6401,0.000549316C 12.1658,0.000549316 12.5919,0.454895 12.5919,1.01526L 12.4933,3.07281C 8.44318,3.07281 5.15997,6.35602 5.15997,10.4061C 5.15997,10.9407 5.21716,11.4619 5.32574,11.9639L 0.951843,11.9639C 0.426086,11.9639 0,11.5098 0,10.9493 Z M 18.9501,0L 18.9501,6.92639C 18.1023,5.35657 16.6987,4.1311 15.003,3.51355L 18.9501,0 Z " />
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+
+    <LinearGradientBrush x:Key="ButtonMouseOver" StartPoint="0.444108,0.0165485" EndPoint="0.444108,0.946438">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0" Color="#FFDCF2FF" />
+            <GradientStop Offset="0.548837" Color="#FF769FBE" />
+            <GradientStop Offset="0.778931" Color="#FFA5C5DE" />
+            <GradientStop Offset="1" Color="#FFD4EBFF" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="ButtonPressed" StartPoint="0.444108,0.0165485" EndPoint="0.444108,0.946438">
+        <LinearGradientBrush.GradientStops>
+            <GradientStop Offset="0.548837" Color="#FF769FBE" />
+            <GradientStop Offset="0.778931" Color="#FFA5C5DE" />
+            <GradientStop Offset="1" Color="#FFD4EBFF" />
+        </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <SolidColorBrush Color="#88131C29" x:Key="MapToolsBackgroundBrush" />
+    <SolidColorBrush Color="White" x:Key="MapToolsFontForeground" />
+    
+    <SolidColorBrush x:Key="TreeViewBackground" Color="#FF3C3E40" />
+    <!--<SolidColorBrush x:Key="TreeViewForeground">#FFB7D6FF</SolidColorBrush>-->
+
+    <SolidColorBrush x:Key="TabControlBackground" Color="#FF3C3E40" />
+    <SolidColorBrush x:Key="TabControlBorderBrush" Color="#FF545454" />
+
+    <SolidColorBrush x:Key="SearchConditionBackground" Color="#FF3C3E40" />
+    <SolidColorBrush x:Key="SearchConditionBorderBrush" Color="#FF545454" />
+
+    <SolidColorBrush x:Key="NodeStatusonline" Color="#FFB7D6FF" />
+    <SolidColorBrush x:Key="NodeStatusoffline" Color="#FFCECECE" />
+    <SolidColorBrush x:Key="NodeStatustimeout" Color="Red" />
+
+    <!--导航按钮-->
+    <DrawingBrush x:Key="NavButtonNormalBrush" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 187.847,-0.00012207L 187.847,53.3331L -0.00012207,53.3331L 0.000274658,-0.00012207L 187.847,-0.00012207 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.472852,-2.28882e-006" EndPoint="0.472852,1.17883">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FF595959" Offset="0"/>
+                                    <GradientStop Color="#FF282828" Offset="0.985158"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="NavButtonMouseOverBrush" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 187.847,0L 187.847,53.3331L -0.00012207,53.3331L 0.000305176,0L 187.847,0 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.472852,-4.57765e-006" EndPoint="0.472852,1.17883">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FFFCB776" Offset="0"/>
+                                    <GradientStop Color="#FFDC822C" Offset="0.478448"/>
+                                    <GradientStop Color="#FFD67518" Offset="0.649915"/>
+                                    <GradientStop Color="#FFD16904" Offset="0.814655"/>
+                                    <GradientStop Color="#FFDB6F06" Offset="0.888683"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="NavButtonPressedBrush" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 187.847,-6.10352e-005L 187.847,53.3332L -0.00012207,53.3332L 0.000274658,-6.10352e-005L 187.847,-6.10352e-005 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.472852,-2.28882e-006" EndPoint="0.472852,1.17883">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FFCE8036" Offset="0"/>
+                                    <GradientStop Color="#FFB56110" Offset="0.478448"/>
+                                    <GradientStop Color="#FFA45508" Offset="0.649915"/>
+                                    <GradientStop Color="#FF944901" Offset="0.814655"/>
+                                    <GradientStop Color="#FFAB5602" Offset="0.888683"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="NavButtonCheckedBrush" Stretch="Fill">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Geometry="F1 M 187.847,-6.10352e-005L 187.847,53.3332L -0.00012207,53.3332L 0.000274658,-6.10352e-005L 187.847,-6.10352e-005 Z ">
+                        <GeometryDrawing.Brush>
+                            <LinearGradientBrush StartPoint="0.472852,-4.57764e-006" EndPoint="0.472852,1.17883">
+                                <LinearGradientBrush.GradientStops>
+                                    <GradientStop Color="#FF6FAACC" Offset="0"/>
+                                    <GradientStop Color="#FF82BBDC" Offset="0.0258621"/>
+                                    <GradientStop Color="#FF007ACE" Offset="0.478448"/>
+                                    <GradientStop Color="#FF0575C2" Offset="0.649915"/>
+                                    <GradientStop Color="#FF0A70B6" Offset="0.814655"/>
+                                    <GradientStop Color="#FF0A5F9A" Offset="0.867961"/>
+                                </LinearGradientBrush.GradientStops>
+                            </LinearGradientBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <SolidColorBrush x:Key="NavButtonBorderNoramlBrush" Color="#545454" />
+    <SolidColorBrush x:Key="NavButtonBorderMouseOverBrush" Color="#FFBA79" />
+    <SolidColorBrush x:Key="NavButtonBorderPressedBrush" Color="#FFBA79" />
+    <SolidColorBrush x:Key="NavButtonBorderCheckedBrush" Color="#8CBDDC" />
+
+    <!--导航按钮-->
+
+    <!--人脸报警状态-->
+    <SolidColorBrush x:Key="UnHandleStateForegroundBrush" Color="#EB4B3E" />
+    <SolidColorBrush x:Key="HandleStateForegroundBrush" Color="#65D8EE" />
+
+    <!--分割线-->
+    <SolidColorBrush x:Key="TopSeparatorLineBrush" Color="#838383" />
+    <SolidColorBrush x:Key="BottomSeparatorLineBrush" Color="#4A4D50" />
+
+    <!--超链接前景-->
+    <SolidColorBrush x:Key="LinkedFroegroundBrush" Color="#EB4B3E" />
+
+    <!--布控状态前景-->
+    <SolidColorBrush x:Key="ExecuteControlStatePauseForegroundBrush" Color="#EB4B3E" />
+    <SolidColorBrush x:Key="ExecuteControlStateStartForegroundBrush" Color="#65D8EE" />
+
+</ResourceDictionary>

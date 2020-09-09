@@ -1,0 +1,61 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:controls="clr-namespace:WFC.SelfServeClient.Controls"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="VSTBrushes.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <DrawingBrush x:Key="CalendarIcon" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="{StaticResource ControlForegoundColor}" Geometry="F1 M 2.57617,6.53937L 4.7439,6.53937L 4.7439,8.11981L 2.57617,8.11981L 2.57617,6.53937 Z M 2.57507,9.14551L 4.7428,9.14551L 4.7428,10.7259L 2.57507,10.7259L 2.57507,9.14551 Z M 5.72559,6.53986L 7.89331,6.53986L 7.89331,8.1203L 5.72559,8.1203L 5.72559,6.53986 Z M 5.72571,9.14532L 7.89343,9.14532L 7.89343,10.7258L 5.72571,10.7258L 5.72571,9.14532 Z M 8.8761,6.53986L 11.0438,6.53986L 11.0438,8.1203L 8.8761,8.1203L 8.8761,6.53986 Z M 8.87622,9.14532L 11.0439,9.14532L 11.0439,10.7258L 8.87622,10.7258L 8.87622,9.14532 Z M 12.0267,6.53986L 14.1945,6.53986L 14.1945,8.1203L 12.0267,8.1203L 12.0267,6.53986 Z M 12.0267,9.14532L 14.1945,9.14532L 14.1945,10.7258L 12.0267,10.7258L 12.0267,9.14532 Z M 2.57556,11.7507L 4.74329,11.7507L 4.74329,13.3311L 2.57556,13.3311L 2.57556,11.7507 Z M 5.7262,11.7507L 7.89392,11.7507L 7.89392,13.3311L 5.7262,13.3311L 5.7262,11.7507 Z M 8.87659,11.7507L 11.0443,11.7507L 11.0443,13.3311L 8.87659,13.3311L 8.87659,11.7507 Z M 12.0271,11.7507L 14.1948,11.7507L 14.1948,13.3311L 12.0271,13.3311L 12.0271,11.7507 Z M 3.76086,0.000183105L 5.06042,0.000183105C 5.50232,0.000183105 5.86047,0.358215 5.86047,0.80011L 5.86047,2.64777C 5.86047,3.08966 5.50232,3.44781 5.06042,3.44781L 3.76086,3.44781C 3.31897,3.44781 2.96082,3.08966 2.96082,2.64777L 2.96082,0.80011C 2.96082,0.358215 3.31897,0.000183105 3.76086,0.000183105 Z M 11.6528,0L 12.9525,0C 13.3943,0 13.7524,0.358215 13.7524,0.800049L 13.7524,2.64777C 13.7524,3.0896 13.3943,3.44775 12.9525,3.44775L 11.6528,3.44775C 11.2111,3.44775 10.8529,3.0896 10.8529,2.64777L 10.8529,0.800049C 10.8529,0.358215 11.2111,0 11.6528,0 Z M 1.33337,1.76563L 2.33313,1.76563L 2.33313,2.78644C 2.33313,3.52289 2.93005,4.11981 3.6665,4.11981L 5.22266,4.11981C 5.95898,4.11981 6.55603,3.52289 6.55603,2.78644L 6.55603,1.76563L 10.1946,1.76563L 10.1946,2.78656C 10.1946,3.52295 10.7914,4.11987 11.528,4.11987L 13.0839,4.11987C 13.8204,4.11987 14.4174,3.52295 14.4174,2.78656L 14.4174,1.76563L 15.4172,1.76563C 16.1537,1.76563 16.7506,2.36261 16.7506,3.09894L 16.7506,14.5714C 16.7506,15.3078 16.1537,15.9048 15.4172,15.9048L 1.33337,15.9048C 0.596924,15.9048 0,15.3078 0,14.5714L 0,3.09894C 0,2.36261 0.596924,1.76563 1.33337,1.76563 Z M 1.52771,5.51581L 1.52771,14.2936L 15.2228,14.2936L 15.2228,5.51581L 1.52771,5.51581 Z "/>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <ControlTemplate x:Key="DateTimePickerTemplate" TargetType="{x:Type controls:DateTimePicker}">
+        <Border x:Name="bdr" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}"
+                CornerRadius="1" Margin="0" Padding="{TemplateBinding Padding}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" MinWidth="50"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <CheckBox Name="checkBox" VerticalAlignment="Center" Margin="3,0,0,0" Background="Transparent" Foreground="{TemplateBinding Foreground}" />
+                <TextBox Name="textBox" Style="{x:Null}" Grid.Column="1" BorderThickness="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="3,0" Background="Transparent" Foreground="Black"/>
+                <TextBlock Grid.Column="2" Foreground="{TemplateBinding Foreground}" Name="textBlock" Background="{StaticResource CalendarIcon}" Width="15" Text="" VerticalAlignment="Center" Margin="0,0,3,0"/>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True" >
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBorderMouseOver}" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="false" >
+                <Setter Property="Foreground" Value="{StaticResource ControlForegoundColorDisabled}" />
+                <Setter Property="Background" Value="{StaticResource ControlBackgroundDisabled}" />
+                <Setter Property="BorderBrush" Value="{StaticResource ControlBorderDisabled}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style TargetType="{x:Type controls:DateTimePicker}" x:Key="VstDatetimePickerStyle">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource ControlDarkBackground}" />
+        <Setter Property="BorderBrush" Value="#A2BACB" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Height" Value="23" />
+    </Style>
+
+    <Style TargetType="{x:Type controls:DateTimePicker}" BasedOn="{StaticResource VstDatetimePickerStyle}" />
+
+</ResourceDictionary>

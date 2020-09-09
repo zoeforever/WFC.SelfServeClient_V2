@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WFC.SelfServeClient.Views"
+             xmlns:ctrl="clr-namespace:WFC.SelfServeClient.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
             <RowDefinition Height="60" />
             <RowDefinition Height="60" />
             <RowDefinition Height="60" />
@@ -17,50 +19,80 @@
             <RowDefinition Height="60" />
             <RowDefinition />
         </Grid.RowDefinitions>
-       
-        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
-                        <TextBox Text="访客姓名" Foreground="White"></TextBox>
-                        <TextBox Text="Visitor Name" Foreground="White"></TextBox>
+                        <TextBlock Text="访客姓名" Foreground="White"></TextBlock>
+                        <TextBlock Text="Visitor Name" Foreground="White"></TextBlock>
                     </StackPanel>
                 </Label.Content>
             </Label>
-            <TextBox Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
+            <TextBox Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
         </StackPanel>
-        <Image Source="{Binding hendersonVisitor.VisitorPhoto}" HorizontalAlignment="Left" Height="178" Margin="511,28,0,0" VerticalAlignment="Top" Width="169"/>
-        <Label HorizontalAlignment="Left" Margin="129,137,0,0" VerticalAlignment="Top">
-            <Label.Background>
-                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_2.png" />
-            </Label.Background>
-        </Label>
-        <TextBox Text="{Binding hendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="190,124,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
-        <Label HorizontalAlignment="Left" Margin="129,186,0,0" VerticalAlignment="Top">
-            <Label.Background>
-                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_3.png" />
-            </Label.Background>
-        </Label>
-        <TextBox Text="{Binding hendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" Margin="190,173,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="238"/>
-        <Label  HorizontalAlignment="Left" Margin="129,237,0,0" VerticalAlignment="Top">
-            <Label.Background>
-                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_4.png" />
-            </Label.Background>
-        </Label>
-        <ComboBox HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Width="238" x:Name="VisitorTenant" DisplayMemberPath="Display_name"
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Width="100">
+                <Label.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="身份证号" Foreground="White"></TextBlock>
+                        <TextBlock Text="ID Number" Foreground="White"></TextBlock>
+                    </StackPanel>
+                </Label.Content>
+            </Label>
+            <TextBox Text="{Binding hendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
+        </StackPanel>
+        <Image Source="{Binding hendersonVisitor.VisitorPhoto}" Visibility="Collapsed" HorizontalAlignment="Left" Height="178" Margin="511,28,0,0" VerticalAlignment="Top" Width="169"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Width="100">
+                <Label.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="手机号码" Foreground="White"></TextBlock>
+                        <TextBlock Text="Mobile No" Foreground="White"></TextBlock>
+                    </StackPanel>
+                </Label.Content>
+            </Label>
+            <TextBox Text="{Binding hendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Width="100">
+                <Label.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="到访公司" Foreground="White"></TextBlock>
+                        <TextBlock Text="Visiting Co" Foreground="White"></TextBlock>
+                    </StackPanel>
+                </Label.Content>
+            </Label>
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="238" x:Name="VisitorTenant" DisplayMemberPath="Display_name"
                   SelectedValuePath="Id"
                   SelectedValue="{Binding hendersonVisitor.HendersonTenantId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <Label HorizontalAlignment="Left" Margin="129,287,0,0" VerticalAlignment="Top">
-            <Label.Background>
-                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/label_4.png" />
-            </Label.Background>
-        </Label>
-        <DatePicker Text="{Binding hendersonVisitor.StartTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="190,273,0,0" VerticalAlignment="Top" Width="238"/>
-        <Label HorizontalAlignment="Left" Margin="129,328,0,0" VerticalAlignment="Top"/>
-        <ComboBox HorizontalAlignment="Left" Margin="190,317,0,0" VerticalAlignment="Top" Width="238" x:Name="HendersonTenantPerson" DisplayMemberPath="Name"
+        </StackPanel>
+        <StackPanel Grid.Row="5" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Width="100">
+                <Label.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="到访时间" Foreground="White"></TextBlock>
+                        <TextBlock Text="Visiting Time" Foreground="White"></TextBlock>
+                    </StackPanel>
+                </Label.Content>
+            </Label>
+            <ctrl:DateTimePicker CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Format="Custom" Foreground="White" Value="{Binding hendersonVisitor.StartTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="238"/>
+        </StackPanel>
+        <StackPanel Grid.Row="6" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Width="100">
+                <Label.Content>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="受访人" Foreground="White"></TextBlock>
+                        <TextBlock Text="Tenant Name" Foreground="White"></TextBlock>
+                    </StackPanel>
+                </Label.Content>
+            </Label>
+            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="238" x:Name="HendersonTenantPerson" DisplayMemberPath="Name"
                   SelectedValuePath="Name"
                   SelectedValue="{Binding hendersonVisitor.HendersonTenantPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
-        <Button x:Name="BtnOK" Margin="268,373,438,50">
+        </StackPanel>
+      
+        <Button Grid.Row="7" x:Name="BtnOK" Width="258" Height="53">
             <Button.Background>
                 <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/confirm.png" />
             </Button.Background>

@@ -123,6 +123,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\DateTimePicker.cs" />
     <Compile Include="Helper\AsyncLogger.cs" />
     <Compile Include="Helper\CameraCaptureHelper.cs" />
     <Compile Include="Helper\ConsoleLogHelper.cs" />
@@ -142,6 +143,14 @@
     <Page Include="MainWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\VSTBrushes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\VSTDateTimePickerStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\IdentityIDCardView.xaml">
       <SubType>Designer</SubType>
