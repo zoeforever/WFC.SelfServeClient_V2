@@ -1,11 +1,10 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.Composition;
 using System.Configuration;
 using System.Linq;
 using System.Windows;
-using VST.SelfServeClient.Helper;
+using WFC.SelfServeClient.Helper;
 using WFC.SelfServeClient.Models;
 using WFC.ServerClient;
 using WFC.ServerClient.HttpModels;
@@ -56,8 +55,9 @@ namespace WFC.SelfServeClient.ViewModels
         }
         public HendersonVisitor Visitor { get; set; } = new HendersonVisitor();
 
-        public InformationInputViewModel()
+        public InformationInputViewModel(HendersonVisitor hendersonVisitor)
         {
+            Visitor = hendersonVisitor;
 
             GetTenants();
 

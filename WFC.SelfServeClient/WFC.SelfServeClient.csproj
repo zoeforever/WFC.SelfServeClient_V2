@@ -123,11 +123,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Helper\AsyncLogger.cs" />
     <Compile Include="Helper\CameraCaptureHelper.cs" />
+    <Compile Include="Helper\ConsoleLogHelper.cs" />
     <Compile Include="Helper\IdCardReaderHelper.cs" />
     <Compile Include="Helper\ImageHelper.cs" />
+    <Compile Include="Helper\Logger.cs" />
+    <Compile Include="Models\DisplayItem.cs" />
     <Compile Include="Models\Visitor.cs" />
     <Compile Include="ViewModels\IdentityIDCardViewModel.cs" />
+    <Compile Include="ViewModels\InformationInputViewModel.cs" />
     <Compile Include="ViewModels\InputUserInfoViewModel.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="App.xaml.cs">
@@ -141,6 +146,10 @@
     <Page Include="Views\IdentityIDCardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InformationInputView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\InputUserInfoView.xaml">
       <SubType>Designer</SubType>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
-namespace VST.SelfServeClient.Helper
+namespace WFC.SelfServeClient.Helper
 {
     public class AsyncLogger
     {

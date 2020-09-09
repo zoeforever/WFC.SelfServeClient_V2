@@ -1,10 +1,10 @@
-﻿
-namespace VST.SelfServeClient.Helper
+﻿using System;
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+
+namespace WFC.SelfServeClient.Helper
 {
-    using System;
-    using System.IO;
-    using System.Runtime.CompilerServices;
-    using System.Threading;
 
     public class Logger
     {
