@@ -18,6 +18,7 @@ namespace WFC.SelfServeClient
         WelcomeViewModel welcomeViewModel { get; set; }
         IdentityIDCardViewModel identityIDCardModel { get; set; }
         InformationInputViewModel informationInputViewModel { get; set; }
+        FinishViewModel finishViewModel { get; set; }
         public MainWindowViewModel()
         {
             hendersonVisitor = new HendersonVisitor();
@@ -40,9 +41,16 @@ namespace WFC.SelfServeClient
             this.ActivateItem(welcomeViewModel);
         }
 
+        private void GotoFinishClick()
+        {
+            finishViewModel = new FinishViewModel();
+            finishViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
+            this.ActivateItem(finishViewModel);
+        }
         private void GotoInputInfoClick()
         {
             informationInputViewModel = new InformationInputViewModel(hendersonVisitor);
+            informationInputViewModel.OnGotoFinishClick += GotoFinishClick;
             this.ActivateItem(informationInputViewModel);
         }
     }

@@ -14,6 +14,7 @@ namespace WFC.SelfServeClient.ViewModels
 {
     public class InformationInputViewModel : Screen
     {
+        public event System.Action OnGotoFinishClick;
         private string location = ConfigurationManager.AppSettings["Location"];
         private string serverUrl = ConfigurationManager.AppSettings["WebApiServiceUrl"];
         private HendersonTenant hendersonTenant;
@@ -142,6 +143,11 @@ namespace WFC.SelfServeClient.ViewModels
                 Dictionary<string, string> postFile = new Dictionary<string, string>();
                 postFile.Add("VisitorPhoto", this.hendersonVisitor.VisitorPhoto);
 
+
+                if (true)
+                {
+                    OnGotoFinishClick?.Invoke();
+                }
                 //var postResult = HttpClientHelper.RestPostFile<VST.BaseEntity.WFC.AddVisitorResponse>(url, WebApiClientHelper.Jwt, postForm, postFile);
                 //if (postResult.StatusCode == "SUCCESS")
                 //{

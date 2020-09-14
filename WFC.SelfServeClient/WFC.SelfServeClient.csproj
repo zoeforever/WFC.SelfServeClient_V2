@@ -132,6 +132,7 @@
     <Compile Include="Helper\Logger.cs" />
     <Compile Include="Models\DisplayItem.cs" />
     <Compile Include="Models\Visitor.cs" />
+    <Compile Include="ViewModels\FinishViewModel.cs" />
     <Compile Include="ViewModels\IdentityIDCardViewModel.cs" />
     <Compile Include="ViewModels\InformationInputViewModel.cs" />
     <Compile Include="ViewModels\InputUserInfoViewModel.cs" />
@@ -151,6 +152,10 @@
     <Page Include="Themes\VSTDateTimePickerStyle.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\FinishView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\IdentityIDCardView.xaml">
       <SubType>Designer</SubType>
