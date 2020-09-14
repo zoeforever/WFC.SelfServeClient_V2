@@ -19,8 +19,11 @@
             <RowDefinition Height="60" />
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="1"  Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
@@ -30,6 +33,9 @@
                 </Label.Content>
             </Label>
             <TextBox Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"  Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="{Binding hendersonVisitor.VisitorPhoto,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
@@ -42,7 +48,7 @@
             </Label>
             <TextBox Text="{Binding hendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
         </StackPanel>
-        <Image Source="{Binding hendersonVisitor.VisitorPhoto}" Visibility="Collapsed" HorizontalAlignment="Left" Height="178" Margin="511,28,0,0" VerticalAlignment="Top" Width="169"/>
+
         <StackPanel Grid.Row="3" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
@@ -92,7 +98,7 @@
                   SelectedValue="{Binding hendersonVisitor.HendersonTenantPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
       
-        <Button Grid.Row="7" x:Name="BtnOK" Width="258" Height="53">
+        <Button Grid.Row="7" Grid.ColumnSpan="2" x:Name="BtnOK" Width="258" Height="53">
             <Button.Background>
                 <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/confirm.png" />
             </Button.Background>
