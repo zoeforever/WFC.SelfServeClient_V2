@@ -38,6 +38,10 @@ namespace WFC.SelfServeClient
 
         private void GotoWelcomeClick()
         {
+            hendersonVisitor = new HendersonVisitor();
+            hendersonVisitor.StartTime = DateTime.Now;
+            welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
+            welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
             this.ActivateItem(welcomeViewModel);
         }
 

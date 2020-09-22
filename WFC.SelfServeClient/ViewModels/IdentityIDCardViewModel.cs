@@ -136,7 +136,6 @@ namespace WFC.SelfServeClient.ViewModels
             }
             else
             {
-                hendersonVisitor = new HendersonVisitor();
                 OnGotoWelcomeClick?.Invoke();
             }
            

@@ -29,7 +29,6 @@ namespace WFC.SelfServeClient.ViewModels
 
         public void FinishButtonClick()
         {
-            hendersonVisitor = new HendersonVisitor();
             gotoWelcomeTimer.Stop();
             OnGotoWelcomeClick?.Invoke();
         }

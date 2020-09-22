@@ -97,7 +97,7 @@
                   SelectedValuePath="Name"
                   SelectedValue="{Binding hendersonVisitor.HendersonTenantPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
-      
+
         <Button Grid.Row="7" Grid.ColumnSpan="2" x:Name="BtnOK" Width="258" Height="53">
             <Button.Background>
                 <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/confirm.png" />
