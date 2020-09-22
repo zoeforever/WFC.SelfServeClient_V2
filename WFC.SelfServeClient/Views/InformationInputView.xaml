@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WFC.SelfServeClient.Views"
              xmlns:ctrl="clr-namespace:WFC.SelfServeClient.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="1000">
+    <UserControl.Resources>
+
+        <!-- 按钮 -->
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="border" Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -21,9 +41,11 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
+            <ColumnDefinition Width="350" />
+            <ColumnDefinition Width="120"/>
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="1"  Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
@@ -34,10 +56,10 @@
             </Label>
             <TextBox Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"  Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Image Source="{Binding hendersonVisitor.VisitorPhoto,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center"/>
+        <StackPanel Grid.Row="1" Grid.Column="2" Grid.RowSpan="3"  Orientation="Horizontal" Width="102" Height="126" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="{Binding hendersonVisitor.VisitorPhoto,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  Width="102" Height="126" />
         </StackPanel>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
@@ -49,7 +71,7 @@
             <TextBox Text="{Binding hendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="3" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
@@ -60,7 +82,7 @@
             </Label>
             <TextBox Text="{Binding hendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="238"/>
         </StackPanel>
-        <StackPanel Grid.Row="4" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
@@ -73,7 +95,7 @@
                   SelectedValuePath="Id"
                   SelectedValue="{Binding hendersonVisitor.HendersonTenantId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
-        <StackPanel Grid.Row="5" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
@@ -84,7 +106,7 @@
             </Label>
             <ctrl:DateTimePicker CustomFormat="yyyy-MM-dd HH:mm:ss" ShowCheckBox="False" Format="Custom" Foreground="White" Value="{Binding hendersonVisitor.StartTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="238"/>
         </StackPanel>
-        <StackPanel Grid.Row="6" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <StackPanel Grid.Row="6" Grid.Column="1" Orientation="Horizontal" Width="350" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Width="100">
                 <Label.Content>
                     <StackPanel Orientation="Vertical">
@@ -98,7 +120,7 @@
                   SelectedValue="{Binding hendersonVisitor.HendersonTenantPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
 
-        <Button Grid.Row="7" Grid.ColumnSpan="2" x:Name="BtnOK" Width="258" Height="53">
+        <Button Grid.Row="7" Grid.ColumnSpan="4" x:Name="BtnOK" Width="258" Height="53">
             <Button.Background>
                 <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/confirm.png" />
             </Button.Background>

@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using WFC.SelfServeClient.Helper;
-using WFC.SelfServeClient.Models;
 using WFC.SelfServeClient.Views;
 using WFC.ServerClient.HttpModels;
 
@@ -22,8 +21,8 @@ namespace WFC.SelfServeClient.ViewModels
         CameraCaptureHelper helper;
         VideoCaptureDevice videoSource = null;
         Bitmap Snapshot = null;
-        //10秒执行一次
-        int snapshotTimer_timespan = 10;
+        //5秒执行一次
+        int snapshotTimer_timespan = 5;
         //执行6次=1分钟
         int snapshotTimer_count = 0;
         public string SnapShotPath { get; set; }
@@ -58,7 +57,7 @@ namespace WFC.SelfServeClient.ViewModels
 
         private void Helper_OnSnapShot(object sender, Bitmap snapshot)
         {
-            Application.Current.Dispatcher.Invoke(() =>
+            Execute.OnUIThread(() =>
             {
                 try
                 {
@@ -85,10 +84,6 @@ namespace WFC.SelfServeClient.ViewModels
                     }
                 }
                 catch { }
-                finally
-                {
-                    helper.Disconnect();
-                }
             });
         }
         private void Snapshot_Tick(object sender, EventArgs e)
@@ -101,7 +96,8 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 //暂不处理
             }
-            if (idCardInfo == null) {
+            if (idCardInfo == null)
+            {
                 snapshotTimer_count = snapshotTimer_count + 1;
             }
             else
@@ -110,7 +106,7 @@ namespace WFC.SelfServeClient.ViewModels
                 //身份证头像获取成功，开始摄像头抓拍
                 helper.Snapshot();
             }
-            if (snapshotTimer_count > 6)
+            if (snapshotTimer_count > 60 / snapshotTimer_timespan)
             {
                 helper.Disconnect();
                 snapshotTimer.Stop();
@@ -125,6 +121,7 @@ namespace WFC.SelfServeClient.ViewModels
 
         private void Goto_Tick(object sender, EventArgs e)
         {
+            helper.Disconnect();
             gotoTimer.Stop();
             DispatcherTimer dispatcherTimer = (DispatcherTimer)sender;
             if (dispatcherTimer.Tag.Equals("success"))
@@ -138,7 +135,7 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 OnGotoWelcomeClick?.Invoke();
             }
-           
+
         }
 
         protected override void OnDeactivate(bool close)
