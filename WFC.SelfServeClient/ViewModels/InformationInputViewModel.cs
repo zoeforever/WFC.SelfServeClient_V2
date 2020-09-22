@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Windows;
+using System.Windows.Threading;
 using WFC.SelfServeClient.Helper;
 using WFC.SelfServeClient.Models;
 using WFC.ServerClient;
@@ -19,7 +20,8 @@ namespace WFC.SelfServeClient.ViewModels
         private string serverUrl = ConfigurationManager.AppSettings["WebApiServiceUrl"];
         private HendersonTenant hendersonTenant;
         private DisplayItem selectedHendersonTenantPerson;
-
+        public event System.Action OnGotoWelcomeClick;
+        DispatcherTimer gotoWelcomeTimer;
         public BindableCollection<HendersonTenant> VisitorTenant { get; set; } = new BindableCollection<HendersonTenant>();
         public BindableCollection<DisplayItem> HendersonTenantPerson { get; set; } = new BindableCollection<DisplayItem>();
         public HendersonTenant SelectedVisitorTenant
@@ -38,7 +40,12 @@ namespace WFC.SelfServeClient.ViewModels
                 }
             }
         }
-
+        private void Snapshot_Tick(object sender, EventArgs e)
+        {
+            gotoWelcomeTimer.Stop();
+            hendersonVisitor = new HendersonVisitor();
+            OnGotoWelcomeClick?.Invoke();
+        }
         public DisplayItem SelectedHendersonTenantPerson
         {
             get
@@ -58,6 +65,10 @@ namespace WFC.SelfServeClient.ViewModels
 
         public InformationInputViewModel(HendersonVisitor hendersonVisitor)
         {
+            gotoWelcomeTimer = new DispatcherTimer();
+            gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(60);
+            gotoWelcomeTimer.Tick += Snapshot_Tick;
+            gotoWelcomeTimer.Start();
             this.hendersonVisitor = hendersonVisitor;
 
             GetTenants();
@@ -79,6 +90,7 @@ namespace WFC.SelfServeClient.ViewModels
 
         public void BtnOK()
         {
+            gotoWelcomeTimer.Stop();
             if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Name))
             {
                 MessageBox.Show("请输入访客姓名！");
@@ -144,21 +156,20 @@ namespace WFC.SelfServeClient.ViewModels
                 postFile.Add("VisitorPhoto", this.hendersonVisitor.VisitorPhoto);
 
 
-                if (true)
+                var postResult = HttpClientHelper.RestPostFile<AddVisitorResponse>(url, WebApiClientHelper.Jwt, postForm, postFile);
+                if (postResult.StatusCode == "SUCCESS")
                 {
                     OnGotoFinishClick?.Invoke();
                 }
-                //var postResult = HttpClientHelper.RestPostFile<VST.BaseEntity.WFC.AddVisitorResponse>(url, WebApiClientHelper.Jwt, postForm, postFile);
-                //if (postResult.StatusCode == "SUCCESS")
-                //{
-                //}
-                //else
-                //{
-                //    MessageBox.Show(postResult.Message);
-                //}
+                else
+                {
+                    gotoWelcomeTimer.Start();
+                    MessageBox.Show(postResult.Message);
+                }
             }
             catch (Exception ex)
             {
+                gotoWelcomeTimer.Start();
                 MessageBox.Show(ex.HandleException());
                 Logger.Error(ex.HandleException());
             }

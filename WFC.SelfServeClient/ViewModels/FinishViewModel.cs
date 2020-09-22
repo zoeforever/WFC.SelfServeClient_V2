@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using WFC.ServerClient;
+using WFC.ServerClient.HttpModels;
 
 namespace WFC.SelfServeClient.ViewModels
 {
@@ -13,18 +15,21 @@ namespace WFC.SelfServeClient.ViewModels
     [PropertyChanged.ImplementPropertyChanged]
     public class FinishViewModel : Screen
     {
+        public HendersonVisitor hendersonVisitor { get; set; }
         public event System.Action OnGotoWelcomeClick;
         DispatcherTimer gotoWelcomeTimer;
-        public FinishViewModel()
+        public FinishViewModel(HendersonVisitor hendersonVisitor)
         {
             gotoWelcomeTimer = new DispatcherTimer();
             gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(10);
             gotoWelcomeTimer.Tick += Snapshot_Tick;
             gotoWelcomeTimer.Start();
+            this.hendersonVisitor = hendersonVisitor;
         }
 
         public void FinishButtonClick()
         {
+            hendersonVisitor = new HendersonVisitor();
             gotoWelcomeTimer.Stop();
             OnGotoWelcomeClick?.Invoke();
         }

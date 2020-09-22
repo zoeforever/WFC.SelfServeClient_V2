@@ -58,7 +58,7 @@ namespace WFC.SelfServeClient.Helper
         public void Connect(int videoResolutionIndex = 0, int snapshotResolutionIndex = 0)
         {
             videoDevice.ProvideSnapshots = true;
-            //videoDevice.SnapshotResolution = snapshotCapabilities[snapshotResolutionIndex];
+            videoDevice.SnapshotResolution = snapshotCapabilities[snapshotResolutionIndex];
             videoDevice.SnapshotFrame += VideoDevice_SnapshotFrame;
 
             if (videoSourcePlayer != null)

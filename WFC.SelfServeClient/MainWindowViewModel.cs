@@ -43,7 +43,7 @@ namespace WFC.SelfServeClient
 
         private void GotoFinishClick()
         {
-            finishViewModel = new FinishViewModel();
+            finishViewModel = new FinishViewModel(hendersonVisitor);
             finishViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
             this.ActivateItem(finishViewModel);
         }
@@ -51,6 +51,7 @@ namespace WFC.SelfServeClient
         {
             informationInputViewModel = new InformationInputViewModel(hendersonVisitor);
             informationInputViewModel.OnGotoFinishClick += GotoFinishClick;
+            informationInputViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
             this.ActivateItem(informationInputViewModel);
         }
     }

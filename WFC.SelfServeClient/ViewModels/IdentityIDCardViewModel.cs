@@ -25,7 +25,7 @@ namespace WFC.SelfServeClient.ViewModels
         //10秒执行一次
         int snapshotTimer_timespan = 10;
         //执行6次=1分钟
-        int snapshotTimer_count = 5;
+        int snapshotTimer_count = 0;
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
         DispatcherTimer gotoTimer;
@@ -101,7 +101,9 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 //暂不处理
             }
-            if (idCardInfo == null) snapshotTimer_count = snapshotTimer_count + 1;
+            if (idCardInfo == null) {
+                snapshotTimer_count = snapshotTimer_count + 1;
+            }
             else
             {
                 snapshotTimer.Stop();
@@ -116,26 +118,28 @@ namespace WFC.SelfServeClient.ViewModels
                 identityIDCardView.imgBG.Visibility = Visibility.Visible;
                 identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
                 identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
-                gotoTimer.Tag = "success";
+                gotoTimer.Tag = "fail";
                 gotoTimer.Start();
             }
         }
 
         private void Goto_Tick(object sender, EventArgs e)
         {
+            gotoTimer.Stop();
             DispatcherTimer dispatcherTimer = (DispatcherTimer)sender;
             if (dispatcherTimer.Tag.Equals("success"))
             {
-                hendersonVisitor.IdCardNo = "123";
-                hendersonVisitor.Name = "abc";
-                hendersonVisitor.VisitorPhoto = "/WFC.SelfServeClient;component/Resources/bg.png"; //idCardInfo.ImagePath;
+                //hendersonVisitor.IdCardNo = "123";
+                //hendersonVisitor.Name = "abc";
+                //hendersonVisitor.VisitorPhoto = @"E:\MyWork\WFC.SelfServeClient\WFC.SelfServeClient\Resources\sfzh.png"; //idCardInfo.ImagePath;
                 OnGotoInputInfoClick?.Invoke();
             }
             else
             {
+                hendersonVisitor = new HendersonVisitor();
                 OnGotoWelcomeClick?.Invoke();
             }
-            gotoTimer.Stop();
+           
         }
 
         protected override void OnDeactivate(bool close)
