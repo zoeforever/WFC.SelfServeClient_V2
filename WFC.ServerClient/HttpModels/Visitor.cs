@@ -6,11 +6,14 @@ namespace WFC.ServerClient
 {
     public partial class Visitor
     {
-        [AliasAs("name")]
-        public string Name { get; set; }
+        [AliasAs("id")]
+        public int Id { get; set; }
 
         [AliasAs("idCardNo")]
         public string IdCardNo { get; set; }
+
+        [AliasAs("name")]
+        public string Name { get; set; }
 
         [AliasAs("nation")]
         public string Nation { get; set; }
@@ -27,17 +30,20 @@ namespace WFC.ServerClient
         [AliasAs("age")]
         public int Age { get; set; }
 
-        [AliasAs("remark")]
-        public string Remark { get; set; }
+        [AliasAs("avatar")]
+        public string Avatar { get; set; }
 
-        [AliasAs("corpId")]
-        public int CorpId { get; set; }
+        [AliasAs("idCardPhoto")]
+        public string IdCardPhoto { get; set; }
 
-        [AliasAs("accessMedia")]
-        public AccessMedia AccessMedia { get; set; }
+        [AliasAs("icCardNo")]
+        public string IcCardNo { get; set; }
 
-        [AliasAs("cardNo")]
-        public string CardNo { get; set; }
+        [AliasAs("nfcCardNo")]
+        public string NfcCardNo { get; set; }
+
+        [AliasAs("qrCodeNo")]
+        public string QrCodeNo { get; set; }
 
         [AliasAs("cardValidFrom")]
         public System.DateTimeOffset CardValidFrom { get; set; }
@@ -45,11 +51,59 @@ namespace WFC.ServerClient
         [AliasAs("cardValidTo")]
         public System.DateTimeOffset CardValidTo { get; set; }
 
-        [AliasAs("visitorType")]
-        public VisitorType VisitorType { get; set; }
+        [AliasAs("remark")]
+        public string Remark { get; set; }
 
-        [AliasAs("controllerRoleId")]
-        public int ControllerRoleId { get; set; }
+        [AliasAs("inBlackList")]
+        public bool InBlackList { get; set; }
+
+        [AliasAs("hendersonTanantId")]
+        public string HendersonTanantId { get; set; }
+
+        [AliasAs("hendersonTanantName")]
+        public string HendersonTanantName { get; set; }
+
+        [AliasAs("floors")]
+        public string Floors { get; set; }
+
+        [AliasAs("floorNames")]
+        public string FloorNames { get; set; }
+
+        [AliasAs("buildings")]
+        public string Buildings { get; set; }
+
+        [AliasAs("buildingNames")]
+        public string BuildingNames { get; set; }
+
+        [AliasAs("visitoType")]
+        public VisitorType VisitoType { get; set; }
+
+        [AliasAs("numberOfAccess")]
+        public int NumberOfAccess { get; set; }
+
+        [AliasAs("credentialId")]
+        public string CredentialId { get; set; }
+
+        [AliasAs("codeType")]
+        public string CodeType { get; set; }
+
+        [AliasAs("locationJson")]
+        public string LocationJson { get; set; }
+
+        [AliasAs("doorStatus")]
+        public int DoorStatus { get; set; }
+
+        [AliasAs("isEnable")]
+        public int IsEnable { get; set; }
+
+        [AliasAs("visitorStatus")]
+        public VisitorStatus VisitorStatus { get; set; }
+
+        [AliasAs("hendersonTenantPersonName")]
+        public string HendersonTenantPersonName { get; set; }
+
+        [AliasAs("hendersonTenantPersonPhone")]
+        public string HendersonTenantPersonPhone { get; set; }
 
     }
 }

@@ -52,9 +52,10 @@ namespace WFC.ServerClient
         /// </summary>
         /// <param name="name">Name</param>
         /// <param name="idCardNo">Id Card No</param>
+        /// <param name="phone">Phone</param>
         /// <returns>Success</returns>
         [HttpGet("api/v1/Visitor/NameOrCardNo")]
-        ITask<TenantPager> GetVisitorByNameAndIdCardNoAsync(string name, string idCardNo);
+        ITask<TenantPager> GetVisitorByNameAndIdCardNoAsync(string name, string idCardNo, string phone);
 
     }
 }

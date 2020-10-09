@@ -45,5 +45,14 @@ namespace WFC.ServerClient
         [AliasAs("areas")]
         public string Areas { get; set; }
 
+        [AliasAs("antiGoback")]
+        public bool AntiGoback { get; set; }
+
+        [AliasAs("cameraIn")]
+        public string CameraIn { get; set; }
+
+        [AliasAs("cameraOut")]
+        public string CameraOut { get; set; }
+
     }
 }

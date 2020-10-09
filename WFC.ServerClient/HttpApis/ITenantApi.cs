@@ -18,11 +18,15 @@ namespace WFC.ServerClient
         /// </summary>
         /// <param name="visitorType">类型（租户、访客）</param>
         /// <param name="name">姓名</param>
+        /// <param name="phone">电话</param>
+        /// <param name="idCardNo">身份证</param>
+        /// <param name="icCardNo">IC卡号</param>
+        /// <param name="corp">公司</param>
         /// <param name="page">页码</param>
         /// <param name="pageSize">每页数量</param>
         /// <returns>Success</returns>
         [HttpGet("api/v1/Tenant")]
-        ITask<TenantPager> GetAllTenantsAsync(string visitorType, string name, int? page, int? pageSize);
+        ITask<TenantPager> GetAllTenantsAsync(string visitorType, string name, string phone, string idCardNo, string icCardNo, string corp, int? page, int? pageSize);
 
         /// <summary>
         /// 增加租户信息
@@ -47,6 +51,14 @@ namespace WFC.ServerClient
         /// <returns>Success</returns>
         [HttpDelete("api/v1/Tenant/{id}")]
         ITask<HttpResponseMessage> DeleteTenantAsync([Required] int id);
+
+        /// <summary>
+        /// 批量删除租户
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns>Success</returns>
+        [HttpPost("api/v1/Tenant/del")]
+        ITask<HttpResponseMessage> DeleteTenantsAsync([JsonContent] DeleteTenantsRequest body);
 
         /// <summary>
         /// 给访客添加Ic卡
