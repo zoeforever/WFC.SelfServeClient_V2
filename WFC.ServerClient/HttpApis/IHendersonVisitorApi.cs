@@ -21,14 +21,14 @@ namespace WFC.ServerClient
         [HttpGet("api/v1/HendersonVisitor/tenants")]
         ITask<GetTenantsByBuildingIdResponse> GetTenantsByBuildingIdAsync(string buildingId);
 
-        /// <summary>
-        /// 添加租户
-        /// </summary>
-        /// <param name="body"></param>
-        /// <returns>Success</returns>
-        [TraceFilter(Enable = false)]
-        [HttpPost("api/v1/HendersonVisitor/visitor")]
-        ITask<AddHendersonVisitorResponse> AddVisitorAsync([JsonContent] Microsoft.AspNetCore.Http.IFormFile body);
+        ///// <summary>
+        ///// 添加租户
+        ///// </summary>
+        ///// <param name="body"></param>
+        ///// <returns>Success</returns>
+        //[TraceFilter(Enable = false)]
+        //[HttpPost("api/v1/HendersonVisitor/visitor")]
+        //ITask<AddHendersonVisitorResponse> AddVisitorAsync([JsonContent] Microsoft.AspNetCore.Http.IFormFile body);
 
     }
 }

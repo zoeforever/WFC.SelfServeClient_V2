@@ -63,8 +63,11 @@ namespace WFC.ServerClient
         [AliasAs("hendersonTanantName")]
         public string HendersonTanantName { get; set; }
 
-        [AliasAs("floors")]
-        public string Floors { get; set; }
+        [AliasAs("eastFloors")]
+        public string EastFloors { get; set; }
+
+        [AliasAs("westFloors")]
+        public string WestFloors { get; set; }
 
         [AliasAs("floorNames")]
         public string FloorNames { get; set; }
@@ -104,6 +107,18 @@ namespace WFC.ServerClient
 
         [AliasAs("hendersonTenantPersonPhone")]
         public string HendersonTenantPersonPhone { get; set; }
+
+        [AliasAs("koalaId")]
+        public string KoalaId { get; set; }
+
+        [AliasAs("koalaPhotoIds")]
+        public string KoalaPhotoIds { get; set; }
+
+        [AliasAs("eastVip")]
+        public bool EastVip { get; set; }
+
+        [AliasAs("westVip")]
+        public bool WestVip { get; set; }
 
     }
 }

@@ -19,7 +19,13 @@ namespace WFC.ServerClient
         public List<Location> Locations { get; set; }
 
         [AliasAs("contacts")]
-        public List<Contact> Contacts { get; set; }
+        public Contact Contacts { get; set; }
+
+        [AliasAs("tenant_admin_group_id")]
+        public string Tenant_admin_group_id { get; set; }
+
+        [AliasAs("tenant_code")]
+        public int Tenant_code { get; set; }
 
     }
 }

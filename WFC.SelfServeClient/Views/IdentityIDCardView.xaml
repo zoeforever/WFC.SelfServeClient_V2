@@ -12,7 +12,8 @@
             <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <WindowsFormsHost Grid.Row="0" x:Name="wfh" Width="423" Margin="0,60,0,20" >
+        <Image x:Name="imgLoadCamera" Grid.Row="0"  Width="423" Margin="0,60,0,20" Source="/WFC.SelfServeClient;component/Resources/rlsb-smk-2.png"/>
+        <WindowsFormsHost Grid.Row="0" x:Name="wfh" Width="423" Margin="0,60,0,20" Visibility="Collapsed" >
             <aforgeCtrl:VideoSourcePlayer x:Name="videoSourcePlayer"></aforgeCtrl:VideoSourcePlayer>
         </WindowsFormsHost>
         <Image Stretch="None" x:Name="imgBG" Grid.Row="0" Width="423"  Margin="0,60,0,20" Visibility="Collapsed" Source="/WFC.SelfServeClient;component/Resources/rlsb-smk-2.png"/>

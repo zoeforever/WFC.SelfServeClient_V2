@@ -22,11 +22,12 @@ namespace WFC.ServerClient
         /// <param name="idCardNo">身份证</param>
         /// <param name="icCardNo">IC卡号</param>
         /// <param name="corp">公司</param>
+        /// <param name="inBlackList">是否是黑名单</param>
         /// <param name="page">页码</param>
         /// <param name="pageSize">每页数量</param>
         /// <returns>Success</returns>
         [HttpGet("api/v1/Tenant")]
-        ITask<TenantPager> GetAllTenantsAsync(string visitorType, string name, string phone, string idCardNo, string icCardNo, string corp, int? page, int? pageSize);
+        ITask<TenantPager> GetAllTenantsAsync(string visitorType, string name, string phone, string idCardNo, string icCardNo, string corp, string inBlackList, int? page, int? pageSize);
 
         /// <summary>
         /// 增加租户信息
@@ -34,7 +35,7 @@ namespace WFC.ServerClient
         /// <param name="body"></param>
         /// <returns>Success</returns>
         [HttpPost("api/v1/Tenant")]
-        ITask<int> AddTenantAsync([Required] [JsonContent] AddTenantRequest body);
+        ITask<AddTenantResponse> AddTenantAsync([Required] [JsonContent] AddTenantRequest body);
 
         /// <summary>
         /// 更新租户信息
@@ -42,22 +43,30 @@ namespace WFC.ServerClient
         /// <param name="body"></param>
         /// <returns>Success</returns>
         [HttpPut("api/v1/Tenant")]
-        ITask<HttpResponseMessage> UpdateTenantAsync([Required] [JsonContent] UpdateTenantRequest body);
+        ITask<UpdateTenantResponse> UpdateTenantAsync([Required] [JsonContent] UpdateTenantRequest body);
+
+        /// <summary>
+        /// 根据公司名称批量修改租户信息
+        /// </summary>
+        /// <param name="body"></param>
+        /// <returns>Success</returns>
+        [HttpPost("api/v1/Tenant/company")]
+        ITask<HttpResponseMessage> UpdateTenantsByCompanyAsync([Required] [JsonContent] UpdateTenantsByCompanyRequest body);
 
         /// <summary>
         /// 删除租户信息
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="body"></param>
         /// <returns>Success</returns>
-        [HttpDelete("api/v1/Tenant/{id}")]
-        ITask<HttpResponseMessage> DeleteTenantAsync([Required] int id);
+        [HttpDelete("api/v1/Tenant/del")]
+        ITask<HttpResponseMessage> DeleteTenantAsync([Required] [JsonContent] DeleteTenantRequest body);
 
         /// <summary>
         /// 批量删除租户
         /// </summary>
         /// <param name="body"></param>
         /// <returns>Success</returns>
-        [HttpPost("api/v1/Tenant/del")]
+        [HttpPost("api/v1/Tenant/delMore")]
         ITask<HttpResponseMessage> DeleteTenantsAsync([JsonContent] DeleteTenantsRequest body);
 
         /// <summary>

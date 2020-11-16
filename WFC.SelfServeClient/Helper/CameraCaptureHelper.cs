@@ -16,13 +16,13 @@ namespace WFC.SelfServeClient.Helper
         private VideoCapabilities[] videoCapabilities;
         private VideoCapabilities[] snapshotCapabilities;
         private VideoSourcePlayer videoSourcePlayer;
-
         public List<Size> SnapshotResolutions { get; set; } = new List<Size>();
         public List<Size> VideoResolutions { get; set; } = new List<Size>();
         /// <summary>
         /// 抓拍事件，从子进程调用，如果进行显示的话，需要Invoke到主线程执行
         /// </summary>
         public event SnapShotEventHandler OnSnapShot;
+        public event Action OnConnect;
 
         public CameraCaptureHelper(VideoSourcePlayer videoSourcePlayer)
         {
@@ -66,6 +66,8 @@ namespace WFC.SelfServeClient.Helper
                 videoSourcePlayer.VideoSource = videoDevice;
                 videoSourcePlayer.Start();
             }
+
+            OnConnect?.Invoke();
         }
 
         /// <summary>

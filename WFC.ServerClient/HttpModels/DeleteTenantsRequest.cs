@@ -7,7 +7,7 @@ namespace WFC.ServerClient
     public partial class DeleteTenantsRequest
     {
         [AliasAs("ids")]
-        public List<int> Ids { get; set; }
+        public List<TenantItem> Ids { get; set; }
 
     }
 }

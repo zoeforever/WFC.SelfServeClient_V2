@@ -42,5 +42,17 @@ namespace WFC.ServerClient
         [AliasAs("cameraOut")]
         public string CameraOut { get; set; }
 
+        [AliasAs("openDoorNo")]
+        public string OpenDoorNo { get; set; }
+
+        [AliasAs("closeDoorNo")]
+        public string CloseDoorNo { get; set; }
+
+        [AliasAs("recycleNo")]
+        public string RecycleNo { get; set; }
+
+        [AliasAs("vip")]
+        public bool Vip { get; set; }
+
     }
 }

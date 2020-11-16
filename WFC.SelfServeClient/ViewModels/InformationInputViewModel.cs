@@ -16,88 +16,49 @@ namespace WFC.SelfServeClient.ViewModels
     public class InformationInputViewModel : Screen
     {
         public event System.Action OnGotoFinishClick;
-        private string location = ConfigurationManager.AppSettings["Location"];
         private string serverUrl = ConfigurationManager.AppSettings["WebApiServiceUrl"];
-        private HendersonTenant hendersonTenant;
-        private DisplayItem selectedHendersonTenantPerson;
         public event System.Action OnGotoWelcomeClick;
         DispatcherTimer gotoWelcomeTimer;
-        public BindableCollection<HendersonTenant> VisitorTenant { get; set; } = new BindableCollection<HendersonTenant>();
-        public BindableCollection<DisplayItem> HendersonTenantPerson { get; set; } = new BindableCollection<DisplayItem>();
-        public HendersonTenant SelectedVisitorTenant
-        {
-            get
-            {
-                return hendersonTenant;
-            }
-            set
-            {
-                hendersonTenant = value;
-                if (hendersonTenant != null)
-                {
-                    hendersonVisitor.Floors = string.Join(",", hendersonTenant.Locations.Select(f => f.Floor.Display_name));
-                    HendersonTenantPerson = new BindableCollection<DisplayItem>(hendersonTenant.Contacts.Select(t => new DisplayItem { Id = t.Contact_number, Name = t.Display_name }));
-                }
-            }
-        }
-        private void Snapshot_Tick(object sender, EventArgs e)
-        {
-            gotoWelcomeTimer.Stop();
-            OnGotoWelcomeClick?.Invoke();
-        }
-        public DisplayItem SelectedHendersonTenantPerson
-        {
-            get
-            {
-                return selectedHendersonTenantPerson;
-            }
-            set
-            {
-                selectedHendersonTenantPerson = value;
-                if (selectedHendersonTenantPerson != null)
-                {
-                    hendersonVisitor.HendersonTenantPersonPhone = selectedHendersonTenantPerson.Id;
-                }
-            }
-        }
+        public BindableCollection<DisplayItem> VisitorArea { get; set; }
+        public BindableCollection<DisplayItem> VisitorFloor { get; set; }
+
         public HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
 
         public InformationInputViewModel(HendersonVisitor hendersonVisitor)
         {
+            VisitorArea = new BindableCollection<DisplayItem>();
+            VisitorArea.Add(new DisplayItem { Id = "wfc.east.tower", Name = "东塔" });
+            VisitorArea.Add(new DisplayItem { Id = "wfc.west.tower", Name = "西塔" });
+            VisitorFloor = new BindableCollection<DisplayItem>();
+            for (int i = 1; i <= 22; i++)
+            {
+                VisitorFloor.Add(new DisplayItem { Id = i.ToString(), Name = $"{i}层" });
+            }
             gotoWelcomeTimer = new DispatcherTimer();
-            gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(2260);
+            gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(60);
             gotoWelcomeTimer.Tick += Snapshot_Tick;
             gotoWelcomeTimer.Start();
             this.hendersonVisitor = hendersonVisitor;
 
-            GetTenants();
-
-            void GetTenants()
-            {
-                try
-                {
-                    var client = WebApiClient.HttpApi.Resolve<IHendersonVisitorApi>();
-                    VisitorTenant = new BindableCollection<HendersonTenant>(client.GetTenantsByBuildingIdAsync(location).GetAwaiter().GetResult().Result);
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error(ex.ToString());
-                    VisitorTenant = new BindableCollection<HendersonTenant>();
-                }
-            }
         }
 
         public void BtnOK()
         {
             gotoWelcomeTimer.Stop();
-            if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Name))
+            //if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Name))
+            //{
+            //    MessageBox.Show("请输入访客姓名！");
+            //    return;
+            //}
+
+            if (string.IsNullOrEmpty(hendersonVisitor.AreaCode))
             {
-                MessageBox.Show("请输入访客姓名！");
+                MessageBox.Show("请输入手机号码国家代码！");
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Phone))
             {
-                MessageBox.Show("请输入电话！");
+                MessageBox.Show("请输入手机号码！");
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.hendersonVisitor.IdCardNo))
@@ -105,21 +66,29 @@ namespace WFC.SelfServeClient.ViewModels
                 MessageBox.Show("请输入身份证号！");
                 return;
             }
-            //if (Visitor.VisitorPhoto == EmptyPhotoFilePath)
-            //{
-            //    MessageBox.Show("请拍照或刷身份证！");
-            //    return;
-            //}
-            var hendersonTenant = VisitorTenant.FirstOrDefault(x => x.Id == hendersonVisitor.HendersonTenantId);
-            if (hendersonTenant == null)
+            if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Buildings))
             {
-                MessageBox.Show("请选择到访公司！");
+                MessageBox.Show("请选择到访区域！");
                 return;
             }
-            var hendersonTenantPerson = HendersonTenantPerson.FirstOrDefault(x => x.Name == hendersonVisitor.HendersonTenantPersonName);
-            if (hendersonTenantPerson == null)
+            if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Floors))
             {
-                MessageBox.Show("请选择访问人！");
+                MessageBox.Show("请选择到访楼层！");
+                return;
+            }
+            if (string.IsNullOrEmpty(hendersonVisitor.HendersonTenantPersonName))
+            {
+                MessageBox.Show("请输入受访人！");
+                return;
+            }
+            if (string.IsNullOrEmpty(hendersonVisitor.TenantAreaCode))
+            {
+                MessageBox.Show("请输入受访人电话国家代码！");
+                return;
+            }
+            if (string.IsNullOrEmpty(hendersonVisitor.HendersonTenantPersonPhone))
+            {
+                MessageBox.Show("请输入受访人电话！");
                 return;
             }
             //if (this.StartTime > this.EndTime)
@@ -135,25 +104,27 @@ namespace WFC.SelfServeClient.ViewModels
                 // For Henderson
                 postForm.Add("VisitorName", hendersonVisitor.Name);
                 postForm.Add("PhoneNumber", hendersonVisitor.Phone);
-                postForm.Add("IdCardNumber", hendersonVisitor.IdCardNo);
-                postForm.Add("NumberOfAccess", "10");
                 postForm.Add("StartTime", new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds().ToString());
-                postForm.Add("EndTime", new DateTimeOffset(DateTime.Now.AddDays(1)).ToUnixTimeMilliseconds().ToString());
-                postForm.Add("HendersonTenantId", hendersonTenant.Id);
-                postForm.Add("HendersonTenantName", hendersonTenant.Display_name);
+                postForm.Add("EndTime", new DateTimeOffset(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59)).ToUnixTimeMilliseconds().ToString());
+                postForm.Add("NumberOfAccess", "10");
+                postForm.Add("IdCardNumber", hendersonVisitor.IdCardNo);
+                postForm.Add("Floors", hendersonVisitor.Floors);
+                postForm.Add("HendersonTenantPersonPhone", hendersonVisitor.HendersonTenantPersonPhone);
+                postForm.Add("Buildings", hendersonVisitor.Buildings);
 
                 // For WFC
+                postForm.Add("HendersonTenantId", "");
+                postForm.Add("HendersonTenantName", "");
                 postForm.Add("Sex", hendersonVisitor.Gender);
                 postForm.Add("Nation", hendersonVisitor.Nation);
                 postForm.Add("Address", hendersonVisitor.Address);
                 postForm.Add("CredentialId", hendersonVisitor.CredentialId);
                 postForm.Add("HendersonTenantPersonName", hendersonVisitor.HendersonTenantPersonName);
-                postForm.Add("HendersonTenantPersonPhone", hendersonVisitor.HendersonTenantPersonPhone);
-                postForm.Add("Floors", hendersonVisitor.Floors);
+                postForm.Add("AuthCode", WebApiClientHelper.AccessToken);
+                postForm.Add("VisitorType", "SelfHelp");
 
                 Dictionary<string, string> postFile = new Dictionary<string, string>();
                 postFile.Add("VisitorPhoto", this.hendersonVisitor.VisitorPhoto);
-
 
                 var postResult = HttpClientHelper.RestPostFile<AddVisitorResponse>(url, WebApiClientHelper.Jwt, postForm, postFile);
                 if (postResult.StatusCode == "SUCCESS")
@@ -172,6 +143,12 @@ namespace WFC.SelfServeClient.ViewModels
                 MessageBox.Show(ex.HandleException());
                 Logger.Error(ex.HandleException());
             }
+        }
+
+        private void Snapshot_Tick(object sender, EventArgs e)
+        {
+            gotoWelcomeTimer.Stop();
+            OnGotoWelcomeClick?.Invoke();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 using WFC.SelfServeClient.Helper;
 using WFC.SelfServeClient.Views;
+using WFC.ServerClient;
 using WFC.ServerClient.HttpModels;
 
 namespace WFC.SelfServeClient.ViewModels
@@ -52,7 +53,17 @@ namespace WFC.SelfServeClient.ViewModels
             identityIDCardView = (IdentityIDCardView)view;
             this.helper = new CameraCaptureHelper(identityIDCardView.videoSourcePlayer);
             helper.OnSnapShot += Helper_OnSnapShot;
+            helper.OnConnect += Helper_OnConnect;
             helper.Connect();
+        }
+
+        private void Helper_OnConnect()
+        {
+            Execute.OnUIThread(() =>
+            {
+                this.identityIDCardView.imgLoadCamera.Visibility = Visibility.Collapsed;
+                this.identityIDCardView.wfh.Visibility = Visibility.Visible;
+            });
         }
 
         private void Helper_OnSnapShot(object sender, Bitmap snapshot)
@@ -69,8 +80,20 @@ namespace WFC.SelfServeClient.ViewModels
                     hendersonVisitor.IdCardNo = idCardInfo.Code;
                     hendersonVisitor.Name = idCardInfo.Name;
                     hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
+                    hendersonVisitor.Gender = idCardInfo.Gender;
+                    hendersonVisitor.Nation = idCardInfo.Nation;
+
+                    var client = WebApiClient.HttpApi.Resolve<IFaceApi>();
+
+                    var response = client.CompareAsync(new FaceCompareRequest
+                    {
+                        Image1 = Convert.ToBase64String(ImageHelper.GetBytesByImagePath(idCardInfo.ImagePath))
+                        ,
+                        Image2 = Convert.ToBase64String(ImageHelper.GetAllBytesFromBitmap(Snapshot))
+                    }).GetAwaiter().GetResult();
+
                     //身份证头像+抓拍头像 调用接口头像对比
-                    if (true)
+                    if (response.Same.ToLower() == "true")
                     {
                         identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
                         gotoTimer.Tag = "success";
@@ -83,7 +106,13 @@ namespace WFC.SelfServeClient.ViewModels
                         gotoTimer.Start();
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Logger.Error($"Compare Exception:{ex}");
+                    identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
+                    gotoTimer.Tag = "fail";
+                    gotoTimer.Start();
+                }
             });
         }
         private void Snapshot_Tick(object sender, EventArgs e)
