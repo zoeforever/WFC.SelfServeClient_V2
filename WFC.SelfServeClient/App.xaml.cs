@@ -16,12 +16,18 @@ namespace WFC.SelfServeClient
         public App()
         {
             this.Startup += App_Startup;
+            this.Exit += App_Exit;
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;
+        }
+
+        private void App_Exit(object sender, ExitEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            Logger.Error("App_DispatcherUnhandledException:" + e.ToString());
+            Logger.Error("App_DispatcherUnhandledException:" + e.Exception.ToString());
         }
 
         private void App_Startup(object sender, StartupEventArgs e)

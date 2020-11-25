@@ -84,7 +84,7 @@ namespace WFC.SelfServeClient
             {
                 e.Handled = true;
             }
-            else if (e.KeyStates == Keyboard.GetKeyStates(Key.LeftCtrl) && e.KeyStates == Keyboard.GetKeyStates(Key.LeftAlt) && e.KeyStates == Keyboard.GetKeyStates(Key.F4) )
+            else if (e.KeyStates == Keyboard.GetKeyStates(Key.LeftCtrl) && e.KeyStates == Keyboard.GetKeyStates(Key.LeftAlt) && e.KeyStates == Keyboard.GetKeyStates(Key.F4))
             {
                 this.TryClose();
             }

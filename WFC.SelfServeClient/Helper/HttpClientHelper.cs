@@ -1,14 +1,9 @@
-﻿using RestSharp;
-using RestSharp.Extensions;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
+using WFC.ServerClient;
 
 namespace WFC.SelfServeClient.Helper
 {
@@ -42,13 +37,20 @@ namespace WFC.SelfServeClient.Helper
                         request.AddParameter(item.Key, item.Value);
                     }
 
-                var response = client.Execute(request);
+                var response = client.Execute(request); if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    var apiError = JsonConvert.DeserializeObject<ApiError>(response.Content);
+                    if (apiError == null)
+                        return JsonHelper.FromJson<T>(response.Content);
+                    else
+                        throw new Exception(apiError.Error.Message);
+                }
                 return JsonHelper.FromJson<T>(response.Content);
             }
             catch (Exception ex)
             {
-                return null;
                 Logger.Error(ex.ToString());
+                throw;
             }
         }
 
