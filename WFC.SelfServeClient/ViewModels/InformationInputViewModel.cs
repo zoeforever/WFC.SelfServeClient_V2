@@ -30,9 +30,10 @@ namespace WFC.SelfServeClient.ViewModels
             VisitorArea.Add(new DisplayItem { Id = "wfc.east.tower", Name = "东塔" });
             VisitorArea.Add(new DisplayItem { Id = "wfc.west.tower", Name = "西塔" });
             VisitorFloor = new BindableCollection<DisplayItem>();
-            for (int i = 1; i <= 22; i++)
+            VisitorFloor.Add(new DisplayItem { Id = "-1", Name = "B1M" });
+            for (int i = 0; i <= 23; i++)
             {
-                VisitorFloor.Add(new DisplayItem { Id = i.ToString(), Name = $"{i}层" });
+                VisitorFloor.Add(new DisplayItem { Id = i.ToString(), Name = $"{i + 1}楼" });
             }
             gotoWelcomeTimer = new DispatcherTimer();
             gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(60);
@@ -108,7 +109,7 @@ namespace WFC.SelfServeClient.ViewModels
                 postForm.Add("EndTime", new DateTimeOffset(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59)).ToUnixTimeMilliseconds().ToString());
                 postForm.Add("NumberOfAccess", "10");
                 postForm.Add("IdCardNumber", hendersonVisitor.IdCardNo);
-                postForm.Add("Floors", hendersonVisitor.Floors);
+                postForm.Add("EastFloors", hendersonVisitor.Floors);
                 postForm.Add("HendersonTenantPersonPhone", hendersonVisitor.HendersonTenantPersonPhone);
                 postForm.Add("Buildings", hendersonVisitor.Buildings);
 
