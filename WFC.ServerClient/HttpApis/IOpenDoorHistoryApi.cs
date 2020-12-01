@@ -21,11 +21,12 @@ namespace WFC.ServerClient
         /// <param name="cardNo">卡号</param>
         /// <param name="name">姓名</param>
         /// <param name="company">公司</param>
+        /// <param name="controllerName">控制器</param>
         /// <param name="page">页码</param>
         /// <param name="pageSize">每页数量</param>
         /// <returns>Success</returns>
         [HttpGet("api/v1/OpenDoorHistory")]
-        ITask<OpenDoorHistoryPager> GetAllOpenDoorHistoryAsync(long? fromTime, long? toTime, string cardNo, string name, string company, int? page, int? pageSize);
+        ITask<OpenDoorHistoryPager> GetAllOpenDoorHistoryAsync(long? fromTime, long? toTime, string cardNo, string name, string company, string controllerName, int? page, int? pageSize);
 
     }
 }
