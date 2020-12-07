@@ -17,6 +17,7 @@ namespace WFC.SelfServeClient.ViewModels
     {
         public event System.Action OnGotoFinishClick;
         private string serverUrl = ConfigurationManager.AppSettings["WebApiServiceUrl"];
+        private string location = ConfigurationManager.AppSettings["Location"];
         public event System.Action OnGotoWelcomeClick;
         DispatcherTimer gotoWelcomeTimer;
         public BindableCollection<DisplayItem> VisitorArea { get; set; }
@@ -67,11 +68,11 @@ namespace WFC.SelfServeClient.ViewModels
                 MessageBox.Show("请输入身份证号！");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Buildings))
-            {
-                MessageBox.Show("请选择到访区域！");
-                return;
-            }
+            //if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Buildings))
+            //{
+            //    MessageBox.Show("请选择到访区域！");
+            //    return;
+            //}
             if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Floors))
             {
                 MessageBox.Show("请选择到访楼层！");
@@ -111,7 +112,9 @@ namespace WFC.SelfServeClient.ViewModels
                 postForm.Add("IdCardNumber", hendersonVisitor.IdCardNo);
                 postForm.Add("EastFloors", hendersonVisitor.Floors);
                 postForm.Add("HendersonTenantPersonPhone", hendersonVisitor.HendersonTenantPersonPhone);
-                postForm.Add("Buildings", hendersonVisitor.Buildings);
+                postForm.Add("Buildings", location);
+                postForm.Add("AreaCode", hendersonVisitor.AreaCode);
+                postForm.Add("TenantAreaCode", hendersonVisitor.TenantAreaCode);
 
                 // For WFC
                 postForm.Add("HendersonTenantId", "");
