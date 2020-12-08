@@ -3,6 +3,7 @@ using Caliburn.Micro;
 using System;
 using System.ComponentModel.Composition;
 using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -72,14 +73,16 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 try
                 {
+                    var tmpFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".png");
                     Snapshot = snapshot;
+                    snapshot.Save(tmpFile);
                     identityIDCardView.wfh.Visibility = Visibility.Collapsed;
                     identityIDCardView.imgBG.Visibility = Visibility.Visible;
                     identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
                     identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
                     hendersonVisitor.IdCardNo = idCardInfo.Code;
                     hendersonVisitor.Name = idCardInfo.Name;
-                    hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
+                    hendersonVisitor.VisitorPhoto = tmpFile;
                     hendersonVisitor.Gender = idCardInfo.Gender;
                     hendersonVisitor.Nation = idCardInfo.Nation;
 
