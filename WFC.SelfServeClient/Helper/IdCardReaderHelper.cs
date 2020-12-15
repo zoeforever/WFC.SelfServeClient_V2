@@ -39,6 +39,7 @@ namespace WFC.SelfServeClient.Helper
         /// </summary>
         /// <param name="imagePath">身份证图片信息保存路径，默认为系统临时目录</param>
         /// <returns>IdCardInfo</returns>
+        [System.Runtime.ExceptionServices.HandleProcessCorruptedStateExceptions]
         public static IdCardInfo ReadIdCard(string imagePath = "")
         {
             string path = string.IsNullOrEmpty(imagePath) ? Path.GetTempPath() : imagePath;

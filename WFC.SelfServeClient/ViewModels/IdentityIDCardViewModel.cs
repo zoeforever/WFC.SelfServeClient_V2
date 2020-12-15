@@ -126,6 +126,9 @@ namespace WFC.SelfServeClient.ViewModels
             }
             catch (Exception ex)
             {
+                MessageBox.Show("读取身份证出错");
+                Logger.Error(ex.ToString());
+                return;
                 //暂不处理
             }
             if (idCardInfo == null)

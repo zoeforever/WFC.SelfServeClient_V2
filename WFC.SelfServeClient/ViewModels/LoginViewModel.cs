@@ -46,6 +46,7 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 // 获取验证码
                 await client.AccountsAsync(new HendersonLoginRequest { AreaCode = AreaCode, PhoneNumber = Phone, OrganizationIdentifier = OrganizationIdentifier });
+                MessageBox.Show("验证码发送成功");
             }
             catch (Exception ex)
             {
