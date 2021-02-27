@@ -18,16 +18,16 @@
             <ColumnDefinition Width="0"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="管理员登录" Grid.ColumnSpan="3" FontSize="50" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <TextBlock Text="管理员登录" Grid.ColumnSpan="3" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock Text="手机号：" Foreground="White" FontSize="30"></TextBlock>
+            <TextBlock Text="手机号：" FontSize="30"></TextBlock>
             <TextBox Text="{Binding AreaCode}" FontSize="30" Width="50"></TextBox>
-            <TextBlock Text="-" Foreground="White" FontSize="30"></TextBlock>
+            <TextBlock Text="-" FontSize="30"></TextBlock>
             <TextBox Text="{Binding Phone}" FontSize="30" Width="240"></TextBox>
             <Button x:Name="GetCode" Content="获取验证码" FontSize="20" Margin="5,0,0,0" Width="130" Height="35"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center">
-            <TextBlock Text="验证码：" Foreground="White" FontSize="30"></TextBlock>
+            <TextBlock Text="验证码：" FontSize="30"></TextBlock>
             <TextBox Text="{Binding Code}" FontSize="30" Width="300"></TextBox>
             <Button x:Name="Validate" Content="登录" FontSize="20" Margin="5,0,0,0" Width="130" Height="35"/>
         </StackPanel>

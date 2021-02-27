@@ -45,7 +45,9 @@ namespace WFC.SelfServeClient.ViewModels
             try
             {
                 // 获取验证码
+#if !TEST
                 await client.AccountsAsync(new HendersonLoginRequest { AreaCode = AreaCode, PhoneNumber = Phone, OrganizationIdentifier = OrganizationIdentifier });
+#endif
                 MessageBox.Show("验证码发送成功");
             }
             catch (Exception ex)
@@ -74,6 +76,9 @@ namespace WFC.SelfServeClient.ViewModels
             }
             try
             {
+#if TEST
+                OnValidateSuccess?.Invoke();
+#else
                 // 校验验证码
                 var verifyCodeResponse = await client.VerifyCodeAsync(new VerifyCodeRequest { AreaCode = AreaCode, PhoneNumber = Phone, VerifyCode = Code });
                 //var verifyCodeResult = await verifyCodeResponse..ReadAsStringAsync();
@@ -96,6 +101,7 @@ namespace WFC.SelfServeClient.ViewModels
                 {
                     MessageBox.Show("验证失败");
                 }
+#endif
             }
             catch (Exception ex)
             {

@@ -6,6 +6,18 @@
         <ResourceDictionary Source="VSTBrushes.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
+    <Style TargetType="TextBlock">
+        <Style.Setters>
+            <Setter Property="Foreground" Value="{StaticResource CommonTextBlockForeground}"></Setter>
+        </Style.Setters>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Style.Setters>
+            <Setter Property="Background" Value="{StaticResource CommonTextBoxBackground}"></Setter>
+        </Style.Setters>
+    </Style>
+    
     <DrawingBrush x:Key="CalendarIcon" Stretch="Uniform">
         <DrawingBrush.Drawing>
             <DrawingGroup>

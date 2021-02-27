@@ -5,14 +5,40 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WFC.SelfServeClient.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
-        <Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Width="604px" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Margin="0,120,0,8" Text="访客办理须知" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBlock Text="本机仅支持身份证，其他证件访客请到前台办理。" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="&quot;访客登记&quot;提交后，需等待被访租户审核通过后，访客预留手机将收到进入大楼二维码短信。" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="在到访时段内，访客可通过二维码出入大楼。" HorizontalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel Width="690px" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Margin="0,41,0,0" Text="Visitor Registration Information" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center"/>
+                <TextBlock Text="This machine is support ID card only. For other identity proof documents, please go to our Concierge for assistance." HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="SMS notification will send to your requested mobile after tenant approval on &quot;Visitor Registration&quot; Submission." HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="QR Code access right will be valid during the visiting period." HorizontalAlignment="Center"></TextBlock>
+                <Button x:Name="WelcomeButtonClick" Width="214" Height="50" Margin="0,50,0,0" BorderThickness="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="5" Background="{StaticResource CommonButtonBackground}" >
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical">
+                                    <TextBlock Text="访客登记" Margin="0,0,0,4" HorizontalAlignment="Center" Foreground="{StaticResource ControlForegoundColor}" FontWeight="Bold" FontSize="16"></TextBlock>
+                                    <TextBlock Text="Visitor Registration" HorizontalAlignment="Center" Foreground="{StaticResource ControlForegoundColor}" FontSize="16" FontWeight="Regular"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="5.5*"></RowDefinition>
             <RowDefinition Height="4.5*"></RowDefinition>
         </Grid.RowDefinitions>
         <Image Grid.Row="0" Stretch="None" Source="/WFC.SelfServeClient;component/Resources/dengji.png" VerticalAlignment="Bottom" />
         <Image Grid.Row="1" Stretch="None" Source="/WFC.SelfServeClient;component/Resources/ancikaishi.png" VerticalAlignment="Top" />
-        <Button x:Name="WelcomeButtonClick" Grid.Row="0" Grid.RowSpan="2" Opacity="0"/>
+        <Button x:Name="WelcomeButtonClick" Grid.Row="0" Grid.RowSpan="2" Opacity="0"/>-->
     </Grid>
 </UserControl>

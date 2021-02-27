@@ -1,9 +1,12 @@
 ﻿using Caliburn.Micro;
 using System;
 using System.ComponentModel.Composition;
+using System.Configuration;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using WFC.SelfServeClient.Helper;
 using WFC.SelfServeClient.ViewModels;
 using WFC.ServerClient;
@@ -11,19 +14,38 @@ using WFC.ServerClient.HttpModels;
 
 namespace WFC.SelfServeClient
 {
+    [PropertyChanged.ImplementPropertyChanged]
     [Export(typeof(MainWindowViewModel))]
     public class MainWindowViewModel : Conductor<Screen>
     {
         public HendersonVisitor hendersonVisitor { get; set; }
-        Thread tokenFetchThread;
-        AutoResetEvent exitEvent = new AutoResetEvent(false);
         public bool HasLogin { get; set; }
+        public string LeftTime { get; set; }
+        public Visibility ShowCountDown { get; set; } = Visibility.Collapsed;
+
+        Thread tokenFetchThread;
+        string location = ConfigurationManager.AppSettings["Location"];
+        AutoResetEvent exitEvent = new AutoResetEvent(false);
+        // 第一步：登录
         LoginViewModel loginViewModel { get; set; }
+        // 第二步：欢迎界面
         WelcomeViewModel welcomeViewModel { get; set; }
+        // 第三步：验证身份证
         IdentityIDCardViewModel identityIDCardModel { get; set; }
+        // 第四步：访客信息确认
+        VisitorConfirmViewModel visitorConfirmViewModel { get; set; }
+        // 第五步：人脸确认
+        FaceIdentificationViewModel faceIdentificationViewModel { get; set; }
+        // 第六步：受访人信息录入
         InformationInputViewModel informationInputViewModel { get; set; }
+        // 第七步：完成页面
         FinishViewModel finishViewModel { get; set; }
         IAccountsApi client;
+        const int COUNTDOWN = 90;
+        MainWindowView View;
+        DispatcherTimer timer;
+        int CountDownSeconds = COUNTDOWN;
+
         public MainWindowViewModel()
         {
             HasLogin = false;
@@ -34,6 +56,9 @@ namespace WFC.SelfServeClient
             hendersonVisitor.StartTime = DateTime.Now;
             welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
             welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
             this.ActivateItem(loginViewModel);
             tokenFetchThread = new Thread(() =>
                {
@@ -70,6 +95,29 @@ namespace WFC.SelfServeClient
                }
             );
             tokenFetchThread.Start();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            this.LeftTime = (CountDownSeconds--).ToString();
+            if (CountDownSeconds <= 0)
+            {
+                GotoWelcomeClick();
+            }
+        }
+
+        protected override void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+            View = view as MainWindowView;
+            if (location == "wfc.east.tower")
+            {
+                View.bg.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/bgEast.png"));
+            }
+            else
+            {
+                View.bg.ImageSource = new BitmapImage(new Uri("pack://application:,,,/Resources/bgWest.png"));
+            }
         }
 
         public void WindowKeyDown(object sender, KeyEventArgs e)
@@ -109,37 +157,99 @@ namespace WFC.SelfServeClient
         {
             base.OnDeactivate(close);
             exitEvent.Set();
+            ResetTimer();
         }
 
+        /// <summary>
+        /// 欢迎按钮
+        /// </summary>
         private void WelcomeButtonClick()
         {
             identityIDCardModel = new IdentityIDCardViewModel(hendersonVisitor);
+            identityIDCardModel.OnGotoWelcomeClick -= GotoWelcomeClick;
             identityIDCardModel.OnGotoWelcomeClick += GotoWelcomeClick;
-            identityIDCardModel.OnGotoInputInfoClick += GotoInputInfoClick;
+            identityIDCardModel.OnConfirmInfo -= GotoConfirmInfoClick;
+            identityIDCardModel.OnConfirmInfo += GotoConfirmInfoClick;
             this.ActivateItem(identityIDCardModel);
+            StartTimer();
         }
 
+        /// <summary>
+        /// 返回欢迎页面
+        /// </summary>
         private void GotoWelcomeClick()
         {
             hendersonVisitor = new HendersonVisitor();
             hendersonVisitor.StartTime = DateTime.Now;
             welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
+            welcomeViewModel.OnWelcomeButtonClick -= WelcomeButtonClick;
             welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
             this.ActivateItem(welcomeViewModel);
+            ResetTimer();
         }
 
-        private void GotoFinishClick()
+        /// <summary>
+        /// 跳转信息确认页面
+        /// </summary>
+        private void GotoConfirmInfoClick()
         {
-            finishViewModel = new FinishViewModel(hendersonVisitor);
-            finishViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
-            this.ActivateItem(finishViewModel);
+            visitorConfirmViewModel = new VisitorConfirmViewModel(hendersonVisitor);
+            visitorConfirmViewModel.OnGotoWelcomeClick -= GotoWelcomeClick;
+            visitorConfirmViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
+            visitorConfirmViewModel.OnGotoFaceIdentification -= GotoFaceIdentification;
+            visitorConfirmViewModel.OnGotoFaceIdentification += GotoFaceIdentification;
+            this.ActivateItem(visitorConfirmViewModel);
         }
+
+        /// <summary>
+        /// 跳转人脸认证页面
+        /// </summary>
+        private void GotoFaceIdentification()
+        {
+            faceIdentificationViewModel = new FaceIdentificationViewModel(hendersonVisitor);
+            faceIdentificationViewModel.OnGotoWelcomeClick -= GotoWelcomeClick;
+            faceIdentificationViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
+            faceIdentificationViewModel.OnGotoInputInfoClick -= GotoInputInfoClick;
+            faceIdentificationViewModel.OnGotoInputInfoClick += GotoInputInfoClick;
+            this.ActivateItem(faceIdentificationViewModel);
+        }
+
+        /// <summary>
+        /// 跳转信息录入页面
+        /// </summary>
         private void GotoInputInfoClick()
         {
             informationInputViewModel = new InformationInputViewModel(hendersonVisitor);
-            informationInputViewModel.OnGotoFinishClick += GotoFinishClick;
+            informationInputViewModel.OnGotoWelcomeClick -= GotoWelcomeClick;
             informationInputViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
+            informationInputViewModel.OnGotoFinishClick -= GotoFinishClick;
+            informationInputViewModel.OnGotoFinishClick += GotoFinishClick;
             this.ActivateItem(informationInputViewModel);
+        }
+
+        /// <summary>
+        /// 跳转完成页面
+        /// </summary>
+        private void GotoFinishClick()
+        {
+            finishViewModel = new FinishViewModel(hendersonVisitor);
+            finishViewModel.OnGotoWelcomeClick -= GotoWelcomeClick;
+            finishViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
+            this.ActivateItem(finishViewModel);
+        }
+
+        private void ResetTimer()
+        {
+            timer.Stop();
+            CountDownSeconds = COUNTDOWN;
+            LeftTime = COUNTDOWN.ToString();
+            ShowCountDown = Visibility.Collapsed;
+        }
+
+        private void StartTimer()
+        {
+            ShowCountDown = Visibility.Visible;
+            timer.Start();
         }
     }
 }

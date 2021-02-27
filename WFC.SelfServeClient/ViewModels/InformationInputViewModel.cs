@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
+using System.Dynamic;
 using System.Windows;
 using System.Windows.Threading;
 using WFC.SelfServeClient.Helper;
@@ -15,14 +15,15 @@ namespace WFC.SelfServeClient.ViewModels
 {
     public class InformationInputViewModel : Screen
     {
-        public event System.Action OnGotoFinishClick;
+        private DispatcherTimer gotoWelcomeTimer;
         private string serverUrl = ConfigurationManager.AppSettings["WebApiServiceUrl"];
         private string location = ConfigurationManager.AppSettings["Location"];
+        private int failedTimes = 0;
+
+        public event System.Action OnGotoFinishClick;
         public event System.Action OnGotoWelcomeClick;
-        DispatcherTimer gotoWelcomeTimer;
         public BindableCollection<DisplayItem> VisitorArea { get; set; }
         public BindableCollection<DisplayItem> VisitorFloor { get; set; }
-
         public HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
 
         public InformationInputViewModel(HendersonVisitor hendersonVisitor)
@@ -125,6 +126,8 @@ namespace WFC.SelfServeClient.ViewModels
                 postForm.Add("CredentialId", hendersonVisitor.CredentialId);
                 postForm.Add("HendersonTenantPersonName", hendersonVisitor.HendersonTenantPersonName);
                 postForm.Add("AuthCode", WebApiClientHelper.AccessToken);
+                postForm.Add("VisitorComp", hendersonVisitor.VisitorComp);
+                postForm.Add("Travel", hendersonVisitor.Travel);
                 postForm.Add("VisitorType", "SelfHelp");
 
                 Dictionary<string, string> postFile = new Dictionary<string, string>();
@@ -137,16 +140,44 @@ namespace WFC.SelfServeClient.ViewModels
                 }
                 else
                 {
-                    gotoWelcomeTimer.Start();
-                    MessageBox.Show(postResult.Message);
+                    Failed(postResult.Message);
                 }
             }
             catch (Exception ex)
             {
-                gotoWelcomeTimer.Start();
-                MessageBox.Show(ex.HandleException());
-                Logger.Error(ex.HandleException());
+                Failed(ex.HandleException());
+                //gotoWelcomeTimer.Start();
+                //MessageBox.Show(ex.HandleException());
+                //Logger.Error(ex.HandleException());
             }
+
+            void Failed(string msg)
+            {
+                failedTimes++;
+                Logger.Warn(msg);
+
+                dynamic settings = new ExpandoObject();
+                settings.WindowStyle = WindowStyle.None;
+                settings.ShowInTaskbar = false;
+                settings.WindowState = WindowState.Normal;
+                settings.ResizeMode = ResizeMode.CanMinimize;
+
+                if (failedTimes == 3)
+                {
+                    new WindowManager().ShowDialog(new MessageBoxViewModel(FailAndRetry.InformationInputFail3), null, settings);
+                    //gotoWelcomeTimer.Start();
+                    GoBack();
+                }
+                else
+                {
+                    new WindowManager().ShowDialog(new MessageBoxViewModel(FailAndRetry.InformationInputFail), null, settings);
+                }
+            }
+        }
+
+        public void GoBack()
+        {
+            OnGotoWelcomeClick?.Invoke();
         }
 
         private void Snapshot_Tick(object sender, EventArgs e)

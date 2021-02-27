@@ -6,9 +6,29 @@
              xmlns:local="clr-namespace:WFC.SelfServeClient.Views"
               xmlns:aforgeCtrl="clr-namespace:AForge.Controls;assembly=AForge.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="38"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="返回 Back" x:Name="GoBack" Height="24" Width="78" VerticalAlignment="Bottom" FontSize="12px" FontWeight="Regular" Margin="0,0,8,0" HorizontalAlignment="Right"></Button>
+        <StackPanel Orientation="Vertical" Margin="0,102,0,0" Grid.Row="1">
+            <StackPanel Width="604px" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Margin="0,0,0,8" Text="请将身份证放置在读卡器上，以便进行认证。" FontWeight="Regular" FontSize="16" HorizontalAlignment="Center"/>
+                <TextBlock Text="Please put your ID card on the card reader for verification." HorizontalAlignment="Center"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,30,0,18" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <Image Width="206" Margin="128,0,56,18" Height="130" Grid.Row="0" Stretch="Uniform" Source="/WFC.SelfServeClient;component/Resources/idcard.jpg" VerticalAlignment="Top" />
+                <Image Width="71" Margin="56,36,0,0" Height="55" Grid.Row="0"  Stretch="Fill" Source="/WFC.SelfServeClient;component/Resources/arrowRight.png" VerticalAlignment="Top" />
+                <Image Width="125" Margin="36,0,180,0" Height="125" Grid.Row="0"  Stretch="Uniform" Source="/WFC.SelfServeClient;component/Resources/cardReader.png" VerticalAlignment="Top" />
+            </StackPanel>
+            <StackPanel Width="690px" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <TextBlock Text="认证过程中请勿移动身份证" FontWeight="Bold" FontSize="12" HorizontalAlignment="Center"/>
+                <TextBlock Margin="0,8,0,0" Text="Please don't move your ID card during the verification process" FontSize="12" HorizontalAlignment="Center"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <!--<Grid.RowDefinitions>
             <RowDefinition Height="8*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
@@ -18,6 +38,6 @@
         </WindowsFormsHost>
         <Image Stretch="None" x:Name="imgBG" Grid.Row="0" Width="423"  Margin="0,60,0,20" Visibility="Collapsed" Source="/WFC.SelfServeClient;component/Resources/rlsb-smk-2.png"/>
         <Image Stretch="None" x:Name="imgUserHead" Grid.Row="0" Width="423"  Margin="0,60,0,20" Visibility="Collapsed" />
-        <Image Grid.Row="1" Stretch="None" Source="/WFC.SelfServeClient;component/Resources/rlsb-wz-1.png" VerticalAlignment="Top"/>
+        <Image Grid.Row="1" Stretch="None" Source="/WFC.SelfServeClient;component/Resources/rlsb-wz-1.png" VerticalAlignment="Top"/>-->
     </Grid>
 </UserControl>

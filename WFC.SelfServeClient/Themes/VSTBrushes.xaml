@@ -3,8 +3,11 @@
     xmlns:controls="clr-namespace:WFC.SelfServeClient.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <SolidColorBrush x:Key="CommonTextBlockForeground" Color="#9A7F62"></SolidColorBrush>
+    <SolidColorBrush x:Key="CommonTextBoxBackground" Color="#cabcac"></SolidColorBrush>
     <SolidColorBrush x:Key="CommonBackgroundBrush" Color="#FF262822" />
-    
+    <SolidColorBrush x:Key="CommonButtonBackground" Color="#7d6c5d" />
+
     <SolidColorBrush x:Key="ControlForegoundColor" Color="White" />
     <SolidColorBrush x:Key="ControlForegoundColorMouseOver" Color="White" />
     <SolidColorBrush x:Key="ControlForegoundColorSelected" Color="White" />
@@ -28,5 +31,4 @@
     <SolidColorBrush x:Key="WhiteBrush" Color="White" />
     <SolidColorBrush x:Key="RedBrush" Color="Red" />
     <SolidColorBrush x:Key="BoxBackgroundBursh" Color="#5A6573" />
-
 </ResourceDictionary>

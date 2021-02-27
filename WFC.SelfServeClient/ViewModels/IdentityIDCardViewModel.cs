@@ -33,8 +33,7 @@ namespace WFC.SelfServeClient.ViewModels
         public HendersonVisitor hendersonVisitor { get; set; }
 
         public event System.Action OnGotoWelcomeClick;
-
-        public event System.Action OnGotoInputInfoClick;
+        public event System.Action OnConfirmInfo;
 
         public IdentityIDCardViewModel(HendersonVisitor hendersonVisitor)
         {
@@ -44,26 +43,26 @@ namespace WFC.SelfServeClient.ViewModels
             snapshotTimer.Tick += Snapshot_Tick;
             snapshotTimer.Start();
 
-            gotoTimer = new DispatcherTimer();
-            gotoTimer.Interval = TimeSpan.FromSeconds(2);
-            gotoTimer.Tick += Goto_Tick;
+            //gotoTimer = new DispatcherTimer();
+            //gotoTimer.Interval = TimeSpan.FromSeconds(2);
+            //gotoTimer.Tick += Goto_Tick;
         }
         protected override void OnViewLoaded(object view)
         {
             base.OnViewLoaded(view);
             identityIDCardView = (IdentityIDCardView)view;
-            this.helper = new CameraCaptureHelper(identityIDCardView.videoSourcePlayer);
-            helper.OnSnapShot += Helper_OnSnapShot;
-            helper.OnConnect += Helper_OnConnect;
-            helper.Connect();
+            //this.helper = new CameraCaptureHelper(identityIDCardView.videoSourcePlayer);
+            //helper.OnSnapShot += Helper_OnSnapShot;
+            //helper.OnConnect += Helper_OnConnect;
+            //helper.Connect();
         }
 
         private void Helper_OnConnect()
         {
             Execute.OnUIThread(() =>
             {
-                this.identityIDCardView.imgLoadCamera.Visibility = Visibility.Collapsed;
-                this.identityIDCardView.wfh.Visibility = Visibility.Visible;
+                //this.identityIDCardView.imgLoadCamera.Visibility = Visibility.Collapsed;
+                //this.identityIDCardView.wfh.Visibility = Visibility.Visible;
             });
         }
 
@@ -71,51 +70,51 @@ namespace WFC.SelfServeClient.ViewModels
         {
             Execute.OnUIThread(() =>
             {
-                try
-                {
-                    var tmpFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".png");
-                    Snapshot = snapshot;
-                    snapshot.Save(tmpFile);
-                    identityIDCardView.wfh.Visibility = Visibility.Collapsed;
-                    identityIDCardView.imgBG.Visibility = Visibility.Visible;
-                    identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
-                    identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
-                    hendersonVisitor.IdCardNo = idCardInfo.Code;
-                    hendersonVisitor.Name = idCardInfo.Name;
-                    hendersonVisitor.VisitorPhoto = tmpFile;
-                    hendersonVisitor.Gender = idCardInfo.Gender;
-                    hendersonVisitor.Nation = idCardInfo.Nation;
+                //try
+                //{
+                //    var tmpFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".png");
+                //    Snapshot = snapshot;
+                //    snapshot.Save(tmpFile);
+                //    identityIDCardView.wfh.Visibility = Visibility.Collapsed;
+                //    identityIDCardView.imgBG.Visibility = Visibility.Visible;
+                //    identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
+                //    identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
+                //    hendersonVisitor.IdCardNo = idCardInfo.Code;
+                //    hendersonVisitor.Name = idCardInfo.Name;
+                //    hendersonVisitor.VisitorPhoto = tmpFile;
+                //    hendersonVisitor.Gender = idCardInfo.Gender;
+                //    hendersonVisitor.Nation = idCardInfo.Nation;
 
-                    var client = WebApiClient.HttpApi.Resolve<IFaceApi>();
+                //    var client = WebApiClient.HttpApi.Resolve<IFaceApi>();
 
-                    var response = client.CompareAsync(new FaceCompareRequest
-                    {
-                        Image1 = Convert.ToBase64String(ImageHelper.GetBytesByImagePath(idCardInfo.ImagePath))
-                        ,
-                        Image2 = Convert.ToBase64String(ImageHelper.GetAllBytesFromBitmap(Snapshot))
-                    }).GetAwaiter().GetResult();
+                //    var response = client.CompareAsync(new FaceCompareRequest
+                //    {
+                //        Image1 = Convert.ToBase64String(ImageHelper.GetBytesByImagePath(idCardInfo.ImagePath))
+                //        ,
+                //        Image2 = Convert.ToBase64String(ImageHelper.GetAllBytesFromBitmap(Snapshot))
+                //    }).GetAwaiter().GetResult();
 
-                    //身份证头像+抓拍头像 调用接口头像对比
-                    if (response.Same.ToLower() == "true")
-                    {
-                        identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
-                        gotoTimer.Tag = "success";
-                        gotoTimer.Start();
-                    }
-                    else
-                    {
-                        identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
-                        gotoTimer.Tag = "fail";
-                        gotoTimer.Start();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Logger.Error($"Compare Exception:{ex}");
-                    identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
-                    gotoTimer.Tag = "fail";
-                    gotoTimer.Start();
-                }
+                //    //身份证头像+抓拍头像 调用接口头像对比
+                //    if (response.Same.ToLower() == "true")
+                //    {
+                //        identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
+                //        gotoTimer.Tag = "success";
+                //        gotoTimer.Start();
+                //    }
+                //    else
+                //    {
+                //        identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
+                //        gotoTimer.Tag = "fail";
+                //        gotoTimer.Start();
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    Logger.Error($"Compare Exception:{ex}");
+                //    identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
+                //    gotoTimer.Tag = "fail";
+                //    gotoTimer.Start();
+                //}
             });
         }
         private void Snapshot_Tick(object sender, EventArgs e)
@@ -126,7 +125,7 @@ namespace WFC.SelfServeClient.ViewModels
             }
             catch (Exception ex)
             {
-                MessageBox.Show("读取身份证出错");
+                //MessageBox.Show("读取身份证出错");
                 Logger.Error(ex.ToString());
                 return;
                 //暂不处理
@@ -138,51 +137,66 @@ namespace WFC.SelfServeClient.ViewModels
             else
             {
                 snapshotTimer.Stop();
-                //身份证头像获取成功，开始摄像头抓拍
-                helper.Snapshot();
+
+                hendersonVisitor.IdCardNo = idCardInfo.Code;
+                hendersonVisitor.Name = idCardInfo.Name;
+                hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
+                hendersonVisitor.Gender = idCardInfo.Gender;
+                hendersonVisitor.Nation = idCardInfo.Nation;
+
+                ////身份证头像获取成功，开始摄像头抓拍
+                OnConfirmInfo?.Invoke();
+
+                ////身份证头像获取成功，开始摄像头抓拍
+                //helper.Snapshot();
             }
-            if (snapshotTimer_count > 60 / snapshotTimer_timespan)
-            {
-                helper.Disconnect();
-                snapshotTimer.Stop();
-                identityIDCardView.wfh.Visibility = Visibility.Collapsed;
-                identityIDCardView.imgBG.Visibility = Visibility.Visible;
-                identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
-                identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
-                gotoTimer.Tag = "fail";
-                gotoTimer.Start();
-            }
+            //if (snapshotTimer_count > 60 / snapshotTimer_timespan)
+            //{
+            //    helper.Disconnect();
+            //    snapshotTimer.Stop();
+            //    //identityIDCardView.wfh.Visibility = Visibility.Collapsed;
+            //    //identityIDCardView.imgBG.Visibility = Visibility.Visible;
+            //    //identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
+            //    //identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
+            //    gotoTimer.Tag = "fail";
+            //    gotoTimer.Start();
+            //}
+        }
+
+        public void GoBack()
+        {
+            snapshotTimer.Stop();
+            OnGotoWelcomeClick?.Invoke();
         }
 
         private void Goto_Tick(object sender, EventArgs e)
         {
-            helper.Disconnect();
-            gotoTimer.Stop();
-            DispatcherTimer dispatcherTimer = (DispatcherTimer)sender;
-            if (dispatcherTimer.Tag.Equals("success"))
-            {
-                //hendersonVisitor.IdCardNo = "123";
-                //hendersonVisitor.Name = "abc";
-                //hendersonVisitor.VisitorPhoto = @"E:\MyWork\WFC.SelfServeClient\WFC.SelfServeClient\Resources\sfzh.png"; //idCardInfo.ImagePath;
-                OnGotoInputInfoClick?.Invoke();
-            }
-            else
-            {
-                OnGotoWelcomeClick?.Invoke();
-            }
-
+            //helper.Disconnect();
+            //gotoTimer.Stop();
+            //DispatcherTimer dispatcherTimer = (DispatcherTimer)sender;
+            //if (dispatcherTimer.Tag.Equals("success"))
+            //{
+            //    //hendersonVisitor.IdCardNo = "123";
+            //    //hendersonVisitor.Name = "abc";
+            //    //hendersonVisitor.VisitorPhoto = @"E:\MyWork\WFC.SelfServeClient\WFC.SelfServeClient\Resources\sfzh.png"; //idCardInfo.ImagePath;
+            //    //OnGotoInputInfoClick?.Invoke();
+            //}
+            //else
+            //{
+            //    OnGotoWelcomeClick?.Invoke();
+            //}
         }
 
         protected override void OnDeactivate(bool close)
         {
             base.OnDeactivate(close);
-            try
-            {
-                helper.Disconnect();
-            }
-            catch
-            {
-            }
+            //try
+            //{
+            //    helper.Disconnect();
+            //}
+            //catch
+            //{
+            //}
         }
     }
 }

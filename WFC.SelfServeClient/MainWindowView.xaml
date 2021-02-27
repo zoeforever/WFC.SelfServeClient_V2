@@ -7,25 +7,34 @@
         xmlns:cm="http://www.caliburnproject.org"
         cm:Message.Attach="[Event KeyDown]=[Action WindowKeyDown($source,$eventArgs)];[Event Closing]=[Action WindowClosing($source,$eventArgs];"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized"
+        WindowState="Normal"
+        Width="800" Height="600"
         WindowStyle="None"
         mc:Ignorable="d" 
-        d:DesignHeight="450" d:DesignWidth="800">
+        d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="60"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="0">
+        <Border>
             <Border.Background>
-                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/bg.png"></ImageBrush>
-            </Border.Background>
-        </Border>
-        <Border Grid.Row="1" Grid.Column="0">
-            <Border.Background>
-                <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/bottom.png"></ImageBrush>
+                <ImageBrush x:Name="bg" ImageSource="/WFC.SelfServeClient;component/Resources/bgEast.png"></ImageBrush>
             </Border.Background>
         </Border>
         <ContentControl x:Name="ActiveItem" Grid.Row="0"></ContentControl>
+        <DockPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+            <StackPanel Visibility="{Binding ShowCountDown}" Orientation="Vertical" Margin="5,0,0,0" Width="100">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="剩余:"></TextBlock>
+                    <TextBlock Margin="2,0,2,0" x:Name="LeftTime"></TextBlock>
+                    <TextBlock Text="秒"></TextBlock>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding ElementName=LeftTime,Path=Text}"></TextBlock>
+                    <TextBlock Margin="2,0,2,0" Text="s"></TextBlock>
+                    <TextBlock Text="left"></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </Window>

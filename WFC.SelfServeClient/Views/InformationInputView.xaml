@@ -5,9 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:ctrl="clr-namespace:WFC.SelfServeClient.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="650" d:DesignWidth="1000">
+             d:DesignHeight="600" d:DesignWidth="800">
     <UserControl.Resources>
-
         <!-- 按钮 -->
         <Style TargetType="{x:Type Button}">
             <Setter Property="BorderThickness" Value="1" />
@@ -28,6 +27,81 @@
         </Style>
     </UserControl.Resources>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Content="返回 Back" x:Name="GoBack" Height="24" Width="78" VerticalAlignment="Bottom" FontSize="12px" FontWeight="Regular" Margin="0,0,8,0" HorizontalAlignment="Right"></Button>
+        <StackPanel Grid.Row="1" Margin="0,120,0,0" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Stretch">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="190" />
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="1">
+                        <Image Margin="28,0,48,0" Width="114" Height="114" Source="{Binding hendersonVisitor.VisitorPhoto,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ></Image>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="28,0,0,0">
+                        <TextBlock Text="被访租户信息 Tenant Information" FontSize="20" FontWeight="Bold"></TextBlock>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                            <TextBlock Text="被访姓名&#x0A;Name" Width="100" />
+                            <TextBox Height="22" Text="{Binding hendersonVisitor.HendersonTenantPersonName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="153"  FontWeight="Bold" Margin="0,0,44,0" ></TextBox>
+                            <TextBlock Text="到访楼层&#x0A;Visiting Floor" Width="90"/>
+                            <ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Margin="34,0,0,0" Width="143"  x:Name="VisitorFloor" DisplayMemberPath="Name"
+                                  SelectedValuePath="Id"
+                                  SelectedValue="{Binding hendersonVisitor.Floors,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <TextBlock Text="手机号&#x0A;Mobile Number" Width="100" />
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBox  FontWeight="Bold" Text="{Binding hendersonVisitor.TenantAreaCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="40"/>
+                                <TextBlock Margin="5,0" Text="-" Width="5" Foreground="White"></TextBlock>
+                                <TextBox  FontWeight="Bold" Text="{Binding hendersonVisitor.HendersonTenantPersonPhone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="100"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <TextBlock Margin="0,22,0,0" Text="访客信息 Visitor Information" FontSize="20" FontWeight="Bold"></TextBlock>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,14,0,0">
+                            <TextBlock Text="姓名&#x0A;Name" Width="100" />
+                            <TextBox Height="22" Width="153" Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  FontWeight="Bold" Margin="0,0,44,0" ></TextBox>
+                            <TextBlock Text="身份证号&#x0A;ID Card Number" Width="90"/>
+                            <TextBox Height="22" Width="153" Text="{Binding hendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Margin="34,0,0,0" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <TextBlock Text="手机号&#x0A;Mobile Number" Width="100" />
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,44,0">
+                                <TextBox  FontWeight="Bold" Text="{Binding hendersonVisitor.AreaCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="40"/>
+                                <TextBlock Margin="5,0" Text="-" Width="5" Foreground="White"></TextBlock>
+                                <TextBox  FontWeight="Bold" Text="{Binding hendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="100"/>
+                            </StackPanel>
+                            <TextBlock Text="来访公司名称&#x0A;Company Name" Width="90" />
+                            <TextBox Height="22" Width="153" Text="{Binding hendersonVisitor.VisitorComp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  FontWeight="Bold" Margin="34,0,0,0" ></TextBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                            <TextBlock Text="在过去14日内，阁下是否离开北京？&#x0A;Did you travel outside Beijing in the past 14 days?" Margin="0,0,18,0"  FontWeight="Bold" HorizontalAlignment="Left" />
+                            <TextBox Height="22" Text="{Binding hendersonVisitor.Travel,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="153" FontWeight="Bold" Margin="0,0,74,0" VerticalContentAlignment="Stretch"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+            <StackPanel>
+                <Button x:Name="BtnOK" Width="150" Height="30" Margin="0,64,0,0" BorderThickness="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="5" Background="{StaticResource CommonButtonBackground}" >
+                                <StackPanel HorizontalAlignment="Center" Orientation="Vertical" VerticalAlignment="Center">
+                                    <TextBlock Text="确认 Confirm" Foreground="{StaticResource ControlForegoundColor}" FontWeight="Bold" FontSize="16"></TextBlock>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+    <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition Height="60" />
@@ -157,5 +231,5 @@
                 <ImageBrush ImageSource="/WFC.SelfServeClient;component/Resources/confirm.png" />
             </Button.Background>
         </Button>
-    </Grid>
+    </Grid>-->
 </UserControl>
