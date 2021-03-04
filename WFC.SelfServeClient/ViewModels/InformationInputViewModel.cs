@@ -127,7 +127,7 @@ namespace WFC.SelfServeClient.ViewModels
                 postForm.Add("HendersonTenantPersonName", hendersonVisitor.HendersonTenantPersonName);
                 postForm.Add("AuthCode", WebApiClientHelper.AccessToken);
                 postForm.Add("VisitorComp", hendersonVisitor.VisitorComp);
-                postForm.Add("Travel", hendersonVisitor.Travel);
+                postForm.Add("Travel", hendersonVisitor.Travel.Replace("是，请列明：/否", ""));
                 postForm.Add("VisitorType", "SelfHelp");
 
                 Dictionary<string, string> postFile = new Dictionary<string, string>();

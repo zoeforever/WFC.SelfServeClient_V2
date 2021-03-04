@@ -25,6 +25,19 @@ namespace WFC.SelfServeClient
 
         Thread tokenFetchThread;
         string location = ConfigurationManager.AppSettings["Location"];
+        int COUNTDOWN
+        {
+            get
+            {
+                int cd = 120;
+                if (int.TryParse(ConfigurationManager.AppSettings["CountDown"], out cd))
+                {
+                    return cd;
+                }
+                return 120;
+            }
+        }
+
         AutoResetEvent exitEvent = new AutoResetEvent(false);
         // 第一步：登录
         LoginViewModel loginViewModel { get; set; }
@@ -41,10 +54,9 @@ namespace WFC.SelfServeClient
         // 第七步：完成页面
         FinishViewModel finishViewModel { get; set; }
         IAccountsApi client;
-        const int COUNTDOWN = 90;
         MainWindowView View;
         DispatcherTimer timer;
-        int CountDownSeconds = COUNTDOWN;
+        int CountDownSeconds;
 
         public MainWindowViewModel()
         {
@@ -60,6 +72,7 @@ namespace WFC.SelfServeClient
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
             this.ActivateItem(loginViewModel);
+            CountDownSeconds = COUNTDOWN;
             tokenFetchThread = new Thread(() =>
                {
                    int scanInterval = 2 * 60 * 60 * 1000;
