@@ -38,7 +38,7 @@ namespace WFC.SelfServeClient.ViewModels
         public IdentityIDCardViewModel(HendersonVisitor hendersonVisitor)
         {
             this.hendersonVisitor = hendersonVisitor;
-            snapshotTimer = new DispatcherTimer();
+            snapshotTimer = new DispatcherTimer() { IsEnabled = true };
             snapshotTimer.Interval = TimeSpan.FromSeconds(snapshotTimer_timespan);
             snapshotTimer.Tick += Snapshot_Tick;
             snapshotTimer.Start();
