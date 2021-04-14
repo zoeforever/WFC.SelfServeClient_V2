@@ -85,9 +85,10 @@ namespace WFC.SelfServeClient.ViewModels
                     var client = WebApiClient.HttpApi.Resolve<IFaceApi>();
 
 #if TEST
-                    identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
-                    gotoTimer.Tag = "success";
-                    gotoTimer.Start();
+                    //identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
+                    //gotoTimer.Tag = "success";
+                    //gotoTimer.Start();
+                    Fail("对比不一致");
 #else
 
                     var response = client.CompareAsync(new FaceCompareRequest

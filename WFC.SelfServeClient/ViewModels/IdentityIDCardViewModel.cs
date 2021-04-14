@@ -121,7 +121,11 @@ namespace WFC.SelfServeClient.ViewModels
         {
             try
             {
+#if !TEST
                 idCardInfo = IdCardReaderHelper.ReadIdCard();
+#else
+                idCardInfo = new IdCardInfo { Code = "123456", Name = "czb", ImagePath = "", Gender = "男", Nation = "汉" };
+#endif
             }
             catch (Exception ex)
             {
