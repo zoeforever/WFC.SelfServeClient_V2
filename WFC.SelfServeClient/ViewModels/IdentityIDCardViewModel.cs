@@ -24,7 +24,7 @@ namespace WFC.SelfServeClient.ViewModels
         VideoCaptureDevice videoSource = null;
         Bitmap Snapshot = null;
         //5秒执行一次
-        int snapshotTimer_timespan = 5;
+        int snapshotTimer_timespan = 2;
         //执行6次=1分钟
         int snapshotTimer_count = 0;
         public string SnapShotPath { get; set; }

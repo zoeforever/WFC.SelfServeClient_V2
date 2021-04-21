@@ -109,7 +109,7 @@ namespace WFC.SelfServeClient.ViewModels
                 postForm.Add("PhoneNumber", hendersonVisitor.Phone);
                 postForm.Add("StartTime", new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds().ToString());
                 postForm.Add("EndTime", new DateTimeOffset(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59)).ToUnixTimeMilliseconds().ToString());
-                postForm.Add("NumberOfAccess", "10");
+                postForm.Add("NumberOfAccess", "4");
                 postForm.Add("IdCardNumber", hendersonVisitor.IdCardNo);
                 postForm.Add("EastFloors", hendersonVisitor.Floors);
                 postForm.Add("HendersonTenantPersonPhone", hendersonVisitor.HendersonTenantPersonPhone);

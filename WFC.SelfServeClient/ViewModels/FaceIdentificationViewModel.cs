@@ -122,7 +122,7 @@ namespace WFC.SelfServeClient.ViewModels
 
                     dynamic settings = new ExpandoObject();
                     settings.WindowStyle = WindowStyle.None;
-                    settings.ShowInTaskbar = false;
+                  //  settings.ShowInTaskbar = false;
                     settings.WindowState = WindowState.Normal;
                     settings.ResizeMode = ResizeMode.CanMinimize;
 
