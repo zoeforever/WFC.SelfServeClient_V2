@@ -115,6 +115,7 @@ namespace WFC.SelfServeClient
             this.LeftTime = (CountDownSeconds--).ToString();
             if (CountDownSeconds <= 0)
             {
+             
                 GotoWelcomeClick();
             }
         }

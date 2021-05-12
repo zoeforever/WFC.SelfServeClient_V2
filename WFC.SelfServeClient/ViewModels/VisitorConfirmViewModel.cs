@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using System.ComponentModel.Composition;
+using System.Windows;
 using WFC.ServerClient.HttpModels;
 
 
@@ -20,6 +21,15 @@ namespace WFC.SelfServeClient.ViewModels
 
         public void NextPage()
         {
+            if (string.IsNullOrEmpty(hendersonVisitor.Phone))
+            {
+                MessageBox.Show("请输入手机号！");
+                return;
+            }
+            if (string.IsNullOrEmpty(hendersonVisitor.IdCardNo))
+            {
+                MessageBox.Show("证件号不能为空！");
+            }
             OnGotoFaceIdentification?.Invoke();
         }
 

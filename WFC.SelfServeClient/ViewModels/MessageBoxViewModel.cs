@@ -1,5 +1,7 @@
 ﻿using Caliburn.Micro;
+using System;
 using System.Windows.Input;
+using System.Windows.Threading;
 using WFC.SelfServeClient.Views;
 
 namespace WFC.SelfServeClient.ViewModels
@@ -8,10 +10,15 @@ namespace WFC.SelfServeClient.ViewModels
     {
         MessageBoxView View;
         FailAndRetry failAndRetry;
-
+        DispatcherTimer snapshotTimer;
+        int snapshotTimer_timespan = 10;
         public MessageBoxViewModel(FailAndRetry failAndRetry)
         {
             this.failAndRetry = failAndRetry;
+            snapshotTimer = new DispatcherTimer();
+            snapshotTimer.Interval = TimeSpan.FromSeconds(snapshotTimer_timespan);
+            snapshotTimer.Tick += Snapshot_Tick;
+            snapshotTimer.Start();
         }
 
         public void Click(object sender, KeyEventArgs e)
@@ -44,6 +51,12 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 View.Fail3.Visibility = System.Windows.Visibility.Visible;
             }
+        }
+        private void Snapshot_Tick(object sender, EventArgs e)
+        {
+            snapshotTimer.Stop();
+
+            this.TryClose();
         }
     }
 
