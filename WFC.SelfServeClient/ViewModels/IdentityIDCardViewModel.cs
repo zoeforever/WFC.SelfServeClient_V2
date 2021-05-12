@@ -19,6 +19,7 @@ namespace WFC.SelfServeClient.ViewModels
     public class IdentityIDCardViewModel : Screen
     {
         IdCardInfo idCardInfo = null;
+        int i = 0;
         IdentityIDCardView identityIDCardView;
         CameraCaptureHelper helper;
         VideoCaptureDevice videoSource = null;
@@ -129,7 +130,12 @@ namespace WFC.SelfServeClient.ViewModels
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("读取身份证出错");
+                i++ ;
+                if (i > 5)
+                {
+                    i = 0;
+                    MessageBox.Show("请将身份证拿起再放下");
+                }
                 Logger.Error(ex.ToString());
                 return;
                 //暂不处理
@@ -137,6 +143,7 @@ namespace WFC.SelfServeClient.ViewModels
             if (idCardInfo == null)
             {
                 snapshotTimer_count = snapshotTimer_count + 1;
+                return;
             }
             else
             {

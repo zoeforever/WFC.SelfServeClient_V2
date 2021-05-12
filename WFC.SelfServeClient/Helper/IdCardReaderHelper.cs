@@ -87,6 +87,11 @@ namespace WFC.SelfServeClient.Helper
 
             int intCloseRet = CloseComm();
 
+            if (Code.ToString() == "")
+            {
+                throw new Exception("--身份证不能为空");
+
+            }
             return new IdCardInfo
             {
                 Name = Name.ToString(),
