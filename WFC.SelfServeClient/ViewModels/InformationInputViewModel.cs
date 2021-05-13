@@ -127,7 +127,7 @@ namespace WFC.SelfServeClient.ViewModels
                 postForm.Add("HendersonTenantPersonName", hendersonVisitor.HendersonTenantPersonName);
                 postForm.Add("AuthCode", WebApiClientHelper.AccessToken);
                 postForm.Add("VisitorComp", hendersonVisitor.VisitorComp);
-                postForm.Add("Travel", hendersonVisitor.Travel.Replace("", ""));
+                postForm.Add("Travel", hendersonVisitor.Travel);
                 postForm.Add("VisitorType", "SelfHelp");
 
                 Dictionary<string, string> postFile = new Dictionary<string, string>();
@@ -166,7 +166,7 @@ namespace WFC.SelfServeClient.ViewModels
                 {
                     new WindowManager().ShowDialog(new MessageBoxViewModel(FailAndRetry.InformationInputFail3), null, settings);
                     //gotoWelcomeTimer.Start();
-                    GoBack();
+                   // GoBack();
                 }
                 else
                 {

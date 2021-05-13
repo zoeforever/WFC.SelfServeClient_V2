@@ -84,14 +84,8 @@ namespace WFC.SelfServeClient.Helper
                 CloseComm();
                 throw new Exception("003-读卡失败");
             }
-
+            string tmpFile = Path.Combine(path, "photo.bmp");
             int intCloseRet = CloseComm();
-
-            if (Code.ToString() == "")
-            {
-                throw new Exception("--身份证不能为空");
-
-            }
             return new IdCardInfo
             {
                 Name = Name.ToString(),
@@ -103,7 +97,7 @@ namespace WFC.SelfServeClient.Helper
                 Agency = Agency.ToString(),
                 ExpireStart = ExpireStart.ToString(),
                 ExpireEnd = ExpireEnd.ToString(),
-                ImagePath = Path.Combine(path, "photo.bmp"),
+                ImagePath = tmpFile,
             };
         }
 

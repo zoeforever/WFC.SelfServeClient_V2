@@ -29,6 +29,7 @@ namespace WFC.SelfServeClient.ViewModels
             if (string.IsNullOrEmpty(hendersonVisitor.IdCardNo))
             {
                 MessageBox.Show("证件号不能为空！");
+                return;
             }
             OnGotoFaceIdentification?.Invoke();
         }

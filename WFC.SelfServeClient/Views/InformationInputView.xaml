@@ -76,7 +76,7 @@
                                 <TextBlock Margin="5,0" Text="-" Width="5" Foreground="White"></TextBlock>
                                 <TextBox  FontWeight="Bold" Text="{Binding hendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="100"/>
                             </StackPanel>
-                            <TextBlock Text="来访公司名称&#x0A;Company Name" Width="90" />
+                            <TextBlock Text="公司名称&#x0A;Company Name" Width="90" />
                             <TextBox Height="22" Width="153" Text="{Binding hendersonVisitor.VisitorComp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  FontWeight="Bold" Margin="34,0,0,0" ></TextBox>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,20,0,0">

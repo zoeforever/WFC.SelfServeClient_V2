@@ -10,15 +10,15 @@ namespace WFC.SelfServeClient.ViewModels
     {
         MessageBoxView View;
         FailAndRetry failAndRetry;
-        DispatcherTimer snapshotTimer;
-        int snapshotTimer_timespan = 10;
+        DispatcherTimer snapshotTimerMess;
+        int snapshotTimer_timespanMess = 10;
         public MessageBoxViewModel(FailAndRetry failAndRetry)
         {
             this.failAndRetry = failAndRetry;
-            snapshotTimer = new DispatcherTimer();
-            snapshotTimer.Interval = TimeSpan.FromSeconds(snapshotTimer_timespan);
-            snapshotTimer.Tick += Snapshot_Tick;
-            snapshotTimer.Start();
+            snapshotTimerMess = new DispatcherTimer();
+            snapshotTimerMess.Interval = TimeSpan.FromSeconds(snapshotTimer_timespanMess);
+            snapshotTimerMess.Tick += Snapshot_Tick;
+            snapshotTimerMess.Start();
         }
 
         public void Click(object sender, KeyEventArgs e)
@@ -54,7 +54,7 @@ namespace WFC.SelfServeClient.ViewModels
         }
         private void Snapshot_Tick(object sender, EventArgs e)
         {
-            snapshotTimer.Stop();
+            snapshotTimerMess.Stop();
 
             this.TryClose();
         }
