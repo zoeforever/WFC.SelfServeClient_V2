@@ -9,11 +9,11 @@ namespace WFC.SelfServeClient.ViewModels
     [PropertyChanged.ImplementPropertyChanged]
     public class WelcomeViewModel : Screen
     {
-        public HendersonVisitor hendersonVisitor { get; set; }
+        public HendersonVisitor WelcomehendersonVisitor { get; set; }
         public event System.Action OnWelcomeButtonClick;
         public WelcomeViewModel(HendersonVisitor hendersonVisitor)
         {
-            this.hendersonVisitor = hendersonVisitor;
+            this.WelcomehendersonVisitor = hendersonVisitor;
         }
 
         public void WelcomeButtonClick()

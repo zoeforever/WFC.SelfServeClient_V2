@@ -15,7 +15,7 @@ namespace WFC.SelfServeClient.ViewModels
     [PropertyChanged.ImplementPropertyChanged]
     public class FinishViewModel : Screen
     {
-        private HendersonVisitor hendersonVisitor { get; set; }
+        public HendersonVisitor FinishhendersonVisitor { get; set; }
         public event System.Action OnGotoWelcomeClick;
         DispatcherTimer gotoWelcomeTimer;
         public FinishViewModel(HendersonVisitor hendersonVisitor)
@@ -24,7 +24,7 @@ namespace WFC.SelfServeClient.ViewModels
             gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(10);
             gotoWelcomeTimer.Tick += Snapshot_Tick;
             gotoWelcomeTimer.Start();
-            this.hendersonVisitor = hendersonVisitor;
+            this.FinishhendersonVisitor = hendersonVisitor;
         }
 
         public void FinishButtonClick()

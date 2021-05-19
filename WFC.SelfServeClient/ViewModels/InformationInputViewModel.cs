@@ -24,7 +24,7 @@ namespace WFC.SelfServeClient.ViewModels
         public event System.Action OnGotoWelcomeClick;
         public BindableCollection<DisplayItem> VisitorArea { get; set; }
         public BindableCollection<DisplayItem> VisitorFloor { get; set; }
-        private HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
+        public HendersonVisitor InforhendersonVisitor { get; set; } = new HendersonVisitor();
 
         public InformationInputViewModel(HendersonVisitor hendersonVisitor)
         {
@@ -41,7 +41,7 @@ namespace WFC.SelfServeClient.ViewModels
          //   gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(60);
           //  gotoWelcomeTimer.Tick += Snapshot_Tick;
           //  gotoWelcomeTimer.Start();
-            this.hendersonVisitor = hendersonVisitor;
+            InforhendersonVisitor = hendersonVisitor;
 
         }
 
@@ -54,17 +54,17 @@ namespace WFC.SelfServeClient.ViewModels
             //    return;
             //}
 
-            if (string.IsNullOrEmpty(hendersonVisitor.AreaCode))
+            if (string.IsNullOrEmpty(InforhendersonVisitor.AreaCode))
             {
                 MessageBox.Show("请输入手机号码国家代码！");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Phone))
+            if (string.IsNullOrWhiteSpace(InforhendersonVisitor.Phone))
             {
                 MessageBox.Show("请输入手机号码！");
                 return;
             }
-            if (string.IsNullOrWhiteSpace(this.hendersonVisitor.IdCardNo))
+            if (string.IsNullOrWhiteSpace(InforhendersonVisitor.IdCardNo))
             {
                 MessageBox.Show("请输入身份证号！");
                 return;
@@ -74,22 +74,22 @@ namespace WFC.SelfServeClient.ViewModels
             //    MessageBox.Show("请选择到访区域！");
             //    return;
             //}
-            if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Floors))
+            if (string.IsNullOrWhiteSpace(InforhendersonVisitor.Floors))
             {
                 MessageBox.Show("请选择到访楼层！");
                 return;
             }
-            if (string.IsNullOrEmpty(hendersonVisitor.HendersonTenantPersonName))
+            if (string.IsNullOrEmpty(InforhendersonVisitor.HendersonTenantPersonName))
             {
                 MessageBox.Show("请输入受访人！");
                 return;
             }
-            if (string.IsNullOrEmpty(hendersonVisitor.TenantAreaCode))
+            if (string.IsNullOrEmpty(InforhendersonVisitor.TenantAreaCode))
             {
                 MessageBox.Show("请输入受访人电话国家代码！");
                 return;
             }
-            if (string.IsNullOrEmpty(hendersonVisitor.HendersonTenantPersonPhone))
+            if (string.IsNullOrEmpty(InforhendersonVisitor.HendersonTenantPersonPhone))
             {
                 MessageBox.Show("请输入受访人电话！");
                 return;
@@ -105,33 +105,33 @@ namespace WFC.SelfServeClient.ViewModels
                 string url = serverUrl + "api/v1/hendersonvisitor/visitor";
                 Dictionary<string, string> postForm = new Dictionary<string, string>();
                 // For Henderson
-                postForm.Add("VisitorName", hendersonVisitor.Name);
-                postForm.Add("PhoneNumber", hendersonVisitor.Phone);
+                postForm.Add("VisitorName", InforhendersonVisitor.Name);
+                postForm.Add("PhoneNumber", InforhendersonVisitor.Phone);
                 postForm.Add("StartTime", new DateTimeOffset(DateTime.Now).ToUnixTimeMilliseconds().ToString());
                 postForm.Add("EndTime", new DateTimeOffset(new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59)).ToUnixTimeMilliseconds().ToString());
                 postForm.Add("NumberOfAccess", "4");
-                postForm.Add("IdCardNumber", hendersonVisitor.IdCardNo);
-                postForm.Add("EastFloors", hendersonVisitor.Floors);
-                postForm.Add("HendersonTenantPersonPhone", hendersonVisitor.HendersonTenantPersonPhone);
+                postForm.Add("IdCardNumber", InforhendersonVisitor.IdCardNo);
+                postForm.Add("EastFloors", InforhendersonVisitor.Floors);
+                postForm.Add("HendersonTenantPersonPhone", InforhendersonVisitor.HendersonTenantPersonPhone);
                 postForm.Add("Buildings", location);
-                postForm.Add("AreaCode", hendersonVisitor.AreaCode);
-                postForm.Add("TenantAreaCode", hendersonVisitor.TenantAreaCode);
+                postForm.Add("AreaCode", InforhendersonVisitor.AreaCode);
+                postForm.Add("TenantAreaCode", InforhendersonVisitor.TenantAreaCode);
 
                 // For WFC
                 postForm.Add("HendersonTenantId", "");
                 postForm.Add("HendersonTenantName", "");
-                postForm.Add("Sex", hendersonVisitor.Gender);
-                postForm.Add("Nation", hendersonVisitor.Nation);
-                postForm.Add("Address", hendersonVisitor.Address);
-                postForm.Add("CredentialId", hendersonVisitor.CredentialId);
-                postForm.Add("HendersonTenantPersonName", hendersonVisitor.HendersonTenantPersonName);
+                postForm.Add("Sex", InforhendersonVisitor.Gender);
+                postForm.Add("Nation", InforhendersonVisitor.Nation);
+                postForm.Add("Address", InforhendersonVisitor.Address);
+                postForm.Add("CredentialId", InforhendersonVisitor.CredentialId);
+                postForm.Add("HendersonTenantPersonName", InforhendersonVisitor.HendersonTenantPersonName);
                 postForm.Add("AuthCode", WebApiClientHelper.AccessToken);
-                postForm.Add("VisitorComp", hendersonVisitor.VisitorComp);
-                postForm.Add("Travel", hendersonVisitor.Travel);
+                postForm.Add("VisitorComp", InforhendersonVisitor.VisitorComp);
+                postForm.Add("Travel", InforhendersonVisitor.Travel);
                 postForm.Add("VisitorType", "SelfHelp");
 
                 Dictionary<string, string> postFile = new Dictionary<string, string>();
-                postFile.Add("VisitorPhoto", this.hendersonVisitor.VisitorPhoto);
+                postFile.Add("VisitorPhoto", this.InforhendersonVisitor.VisitorPhoto);
 
                 var postResult = HttpClientHelper.RestPostFile<AddVisitorResponse>(url, WebApiClientHelper.Jwt, postForm, postFile);
                 if (postResult.StatusCode == "SUCCESS")

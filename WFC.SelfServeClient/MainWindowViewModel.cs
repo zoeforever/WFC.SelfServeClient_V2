@@ -97,12 +97,14 @@ namespace WFC.SelfServeClient
                                catch (Exception ex)
                                {
                                    Logger.Error(ex.ToString());
+                                   System.Environment.Exit(0);
                                }
                            }
                        }
                        catch (Exception ex)
                        {
                            Logger.Error($"Error when fetch token:{ex}");
+                           System.Environment.Exit(0);
                        }
                    }
                }

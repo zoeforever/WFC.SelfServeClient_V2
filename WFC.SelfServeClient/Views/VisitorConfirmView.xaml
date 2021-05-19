@@ -17,23 +17,23 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="62,26,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <TextBlock Text="姓名&#x0A;Name" Width="100" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" />
-                <TextBox Height="22" Width="153" Text="{Binding hendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Margin="0,0,74,0" ></TextBox>
+                <TextBox Height="22" Width="153" Text="{Binding VisitorhendersonVisitor.Name,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Margin="0,0,74,0" ></TextBox>
                 <TextBlock Text="身份证号码&#x0A;ID Card Number" Width="100" Margin="74,0,18,0" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" />
-                <TextBox Height="22" Width="153" Text="{Binding hendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Margin="0,0,162,0" ></TextBox>
+                <TextBox Height="22" Width="153" Text="{Binding VisitorhendersonVisitor.IdCardNo,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Margin="0,0,162,0" ></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="62,24,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <TextBlock Text="手机号&#x0A;Mobile Number" Width="100" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" />
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,74,0">
-                    <TextBox  FontWeight="Bold" Text="{Binding hendersonVisitor.AreaCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="40"/>
+                    <TextBox  FontWeight="Bold" Text="{Binding VisitorhendersonVisitor.AreaCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="40"/>
                     <TextBlock Margin="5,0" Text="-" Width="5" Foreground="White"></TextBlock>
-                    <TextBox  FontWeight="Bold" Text="{Binding hendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="100"/>
+                    <TextBox  FontWeight="Bold" Text="{Binding VisitorhendersonVisitor.Phone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"  VerticalAlignment="Center" Width="100"/>
                 </StackPanel>
                 <TextBlock Text="公司名称&#x0A;Company Name" Width="100" Margin="74,0,18,0" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" />
-                <TextBox Height="22" Text="{Binding hendersonVisitor.VisitorComp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="153" FontWeight="Bold" Margin="0,0,162,0" ></TextBox>
+                <TextBox Height="22" Text="{Binding VisitorhendersonVisitor.VisitorComp,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="153" FontWeight="Bold" Margin="0,0,162,0" ></TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="62,20,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
                 <TextBlock Text="在过去14日内，阁下是否离开北京？&#x0A;Did you travel outside Beijing in the past 14 days?" Margin="0,0,18,0" FontSize="12" FontWeight="Bold" HorizontalAlignment="Left" />
-                <TextBox Height="22" Width="153" FontWeight="Bold" Margin="0,0,74,0" Text="{Binding hendersonVisitor.Travel,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Stretch"/>
+                <TextBox Height="22" Width="153" FontWeight="Bold" Margin="0,0,74,0" Text="{Binding VisitorhendersonVisitor.Travel,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Stretch"/>
             </StackPanel>
             <StackPanel>
                 <Button x:Name="NextPage" Width="214" Height="50" Margin="0,64,0,0" BorderThickness="0">

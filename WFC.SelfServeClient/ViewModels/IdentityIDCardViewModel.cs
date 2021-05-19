@@ -30,14 +30,14 @@ namespace WFC.SelfServeClient.ViewModels
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
         // DispatcherTimer gotoTimer;
-        private HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
+        public HendersonVisitor IdentityhendersonVisitor { get; set; } = new HendersonVisitor();
 
         public event System.Action OnGotoWelcomeClick;
         public event System.Action OnConfirmInfo;
 
         public IdentityIDCardViewModel(HendersonVisitor hendersonVisitor)
         {
-            this.hendersonVisitor = hendersonVisitor;
+            IdentityhendersonVisitor = hendersonVisitor;
             snapshotTimer = new DispatcherTimer() { IsEnabled = true };
             snapshotTimer.Interval = TimeSpan.FromSeconds(snapshotTimer_timespan);
             snapshotTimer.Tick += Snapshot_Tick;
@@ -121,7 +121,7 @@ namespace WFC.SelfServeClient.ViewModels
         {
             try
             {
-                snapshotTimer.Stop();
+               
 #if !TEST
                 idCardInfo = IdCardReaderHelper.ReadIdCard();
 #else
@@ -134,17 +134,17 @@ namespace WFC.SelfServeClient.ViewModels
                 return;
                 //暂不处理
             }
-            hendersonVisitor.IdCardNo = idCardInfo.Code;
-            hendersonVisitor.Name = idCardInfo.Name;
-            hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
-            hendersonVisitor.Gender = idCardInfo.Gender;
-            hendersonVisitor.Nation = idCardInfo.Nation;
-            if (hendersonVisitor.IdCardNo.Length < 10)
+            IdentityhendersonVisitor.IdCardNo = idCardInfo.Code;
+            IdentityhendersonVisitor.Name = idCardInfo.Name;
+            IdentityhendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
+            IdentityhendersonVisitor.Gender = idCardInfo.Gender;
+            IdentityhendersonVisitor.Nation = idCardInfo.Nation;
+            if (IdentityhendersonVisitor.IdCardNo.Length < 10)
             {
-                Logger.Error("调试判断--身份证号<10位：" + hendersonVisitor.IdCardNo);
+                Logger.Error("调试判断--身份证号<10位：" + IdentityhendersonVisitor.IdCardNo);
                 return;
             }
-            
+            snapshotTimer.Stop();
             ////身份证头像获取成功，跳转页面
             OnConfirmInfo?.Invoke();
 
@@ -190,7 +190,7 @@ namespace WFC.SelfServeClient.ViewModels
 
         protected override void OnDeactivate(bool close)
         {
-           // base.OnDeactivate(close);
+            base.OnDeactivate(close);
             //try
             //{
             //    helper.Disconnect();

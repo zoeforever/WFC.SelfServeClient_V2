@@ -31,13 +31,13 @@ namespace WFC.SelfServeClient.ViewModels
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
         DispatcherTimer gotoTimer;
-        private HendersonVisitor hendersonVisitor { get; set; }
+        public HendersonVisitor FacehendersonVisitor { get; set; }
         public event System.Action OnGotoWelcomeClick;
         public event System.Action OnGotoInputInfoClick;
 
         public FaceIdentificationViewModel(HendersonVisitor hendersonVisitor)
         {
-            this.hendersonVisitor = hendersonVisitor;
+            this.FacehendersonVisitor = hendersonVisitor;
             snapshotTimer = new DispatcherTimer();
             snapshotTimer.Interval = TimeSpan.FromSeconds(snapshotTimer_timespan);
             snapshotTimer.Tick += Snapshot_Tick;
@@ -72,7 +72,7 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 try
                 {
-                    var icCardPhoto = hendersonVisitor.VisitorPhoto;
+                    var icCardPhoto = FacehendersonVisitor.VisitorPhoto;
                     var tmpFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".png");
                     Snapshot = snapshot;
                     snapshot.Save(tmpFile);
@@ -80,7 +80,7 @@ namespace WFC.SelfServeClient.ViewModels
                     faceIdentificationView.imgBG.Visibility = Visibility.Visible;
                     faceIdentificationView.imgUserHead.Visibility = Visibility.Visible;
                     faceIdentificationView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
-                    hendersonVisitor.VisitorPhoto = tmpFile;
+                    FacehendersonVisitor.VisitorPhoto = tmpFile;
 
                     var client = WebApiClient.HttpApi.Resolve<IFaceApi>();
 
