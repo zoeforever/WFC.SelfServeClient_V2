@@ -31,7 +31,7 @@ namespace WFC.SelfServeClient.ViewModels
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
         DispatcherTimer gotoTimer;
-        public HendersonVisitor hendersonVisitor { get; set; }
+        private HendersonVisitor hendersonVisitor { get; set; }
         public event System.Action OnGotoWelcomeClick;
         public event System.Action OnGotoInputInfoClick;
 

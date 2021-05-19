@@ -29,8 +29,8 @@ namespace WFC.SelfServeClient.ViewModels
      //   int snapshotTimer_count = 0;
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
-       // DispatcherTimer gotoTimer;
-        public HendersonVisitor hendersonVisitor { get; set; }
+        // DispatcherTimer gotoTimer;
+        private HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
 
         public event System.Action OnGotoWelcomeClick;
         public event System.Action OnConfirmInfo;
@@ -134,8 +134,6 @@ namespace WFC.SelfServeClient.ViewModels
                 return;
                 //暂不处理
             }
-
-
             hendersonVisitor.IdCardNo = idCardInfo.Code;
             hendersonVisitor.Name = idCardInfo.Name;
             hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
@@ -192,7 +190,7 @@ namespace WFC.SelfServeClient.ViewModels
 
         protected override void OnDeactivate(bool close)
         {
-            base.OnDeactivate(close);
+           // base.OnDeactivate(close);
             //try
             //{
             //    helper.Disconnect();

@@ -15,7 +15,7 @@ namespace WFC.SelfServeClient.ViewModels
     [PropertyChanged.ImplementPropertyChanged]
     public class FinishViewModel : Screen
     {
-        public HendersonVisitor hendersonVisitor { get; set; }
+        private HendersonVisitor hendersonVisitor { get; set; }
         public event System.Action OnGotoWelcomeClick;
         DispatcherTimer gotoWelcomeTimer;
         public FinishViewModel(HendersonVisitor hendersonVisitor)

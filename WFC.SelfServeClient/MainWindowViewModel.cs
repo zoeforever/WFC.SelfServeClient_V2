@@ -173,6 +173,20 @@ namespace WFC.SelfServeClient
             exitEvent.Set();
             ResetTimer();
         }
+        /// <summary>
+        /// 返回欢迎页面
+        /// </summary>
+        private void GotoWelcomeClick()
+        {
+
+            hendersonVisitor = new HendersonVisitor();
+            hendersonVisitor.StartTime = DateTime.Now;
+            welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
+            welcomeViewModel.OnWelcomeButtonClick -= WelcomeButtonClick;
+            welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
+            this.ActivateItem(welcomeViewModel);
+            ResetTimer();
+        }
 
         /// <summary>
         /// 欢迎按钮
@@ -188,20 +202,7 @@ namespace WFC.SelfServeClient
             StartTimer();
         }
 
-        /// <summary>
-        /// 返回欢迎页面
-        /// </summary>
-        private void GotoWelcomeClick()
-        {
-           
-            hendersonVisitor = new HendersonVisitor();
-            hendersonVisitor.StartTime = DateTime.Now;
-            welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
-            welcomeViewModel.OnWelcomeButtonClick -= WelcomeButtonClick;
-            welcomeViewModel.OnWelcomeButtonClick += WelcomeButtonClick;
-            this.ActivateItem(welcomeViewModel);
-            ResetTimer();
-        }
+       
 
         /// <summary>
         /// 跳转信息确认页面

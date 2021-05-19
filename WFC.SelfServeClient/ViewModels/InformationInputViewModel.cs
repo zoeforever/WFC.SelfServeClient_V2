@@ -24,7 +24,7 @@ namespace WFC.SelfServeClient.ViewModels
         public event System.Action OnGotoWelcomeClick;
         public BindableCollection<DisplayItem> VisitorArea { get; set; }
         public BindableCollection<DisplayItem> VisitorFloor { get; set; }
-        public HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
+        private HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
 
         public InformationInputViewModel(HendersonVisitor hendersonVisitor)
         {

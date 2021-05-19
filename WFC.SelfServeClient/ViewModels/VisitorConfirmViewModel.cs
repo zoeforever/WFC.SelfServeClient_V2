@@ -10,7 +10,7 @@ namespace WFC.SelfServeClient.ViewModels
     [PropertyChanged.ImplementPropertyChanged]
     public class VisitorConfirmViewModel : Screen
     {
-        public HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
+        private HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
         public event System.Action OnGotoWelcomeClick;
          public event System.Action OnGotoFaceIdentification;
         public VisitorConfirmViewModel(HendersonVisitor hendersonVisitor)
