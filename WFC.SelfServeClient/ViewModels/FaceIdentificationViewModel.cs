@@ -18,7 +18,7 @@ namespace WFC.SelfServeClient.ViewModels
     public class FaceIdentificationViewModel : Screen
     {
         IdCardInfo idCardInfo = null;
-        FaceIdentificationView identityIDCardView;
+        FaceIdentificationView faceIdentificationView;
         CameraCaptureHelper helper;
         VideoCaptureDevice videoSource = null;
         Bitmap Snapshot = null;
@@ -50,8 +50,8 @@ namespace WFC.SelfServeClient.ViewModels
         protected override void OnViewLoaded(object view)
         {
             base.OnViewLoaded(view);
-            identityIDCardView = (FaceIdentificationView)view;
-            this.helper = new CameraCaptureHelper(identityIDCardView.videoSourcePlayer);
+            faceIdentificationView = (FaceIdentificationView)view;
+            this.helper = new CameraCaptureHelper(faceIdentificationView.videoSourcePlayer);
             helper.OnSnapShot += Helper_OnSnapShot;
             helper.OnConnect += Helper_OnConnect;
             helper.Connect();
@@ -61,8 +61,8 @@ namespace WFC.SelfServeClient.ViewModels
         {
             Execute.OnUIThread(() =>
             {
-                this.identityIDCardView.imgLoadCamera.Visibility = Visibility.Collapsed;
-                this.identityIDCardView.wfh.Visibility = Visibility.Visible;
+                this.faceIdentificationView.imgLoadCamera.Visibility = Visibility.Collapsed;
+                this.faceIdentificationView.wfh.Visibility = Visibility.Visible;
             });
         }
 
@@ -76,10 +76,10 @@ namespace WFC.SelfServeClient.ViewModels
                     var tmpFile = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString() + ".png");
                     Snapshot = snapshot;
                     snapshot.Save(tmpFile);
-                    identityIDCardView.wfh.Visibility = Visibility.Collapsed;
-                    identityIDCardView.imgBG.Visibility = Visibility.Visible;
-                    identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
-                    identityIDCardView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
+                    faceIdentificationView.wfh.Visibility = Visibility.Collapsed;
+                    faceIdentificationView.imgBG.Visibility = Visibility.Visible;
+                    faceIdentificationView.imgUserHead.Visibility = Visibility.Visible;
+                    faceIdentificationView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
                     hendersonVisitor.VisitorPhoto = tmpFile;
 
                     var client = WebApiClient.HttpApi.Resolve<IFaceApi>();
@@ -99,7 +99,7 @@ namespace WFC.SelfServeClient.ViewModels
                     //身份证头像+抓拍头像 调用接口头像对比
                     if (response.Same.ToLower() == "true")
                     {
-                        identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
+                        faceIdentificationView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
                         gotoTimer.Tag = "success";
                         gotoTimer.Start();
                     }
@@ -118,7 +118,7 @@ namespace WFC.SelfServeClient.ViewModels
                 {
                     Logger.Warn(msg);
 
-                    identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
+                    faceIdentificationView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
 
                     dynamic settings = new ExpandoObject();
                     settings.WindowStyle = WindowStyle.None;
@@ -149,10 +149,10 @@ namespace WFC.SelfServeClient.ViewModels
             //{
             //    helper.Disconnect();
             //    snapshotTimer.Stop();
-            //    //identityIDCardView.wfh.Visibility = Visibility.Collapsed;
-            //    //identityIDCardView.imgBG.Visibility = Visibility.Visible;
-            //    //identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
-            //    //identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
+            //    //faceIdentificationView.wfh.Visibility = Visibility.Collapsed;
+            //    //faceIdentificationView.imgBG.Visibility = Visibility.Visible;
+            //    //faceIdentificationView.imgUserHead.Visibility = Visibility.Visible;
+            //    //faceIdentificationView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
             //    gotoTimer.Tag = "fail";
             //    gotoTimer.Start();
             //}

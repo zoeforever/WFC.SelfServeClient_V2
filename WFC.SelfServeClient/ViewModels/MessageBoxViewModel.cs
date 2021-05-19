@@ -10,8 +10,8 @@ namespace WFC.SelfServeClient.ViewModels
     {
         MessageBoxView View;
         FailAndRetry failAndRetry;
-        DispatcherTimer snapshotTimerMess;
-        int snapshotTimer_timespanMess = 10;
+        private DispatcherTimer snapshotTimerMess;
+        private int snapshotTimer_timespanMess = 5;
         public MessageBoxViewModel(FailAndRetry failAndRetry)
         {
             this.failAndRetry = failAndRetry;
@@ -23,16 +23,19 @@ namespace WFC.SelfServeClient.ViewModels
 
         public void Click(object sender, KeyEventArgs e)
         {
+            snapshotTimerMess.Stop();
             this.TryClose();
         }
 
         public void MouseClick(object sender, MouseButtonEventArgs e)
         {
+            snapshotTimerMess.Stop();
             this.TryClose();
         }
 
         public void LostFocus(object sender, System.Windows.RoutedEventArgs e)
         {
+            snapshotTimerMess.Stop();
             this.TryClose();
         }
 

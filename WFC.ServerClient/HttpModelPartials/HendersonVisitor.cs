@@ -6,6 +6,6 @@
         public string AreaCode { get; set; } = "86";
         public string TenantAreaCode { get; set; } = "86";
         public string VisitorComp { get; set; }
-        public string Travel { get; set; } = "";
+        public string Travel { get; set; } = "是，请列明：/否";
     }
 }

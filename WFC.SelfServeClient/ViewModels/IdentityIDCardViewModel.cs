@@ -20,16 +20,16 @@ namespace WFC.SelfServeClient.ViewModels
     {
         IdCardInfo idCardInfo = null;
         IdentityIDCardView identityIDCardView;
-        CameraCaptureHelper helper;
-        VideoCaptureDevice videoSource = null;
-        Bitmap Snapshot = null;
-        //5秒执行一次
+      //  CameraCaptureHelper helper;
+    //    VideoCaptureDevice videoSource = null;
+     //   Bitmap Snapshot = null;
+        //2秒执行一次
         int snapshotTimer_timespan = 2;
         //执行6次=1分钟
-        int snapshotTimer_count = 0;
+     //   int snapshotTimer_count = 0;
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
-        DispatcherTimer gotoTimer;
+       // DispatcherTimer gotoTimer;
         public HendersonVisitor hendersonVisitor { get; set; }
 
         public event System.Action OnGotoWelcomeClick;
@@ -121,6 +121,7 @@ namespace WFC.SelfServeClient.ViewModels
         {
             try
             {
+                snapshotTimer.Stop();
 #if !TEST
                 idCardInfo = IdCardReaderHelper.ReadIdCard();
 #else
@@ -128,25 +129,30 @@ namespace WFC.SelfServeClient.ViewModels
 #endif
             }
             catch (Exception ex)
-            {               
+            {
                 Logger.Error(ex.ToString());
                 return;
                 //暂不处理
             }
-                snapshotTimer.Stop();
 
-                hendersonVisitor.IdCardNo = idCardInfo.Code;
-                hendersonVisitor.Name = idCardInfo.Name;
-                hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
-                hendersonVisitor.Gender = idCardInfo.Gender;
-                hendersonVisitor.Nation = idCardInfo.Nation;
 
-                ////身份证头像获取成功，开始摄像头抓拍
-                OnConfirmInfo?.Invoke();
-
-                ////身份证头像获取成功，开始摄像头抓拍
-                //helper.Snapshot();
+            hendersonVisitor.IdCardNo = idCardInfo.Code;
+            hendersonVisitor.Name = idCardInfo.Name;
+            hendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
+            hendersonVisitor.Gender = idCardInfo.Gender;
+            hendersonVisitor.Nation = idCardInfo.Nation;
+            if (hendersonVisitor.IdCardNo.Length < 10)
+            {
+                Logger.Error("调试判断--身份证号<10位：" + hendersonVisitor.IdCardNo);
+                return;
+            }
             
+            ////身份证头像获取成功，跳转页面
+            OnConfirmInfo?.Invoke();
+
+            ////身份证头像获取成功，开始摄像头抓拍
+            //helper.Snapshot();
+
             //if (snapshotTimer_count > 60 / snapshotTimer_timespan)
             //{
             //    helper.Disconnect();

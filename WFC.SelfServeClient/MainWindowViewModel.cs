@@ -193,6 +193,7 @@ namespace WFC.SelfServeClient
         /// </summary>
         private void GotoWelcomeClick()
         {
+           
             hendersonVisitor = new HendersonVisitor();
             hendersonVisitor.StartTime = DateTime.Now;
             welcomeViewModel = new WelcomeViewModel(hendersonVisitor);
@@ -211,7 +212,8 @@ namespace WFC.SelfServeClient
             visitorConfirmViewModel.OnGotoWelcomeClick -= GotoWelcomeClick;
             visitorConfirmViewModel.OnGotoWelcomeClick += GotoWelcomeClick;
             visitorConfirmViewModel.OnGotoFaceIdentification -= GotoFaceIdentification;
-            visitorConfirmViewModel.OnGotoFaceIdentification += GotoFaceIdentification;
+             visitorConfirmViewModel.OnGotoFaceIdentification += GotoFaceIdentification;
+
             this.ActivateItem(visitorConfirmViewModel);
         }
 

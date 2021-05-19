@@ -10,10 +10,9 @@ namespace WFC.SelfServeClient.ViewModels
     [PropertyChanged.ImplementPropertyChanged]
     public class VisitorConfirmViewModel : Screen
     {
-        public HendersonVisitor hendersonVisitor { get; set; }
+        public HendersonVisitor hendersonVisitor { get; set; } = new HendersonVisitor();
         public event System.Action OnGotoWelcomeClick;
-        public event System.Action OnGotoFaceIdentification;
-
+         public event System.Action OnGotoFaceIdentification;
         public VisitorConfirmViewModel(HendersonVisitor hendersonVisitor)
         {
             this.hendersonVisitor = hendersonVisitor;
@@ -31,7 +30,7 @@ namespace WFC.SelfServeClient.ViewModels
                 MessageBox.Show("证件号不能为空！");
                 return;
             }
-            OnGotoFaceIdentification?.Invoke();
+             OnGotoFaceIdentification?.Invoke();
         }
 
         public void GoBack()

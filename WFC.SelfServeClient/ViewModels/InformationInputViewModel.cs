@@ -15,7 +15,7 @@ namespace WFC.SelfServeClient.ViewModels
 {
     public class InformationInputViewModel : Screen
     {
-        private DispatcherTimer gotoWelcomeTimer;
+       // private DispatcherTimer gotoWelcomeTimer;
         private string serverUrl = ConfigurationManager.AppSettings["WebApiServiceUrl"];
         private string location = ConfigurationManager.AppSettings["Location"];
         private int failedTimes = 0;
@@ -37,17 +37,17 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 VisitorFloor.Add(new DisplayItem { Id = i.ToString(), Name = $"{i + 1}楼" });
             }
-            gotoWelcomeTimer = new DispatcherTimer();
-            gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(60);
-            gotoWelcomeTimer.Tick += Snapshot_Tick;
-            gotoWelcomeTimer.Start();
+          //  gotoWelcomeTimer = new DispatcherTimer();
+         //   gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(60);
+          //  gotoWelcomeTimer.Tick += Snapshot_Tick;
+          //  gotoWelcomeTimer.Start();
             this.hendersonVisitor = hendersonVisitor;
 
         }
 
         public void BtnOK()
         {
-            gotoWelcomeTimer.Stop();
+         //   gotoWelcomeTimer.Stop();
             //if (string.IsNullOrWhiteSpace(this.hendersonVisitor.Name))
             //{
             //    MessageBox.Show("请输入访客姓名！");
@@ -140,7 +140,7 @@ namespace WFC.SelfServeClient.ViewModels
                 }
                 else
                 {
-                    Failed(postResult.Message);
+                     Failed(postResult.Message);
                 }
             }
             catch (Exception ex)
@@ -165,8 +165,7 @@ namespace WFC.SelfServeClient.ViewModels
                 if (failedTimes == 3)
                 {
                     new WindowManager().ShowDialog(new MessageBoxViewModel(FailAndRetry.InformationInputFail3), null, settings);
-                    //gotoWelcomeTimer.Start();
-                   // GoBack();
+                    GoBack();
                 }
                 else
                 {
@@ -177,12 +176,13 @@ namespace WFC.SelfServeClient.ViewModels
 
         public void GoBack()
         {
+           // gotoWelcomeTimer.Stop();
             OnGotoWelcomeClick?.Invoke();
         }
 
         private void Snapshot_Tick(object sender, EventArgs e)
         {
-            gotoWelcomeTimer.Stop();
+          //  gotoWelcomeTimer.Stop();
             OnGotoWelcomeClick?.Invoke();
         }
     }
