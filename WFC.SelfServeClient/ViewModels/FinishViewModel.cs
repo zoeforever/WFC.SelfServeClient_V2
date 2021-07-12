@@ -21,7 +21,7 @@ namespace WFC.SelfServeClient.ViewModels
         public FinishViewModel(HendersonVisitor hendersonVisitor)
         {
             gotoWelcomeTimer = new DispatcherTimer();
-            gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(10);
+            gotoWelcomeTimer.Interval = TimeSpan.FromSeconds(20);
             gotoWelcomeTimer.Tick += Snapshot_Tick;
             gotoWelcomeTimer.Start();
             this.FinishhendersonVisitor = hendersonVisitor;
@@ -36,6 +36,11 @@ namespace WFC.SelfServeClient.ViewModels
         private void Snapshot_Tick(object sender, EventArgs e)
         {
             FinishButtonClick();
+        }
+        public void GoBack()
+        {
+            gotoWelcomeTimer.Stop();
+            OnGotoWelcomeClick?.Invoke();
         }
     }
 }

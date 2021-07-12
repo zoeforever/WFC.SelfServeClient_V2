@@ -76,33 +76,30 @@ namespace WFC.SelfServeClient.ViewModels
             }
             try
             {
-#if TEST
-                OnValidateSuccess?.Invoke();
-#else
-                // 校验验证码
-               
-                  var verifyCodeResponse = await client.VerifyCodeAsync(new VerifyCodeRequest { AreaCode = AreaCode, PhoneNumber = Phone, VerifyCode = Code });
-                  //var verifyCodeResult = await verifyCodeResponse..ReadAsStringAsync();
-                  //var token = JsonConvert.DeserializeObject<VerifyCodeResponse>(verifyCodeResult);
-                if (verifyCodeResponse.StatusCode == "SUCCESS")
-                  {
-                      if (verifyCodeResponse.Result == null || verifyCodeResponse.Result.Count == 0 || string.IsNullOrEmpty(verifyCodeResponse.Result[0].access_token))
-                      {
-                          MessageBox.Show("验证失败");
-                      }
-                      else
-                      {
 
-                          WebApiClientHelper.AccessToken = verifyCodeResponse.Result[0].access_token;
-                          WebApiClientHelper.RefreshToken = verifyCodeResponse.Result[0].refresh_token;
-                          OnValidateSuccess?.Invoke();
-                      }
-                  }
-                  else
-                  {
-                      MessageBox.Show("验证失败");
-                  }
-#endif
+                // 校验验证码
+             //   OnValidateSuccess?.Invoke();
+                   var verifyCodeResponse = await client.VerifyCodeAsync(new VerifyCodeRequest { AreaCode = AreaCode, PhoneNumber = Phone, VerifyCode = Code });
+                     //var verifyCodeResult = await verifyCodeResponse..ReadAsStringAsync();
+                     //var token = JsonConvert.DeserializeObject<VerifyCodeResponse>(verifyCodeResult);
+                   if (verifyCodeResponse.StatusCode == "SUCCESS")
+                     {
+                         if (verifyCodeResponse.Result == null || verifyCodeResponse.Result.Count == 0 || string.IsNullOrEmpty(verifyCodeResponse.Result[0].access_token))
+                         {
+                             MessageBox.Show("验证失败");
+                         }
+                         else
+                         {
+
+                             WebApiClientHelper.AccessToken = verifyCodeResponse.Result[0].access_token;
+                             WebApiClientHelper.RefreshToken = verifyCodeResponse.Result[0].refresh_token;
+                             OnValidateSuccess?.Invoke();
+                         }
+                     }
+                     else
+                     {
+                         MessageBox.Show("验证失败");
+                     }
             }
             catch (Exception ex)
               {

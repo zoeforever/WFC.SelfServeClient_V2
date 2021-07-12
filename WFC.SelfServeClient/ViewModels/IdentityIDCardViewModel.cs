@@ -25,8 +25,8 @@ namespace WFC.SelfServeClient.ViewModels
      //   Bitmap Snapshot = null;
         //2秒执行一次
         int snapshotTimer_timespan = 2;
-        //执行6次=1分钟
-     //   int snapshotTimer_count = 0;
+        //执行15次
+        int snapshotTimer_count = 0;
         public string SnapShotPath { get; set; }
         DispatcherTimer snapshotTimer;
         // DispatcherTimer gotoTimer;
@@ -38,7 +38,7 @@ namespace WFC.SelfServeClient.ViewModels
         public IdentityIDCardViewModel(HendersonVisitor hendersonVisitor)
         {
             IdentityhendersonVisitor = hendersonVisitor;
-            snapshotTimer = new DispatcherTimer() { IsEnabled = true };
+            snapshotTimer = new DispatcherTimer() ;
             snapshotTimer.Interval = TimeSpan.FromSeconds(snapshotTimer_timespan);
             snapshotTimer.Tick += Snapshot_Tick;
             snapshotTimer.Start();
@@ -122,46 +122,39 @@ namespace WFC.SelfServeClient.ViewModels
             try
             {
                
-#if !TEST
                 idCardInfo = IdCardReaderHelper.ReadIdCard();
-#else
-                idCardInfo = new IdCardInfo { Code = "123456", Name = "czb", ImagePath = "", Gender = "男", Nation = "汉" };
-#endif
+
             }
             catch (Exception ex)
             {
                 Logger.Error(ex.ToString());
-                return;
+              //  return;
                 //暂不处理
             }
-            IdentityhendersonVisitor.IdCardNo = idCardInfo.Code;
-            IdentityhendersonVisitor.Name = idCardInfo.Name;
-            IdentityhendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
-            IdentityhendersonVisitor.Gender = idCardInfo.Gender;
-            IdentityhendersonVisitor.Nation = idCardInfo.Nation;
-            if (IdentityhendersonVisitor.IdCardNo.Length < 10)
+            if (idCardInfo == null)
             {
-                Logger.Error("调试判断--身份证号<10位：" + IdentityhendersonVisitor.IdCardNo);
-                return;
+                snapshotTimer_count = snapshotTimer_count + 1;
             }
-            snapshotTimer.Stop();
-            ////身份证头像获取成功，跳转页面
-            OnConfirmInfo?.Invoke();
-
+            else
+            {
+                IdentityhendersonVisitor.IdCardNo = idCardInfo.Code;
+                IdentityhendersonVisitor.Name = idCardInfo.Name;
+                IdentityhendersonVisitor.VisitorPhoto = idCardInfo.ImagePath;
+                IdentityhendersonVisitor.Gender = idCardInfo.Gender;
+                IdentityhendersonVisitor.Nation = idCardInfo.Nation;
+                snapshotTimer.Stop();
+                ////身份证头像获取成功，跳转页面
+                OnConfirmInfo?.Invoke();
+            }
             ////身份证头像获取成功，开始摄像头抓拍
             //helper.Snapshot();
 
-            //if (snapshotTimer_count > 60 / snapshotTimer_timespan)
-            //{
-            //    helper.Disconnect();
-            //    snapshotTimer.Stop();
-            //    //identityIDCardView.wfh.Visibility = Visibility.Collapsed;
-            //    //identityIDCardView.imgBG.Visibility = Visibility.Visible;
-            //    //identityIDCardView.imgUserHead.Visibility = Visibility.Visible;
-            //    //identityIDCardView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzsb.png"));
-            //    gotoTimer.Tag = "fail";
-            //    gotoTimer.Start();
-            //}
+            if (snapshotTimer_count > 60 / snapshotTimer_timespan)
+            {
+                snapshotTimer.Stop();
+                OnGotoWelcomeClick?.Invoke();
+               
+            }
         }
 
         public void GoBack()

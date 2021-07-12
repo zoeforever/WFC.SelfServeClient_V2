@@ -140,7 +140,7 @@ namespace WFC.SelfServeClient.ViewModels
                 }
                 else
                 {
-                     Failed(postResult.Message);
+                     Failed(postResult.Message);                   
                 }
             }
             catch (Exception ex)

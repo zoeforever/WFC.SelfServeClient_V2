@@ -80,7 +80,7 @@ namespace WFC.SelfServeClient.ViewModels
                     faceIdentificationView.imgBG.Visibility = Visibility.Visible;
                     faceIdentificationView.imgUserHead.Visibility = Visibility.Visible;
                     faceIdentificationView.imgUserHead.Source = ImageHelper.GetImage(snapshot);
-                    FacehendersonVisitor.VisitorPhoto = tmpFile;
+                    //FacehendersonVisitor.VisitorPhoto = tmpFile; 第二次人脸识别时，人证不匹配也可以通过，注释此代码，测试 是否由该代码引起。
 
                     var client = WebApiClient.HttpApi.Resolve<IFaceApi>();
 
@@ -99,6 +99,7 @@ namespace WFC.SelfServeClient.ViewModels
                     //身份证头像+抓拍头像 调用接口头像对比
                     if (response.Same.ToLower() == "true")
                     {
+                        FacehendersonVisitor.VisitorPhoto = tmpFile;
                         faceIdentificationView.imgUserHead.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/rzcg.png"));
                         gotoTimer.Tag = "success";
                         gotoTimer.Start();
@@ -130,6 +131,7 @@ namespace WFC.SelfServeClient.ViewModels
                     if (failedTimes == 3)
                     {
                         new WindowManager().ShowDialog(new MessageBoxViewModel(FailAndRetry.FaceIdentificationFail3), null, settings);
+                      
                     }
                     else
                     {
@@ -174,6 +176,7 @@ namespace WFC.SelfServeClient.ViewModels
             {
                 if (failedTimes >= 3)
                 {
+                    snapshotTimer.Stop();
                     OnGotoWelcomeClick?.Invoke();
                 }
                 else
@@ -186,6 +189,8 @@ namespace WFC.SelfServeClient.ViewModels
 
         public void GoBack()
         {
+            gotoTimer.Stop();
+            snapshotTimer.Stop();
             OnGotoWelcomeClick?.Invoke();
         }
 

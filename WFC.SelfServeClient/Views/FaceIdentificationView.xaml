@@ -38,7 +38,7 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical" Margin="0,27,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-                <TextBlock Text="认证过程中请勿移动身份证" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="请望向正前方的镜头，以便进行人脸认证及拍摄相片" HorizontalAlignment="Center" FontSize="12" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="Please look at the camera for face verification and photo taking" HorizontalAlignment="Center" Margin="0,8,0,0" FontSize="12" FontWeight="Regular"></TextBlock>
             </StackPanel>
         </StackPanel>
